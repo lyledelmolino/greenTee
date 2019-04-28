@@ -1,0 +1,6 @@
+<div [ngClass]="setUserComponentClasses()">
+    <div *ngIf="appUser.userLevel>0">
+      <div id="user-info">{{ appUser.firstName }} {{ appUser.middleInitial }} {{ appUser.lastName }} | H.I. {{ appUser.handicapIndex }}</div><button type="button" (click)="logoutUser()">Logout</button>
+    </div>
+    <button *ngIf="appUser.userLevel==0" type="button" (click)="showLoginComponent()">Login</button>
+</div>

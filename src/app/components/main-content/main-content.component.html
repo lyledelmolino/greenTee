@@ -1,0 +1,6 @@
+<app-main-menu [ngClass]="setMainMenuClasses()"></app-main-menu>
+<app-home *ngIf="homeComponentVisible" [ngClass]="setHomeClasses()"></app-home>
+<app-golfer-section *ngIf="golferComponentVisible" [ngClass]="setGolferClasses()"></app-golfer-section>
+<app-club-admin *ngIf="clubAdminComponentVisible" [ngClass]="setClubAdminClasses()"></app-club-admin>
+<app-admin *ngIf="adminComponentVisible" [ngClass]="setAdminClasses()"></app-admin>
+<app-about *ngIf="aboutComponentVisible" [ngClass]="setAboutClasses()"></app-about>

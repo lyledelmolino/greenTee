@@ -1,0 +1,5 @@
+<div [ngClass]="setScoringComponentClasses()">
+    <app-post-score [ngClass]="setPostScoreClasses()"></app-post-score>
+    <app-latest-rev-scoring-record [aGolfer]="appUser" [ngClass]="setScoringRecordClasses()"></app-latest-rev-scoring-record>
+    <app-current-scoring-record [aGolfer]="appUser" [ngClass]="setScoringRecordClasses()"></app-current-scoring-record>
+</div>

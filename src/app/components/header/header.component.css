@@ -1,0 +1,41 @@
+.login-header {
+    width: 330px;
+    margin: 30px auto;
+    font-size: 400%;
+}
+
+@media screen and (max-width: 600px) {
+    .login-header {
+        width: 55%;
+        margin: 30px auto;
+        font-size: 200%;
+    }
+}
+
+.app-header {
+    margin: 10px 0px 10px 2px;
+    color: rgba(127, 166, 130, 1);
+    font-size: 30px;
+    background-color: white;
+}
+
+.span1-logo {
+    color: rgba(127, 166, 130, 1);
+}
+
+.span2-logo {
+    display: inline-block;
+    color: rgba(127, 166, 130, 1);
+    border-radius: 35px 0px;
+    padding: 10px;
+    height: 35px;
+    background-color: rgba(187, 255, 190, 1);
+}
+
+div.login-header > .span2-logo {
+    height: 100%;
+}
+
+.span3-logo {
+    font-size: 15px;
+}

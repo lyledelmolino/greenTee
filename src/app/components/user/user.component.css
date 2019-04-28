@@ -1,0 +1,27 @@
+.user button {
+    background-color: white;
+    border: 1px solid grey;
+    padding: 3px 20px;
+    margin-left: 5px;
+}
+
+div.user {
+    padding: 4px;
+}
+
+div.user > * {
+    vertical-align: middle;
+}
+
+div.login-user {
+    margin-bottom: 7px;
+}
+
+.user {
+    background-color: rgba(187, 226, 190, 1);
+}
+
+#user-info {
+    display: inline-block;
+    margin: 0px 5px;
+}

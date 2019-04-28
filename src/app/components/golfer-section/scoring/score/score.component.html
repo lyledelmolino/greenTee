@@ -1,0 +1,18 @@
+<table [ngClass]="setScoreTableClass()">
+    <tr>
+        <th>Date</th>
+        <th>Score</th>
+        <th>Course<br>Rating</th>
+        <th>Slope</th>
+        <th>Type</th>
+        <th>Handicap<br>Differential</th>
+    </tr>
+    <tr *ngFor="let score of this.scores;let i = index" [ngClass]="{'odd_row': i % 2 == 0, 'even_row': i % 2 == 1}">
+        <td>{{score.date}}</td>
+        <td>{{score.score}}</td>
+        <td>{{score.courseRating}}</td>
+        <td>{{score.slope}}</td>
+        <td>{{score.type}}</td>
+        <td>{{score.handicapDifferential}}</td>
+    </tr>
+</table>

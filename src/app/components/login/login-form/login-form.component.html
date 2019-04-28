@@ -1,0 +1,18 @@
+<section [ngClass]="setLoginContainerClasses()">
+    <form autocomplete="off" [ngClass]="setLoginFormClasses()">
+    <!--
+        <div class="imgcontainer">
+            <img src="img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+    -->
+        <input type="text" placeholder="Username" autocapitalize="none" name="username" [(ngModel)]="username" autocomplete="off">
+        <input type="password" placeholder="Password" autocapitalize="none" name="password" [(ngModel)]="password" autocomplete="off">
+        <button type="button" (click)="loginUser()">Login</button>
+        <button type="button" (click)="cancel()">Cancel</button> 
+        <div id="remember_me">
+            <input type="checkbox">
+            <label>Remember me</label>
+        </div>
+        <button type="button" (click)="showForgotPasswordComponent()">Forgot Password</button>
+    </form>
+</section>

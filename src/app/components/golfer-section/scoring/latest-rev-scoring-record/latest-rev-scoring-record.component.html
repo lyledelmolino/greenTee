@@ -1,0 +1,12 @@
+<button (click)="toggleLatestRevScoringRecordDetailVisible()" [ngClass]="setDetailActuatorClass()">
+Latest Rev Scoring Record
+</button>
+<div *ngIf="latestRevScoringRecordDetailVisible" [ngClass]="setContainerContainerClass()">
+    <div [ngClass]="setDetailContainerClass()">
+        <app-score [scores]="aGolfer.revisionScoringRecord"></app-score>
+        <div id="latest-revision-tournament-scoring">
+            <app-tournament-scoring-record [scores]="aGolfer.eligibleTournamentScoringRecord" [ngClass]="setTournamentScoringRecordClasses()"></app-tournament-scoring-record>
+            <app-two-low-eligible-t-scores [scores]="aGolfer.twoLowestEligibleTournamentScores" [ngClass]="setTwoLowEligibleTScoresClasses()"></app-two-low-eligible-t-scores>
+        </div>
+    </div>
+</div>

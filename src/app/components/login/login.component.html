@@ -1,0 +1,7 @@
+<section [ngClass]="setLoginContainerClasses()">
+    <app-header [ngClass]="setHeaderClasses()"></app-header>
+    <app-login-form *ngIf="loginFormComponentVisible"></app-login-form>
+    <app-forgot-password *ngIf="forgotPasswordComponentVisible"></app-forgot-password>
+    <app-password-reset-email *ngIf="passwordResetEmailComponentVisible"></app-password-reset-email>
+    <app-password-reset-phone *ngIf="passwordResetPhoneComponentVisible"></app-password-reset-phone>
+</section>

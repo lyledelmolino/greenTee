@@ -1,0 +1,8 @@
+<button (click)="toggleCurrentScoringRecordDetailVisible()" [ngClass]="setDetailActuatorClass()">
+Current Scoring Record
+</button>
+<div *ngIf="currentScoringRecordDetailVisible" [ngClass]="setContainerContainerClass()">
+    <div [ngClass]="setDetailContainerClass()">
+        <app-score [scores]="aGolfer.currentScoringRecord"></app-score>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+.post-score {
+	font-size: 10px;
+    background-color: rgba(242, 245, 169, 1);
+    margin: 10px;
+    padding: 10px;
+    width: 30%;
+}
+
+.post-score-form {
+    margin: 0px 10px;
+    padding: 10px;
+}
+
+.post-score fieldset {
+	border: 1px solid black;
+    margin-bottom: 5px;
+}
+
+.post-score-form label {
+    display: block;
+    width: 130px;
+}
+
+.post-score-form input[type=date] {
+    text-align: center;
+    width: 110px;
+}
+
+.post-score-form input[type=number], .post-score-form input[type=text] {
+    width: 45px;
+    text-align: center;
+}
+
+.radio_input_container {
+    padding: 7px;
+    margin: 12px 20px 5px 0px;
+    display: inline-block;
+    border: 1px solid grey;
+    border-radius: 2px;
+}
+
+.radio_input_container legend {
+    margin: 0px 5px 6px 5px;
+}
+
+.radio_input_container .radio-label {
+    width: 50px;
+}
