@@ -26,6 +26,8 @@
 .topnav button:hover, .golfer-menu button:hover {
     background-color: rgba(187, 226, 190, 1);
     color: black;
+    border-bottom: 1px solid green;
+    padding: 3px 3px 2px 3px;
 }
 
 div.responsive-menu {

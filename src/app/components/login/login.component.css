@@ -14,6 +14,16 @@
     border: 1px solid rgba(100, 200, 100, 1);
 }
 
+.three_numbers_wide {
+    width: 30px;
+    margin-right: 4px;
+}
+
+.four_numbers_wide {
+    width: 40px;
+    margin-right: 4px;
+}
+
 @media screen and (max-width: 600px) {
     .login-form {
         width: 100%;
@@ -28,7 +38,7 @@
 
 .login-form > button {
     background-color: white;
-    border: 2px solid rgba(0, 200, 0, 2);
+    border: 1px solid rgba(127, 166, 130, 1);
 }
 
 .login-form > button:hover {
