@@ -40,6 +40,8 @@ export class UserComponent implements OnInit {
     showLoginComponent() {
 //        console.log('In user.component.ts - showLogin()!!');
         this.greenTee918Service.showLoginComponent();
+        this.greenTee918Service.hideFoundGolfersComponent();
+        this.greenTee918Service.hideAboutComponent();
     }
 
     logoutUser() {
