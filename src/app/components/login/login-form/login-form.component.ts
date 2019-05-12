@@ -35,6 +35,7 @@ export class LoginFormComponent implements OnInit {
     cancel() {
 //        console.log('In login.component.ts - cancel()!!');
         this.greenTee918Service.hideLoginComponent();
+        this.greenTee918Service.showHomeComponent();
     }
 
     showForgotPasswordComponent() {

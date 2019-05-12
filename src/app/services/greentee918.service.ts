@@ -189,6 +189,10 @@ export class Greentee918Service {
         this.loginFormComponentVisibility.next(false);
     }
 
+    hideFoundGolfersComponent() {
+        this.foundGolfers.next(new Array());
+    }
+
     showForgotPasswordComponent() {
         this.forgotPasswordComponentVisibility.next(true);
     }
