@@ -96,6 +96,13 @@ form button:not(.detail-actuator) {
     margin: 3px;
 }
 
+form button:not(.detail-actuator):hover {
+    background-color: white;
+    min-width: 150px;
+    border: 1px solid green;
+    margin: 1px 3px;
+}
+
 form .container-container {
     width: 100%;
     border: none;
