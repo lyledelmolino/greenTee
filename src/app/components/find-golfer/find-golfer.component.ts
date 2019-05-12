@@ -22,12 +22,17 @@ export class FindGolferComponent implements OnInit {
     }
 
     findGolfer() {
-        console.log('In findGolfer.component.ts ---> findGolfer()');
-        console.log(this.golferToFind);
-        this.greenTee918Service.findGolfer(this.golferToFind);
-        this.foundGolfers.forEach( index => {
-            this.foundGolfersScoringRecordVisible[index] = false;
-        }) 
+        console.log('In findGolfer.component.ts ---> findGolfer() - this.golferToFind.lastName != null');
+        console.log('|'+this.golferToFind.lastName+'|');
+        // != null (includes undefined !== does not)
+        if( this.golferToFind.lastName != null && this.golferToFind.lastName != '' ) {
+            this.greenTee918Service.findGolfer(this.golferToFind);
+            this.foundGolfers.forEach( index => {
+                this.foundGolfersScoringRecordVisible[index] = false;
+            }) 
+        } else {
+            this.greenTee918Service.hideFoundGolfersComponent();
+        }
     }
 
     toggleFoundGolfersScoringRecordVisible(index) {
