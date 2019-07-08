@@ -72,6 +72,9 @@ export class Greentee918Service {
             .subscribe(loggedOutUser => this.user.next(loggedOutUser));
 //        console.log('In greentee918.service.ts ---> logoutUser(): Observable<User>');
         this.hideGolferComponent();
+        this.hideClubAdminComponent();
+        this.hideAdminComponent();
+        this.hideAboutComponent();
         this.showHomeComponent();
     }
 
