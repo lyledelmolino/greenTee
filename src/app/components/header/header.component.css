@@ -24,7 +24,7 @@
 }
 
 .span2-logo {
-    display: inline-block;
+/*    display: inline-block; */
     color: rgba(127, 166, 130, 1);
     border-radius: 35px 0px;
     padding: 10px;

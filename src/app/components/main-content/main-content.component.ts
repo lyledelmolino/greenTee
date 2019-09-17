@@ -13,6 +13,9 @@ export class MainContentComponent implements OnInit {
     clubAdminComponentVisible = false;
     adminComponentVisible = false;
     aboutComponentVisible = false;
+    freeTrialComponentVisible = false;
+    freeTrialPinFormComponentVisible = false;
+    registerFreeUserComponentVisible = false;
 
     constructor( private greenTee918Service: Greentee918Service ) { }
 
@@ -22,6 +25,11 @@ export class MainContentComponent implements OnInit {
         this.greenTee918Service.castClubAdminComponentVisibility.subscribe(visibility => this.clubAdminComponentVisible = visibility);
         this.greenTee918Service.castAdminComponentVisibility.subscribe(visibility => this.adminComponentVisible = visibility);
         this.greenTee918Service.castAboutComponentVisibility.subscribe(visibility => this.aboutComponentVisible = visibility);
+        this.greenTee918Service.castRegisterFreeUserComponentVisibility.subscribe(visibility =>
+            this.registerFreeUserComponentVisible = visibility);
+        this.greenTee918Service.castFreeTrialComponentVisibility.subscribe(visibility => this.freeTrialComponentVisible = visibility);
+        this.greenTee918Service.castFreeTrialPinFormComponentVisibility.subscribe(visibility =>
+            this.freeTrialPinFormComponentVisible = visibility);
     }
 
     setMainMenuClasses() {
@@ -79,6 +87,16 @@ export class MainContentComponent implements OnInit {
         // tslint:disable-next-line:prefer-const
         let classes = {
             about: true
+        };
+
+        return classes;
+    }
+
+    setProfileClasses() {
+
+        // tslint:disable-next-line:prefer-const
+        let classes = {
+            profile: true
         };
 
         return classes;

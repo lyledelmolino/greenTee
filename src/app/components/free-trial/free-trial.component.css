@@ -1,0 +1,25 @@
+input[type="email"] {
+	display: block;
+	width: 398px;
+}
+
+#golfer-profile-name-label {
+    min-height: 60px;
+}
+
+.profile-form {
+    margin: 5px;
+}
+
+@media screen and (max-width: 600px) {
+
+    #golfer-profile-name-label {
+        min-height: 0px;
+    }
+
+	input, input[type="email"], button {
+		display: block;
+		width: 100%;
+	}
+
+}

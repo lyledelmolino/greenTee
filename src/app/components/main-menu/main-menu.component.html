@@ -5,8 +5,10 @@
       <div></div>
     </div>
     <button [ngClass]="setHomeButtonClasses()" (click)="showHomeComponent()">Home<div [ngClass]="setArrowClasses()"></div></button>
-    <button *ngIf="appUser.userLevel>0" [ngClass]="setGolferButtonClasses()" (click)="showGolferComponent()">Golfer</button>
-    <button *ngIf="appUser.userLevel>0" [ngClass]="setClubAdminButtonClasses()" (click)="showClubAdminComponent()">Club Admin</button>
-    <button *ngIf="appUser.userLevel>0" [ngClass]="setAdminButtonClasses()" (click)="showAdminComponent()">Admin</button>
+    <button *ngIf="appUser.userLevel>599" [ngClass]="setGolferButtonClasses()" (click)="showGolferComponent()">Golfer</button>
+    <button *ngIf="appUser.userLevel>699" [ngClass]="setClubAdminButtonClasses()" (click)="showClubAdminComponent()">Club Admin</button>
+    <button *ngIf="appUser.userLevel>899" [ngClass]="setAdminButtonClasses()" (click)="showAdminComponent()">Admin</button>
+    <!-- <button *ngIf="appUser.userLevel<1" [ngClass]="setFreeTrialButtonClasses()" (click)="showFreeTrialComponent()">Register (Its free!)</button> -->
+    <button *ngIf="appUser.userLevel<1" [ngClass]="setRegisterFreeUserButtonClasses()" (click)="showRegisterFreeUserComponent()">Register (Its free!)</button>
     <button [ngClass]="setAboutButtonClasses()" (click)="showAboutComponent()">About</button>
 </div>

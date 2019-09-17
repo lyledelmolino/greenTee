@@ -5,8 +5,9 @@ export class User {
     firstName?: string;
     middleName?: string;
     lastName?: string;
+    obtacgod?: string;
     roleId: number;
-    emails?: string[];
+    emails?: string[] = [];
     websites?: string[];
     phoneNumbers?: object[];
     clubRoles: object[];

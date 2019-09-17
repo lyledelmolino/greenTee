@@ -13,6 +13,7 @@ export class MainMenuComponent implements OnInit {
     golferComponentVisible = false;
     clubAdminComponentVisible = false;
     adminComponentVisible = false;
+    freeTrialComponentVisible = false;
     aboutComponentVisible = false;
     responsiveMenuVisible = false;
     animateArrowDown = false;
@@ -26,6 +27,7 @@ export class MainMenuComponent implements OnInit {
         this.greenTee918Service.castGolferComponentVisibility.subscribe(visibility => this.golferComponentVisible = visibility);
         this.greenTee918Service.castClubAdminComponentVisibility.subscribe(visibility => this.clubAdminComponentVisible = visibility);
         this.greenTee918Service.castAdminComponentVisibility.subscribe(visibility => this.adminComponentVisible = visibility);
+        this.greenTee918Service.castFreeTrialComponentVisibility.subscribe(visibility => this.freeTrialComponentVisible = visibility);
         this.greenTee918Service.castAboutComponentVisibility.subscribe(visibility => this.aboutComponentVisible = visibility);
     }
 
@@ -84,6 +86,28 @@ export class MainMenuComponent implements OnInit {
         return classes;
     }
 
+    setFreeTrialButtonClasses() {
+
+        // tslint:disable-next-line:prefer-const
+        let classes = {
+            active: this.freeTrialComponentVisible,
+            'responsive-menu': this.responsiveMenuVisible
+        };
+
+        return classes;
+    }
+
+    setRegisterFreeUserButtonClasses() {
+
+        // tslint:disable-next-line:prefer-const
+        let classes = {
+            active: this.freeTrialComponentVisible,
+            'responsive-menu': this.responsiveMenuVisible
+        };
+
+        return classes;
+    }
+
     setAboutButtonClasses() {
 
         // tslint:disable-next-line:prefer-const
@@ -101,6 +125,8 @@ export class MainMenuComponent implements OnInit {
         this.greenTee918Service.hideGolferComponent();
         this.greenTee918Service.hideClubAdminComponent();
         this.greenTee918Service.hideAdminComponent();
+        this.greenTee918Service.hideFreeTrialComponent();
+        this.greenTee918Service.hideRegisterFreeTrialUserComponent();
         this.greenTee918Service.hideAboutComponent();
     }
 
@@ -112,6 +138,9 @@ export class MainMenuComponent implements OnInit {
         this.greenTee918Service.hideGolferComponent();
         this.greenTee918Service.hideClubAdminComponent();
         this.greenTee918Service.hideAdminComponent();
+        this.greenTee918Service.hideFreeTrialComponent();
+        this.greenTee918Service.hideFreeTrialPinFormComponent();
+        this.greenTee918Service.hideRegisterFreeTrialUserComponent();
         this.greenTee918Service.hideAboutComponent();
     }
 
@@ -121,6 +150,9 @@ export class MainMenuComponent implements OnInit {
         this.greenTee918Service.showGolferComponent();
         this.greenTee918Service.hideClubAdminComponent();
         this.greenTee918Service.hideAdminComponent();
+        this.greenTee918Service.hideFreeTrialComponent();
+        this.greenTee918Service.hideFreeTrialPinFormComponent();
+        this.greenTee918Service.hideRegisterFreeTrialUserComponent();
         this.greenTee918Service.hideAboutComponent();
     }
 
@@ -130,6 +162,9 @@ export class MainMenuComponent implements OnInit {
         this.greenTee918Service.hideGolferComponent();
         this.greenTee918Service.showClubAdminComponent();
         this.greenTee918Service.hideAdminComponent();
+        this.greenTee918Service.hideFreeTrialComponent();
+        this.greenTee918Service.hideFreeTrialPinFormComponent();
+        this.greenTee918Service.hideRegisterFreeTrialUserComponent();
         this.greenTee918Service.hideAboutComponent();
     }
 
@@ -139,7 +174,33 @@ export class MainMenuComponent implements OnInit {
         this.greenTee918Service.hideGolferComponent();
         this.greenTee918Service.hideClubAdminComponent();
         this.greenTee918Service.showAdminComponent();
+        this.greenTee918Service.hideFreeTrialComponent();
+        this.greenTee918Service.hideFreeTrialPinFormComponent();
+        this.greenTee918Service.hideRegisterFreeTrialUserComponent();
         this.greenTee918Service.hideAboutComponent();
+    }
+
+    showFreeTrialComponent() {
+        this.responsiveMenuVisible = false;
+        this.greenTee918Service.hideHomeComponent();
+        this.greenTee918Service.hideGolferComponent();
+        this.greenTee918Service.hideClubAdminComponent();
+        this.greenTee918Service.hideAdminComponent();
+        this.greenTee918Service.hideAboutComponent();
+        this.greenTee918Service.showFreeTrialComponent();
+        this.greenTee918Service.hideFreeTrialPinFormComponent();
+        this.greenTee918Service.hideRegisterFreeTrialUserComponent();
+    }
+
+    showRegisterFreeUserComponent() {
+        this.responsiveMenuVisible = false;
+        this.greenTee918Service.hideHomeComponent();
+        this.greenTee918Service.hideGolferComponent();
+        this.greenTee918Service.hideClubAdminComponent();
+        this.greenTee918Service.hideAdminComponent();
+        this.greenTee918Service.hideAboutComponent();
+        this.greenTee918Service.showRegisterFreeTrialUserComponent();
+        this.greenTee918Service.hideFreeTrialPinFormComponent();
     }
 
     showAboutComponent() {
@@ -148,6 +209,9 @@ export class MainMenuComponent implements OnInit {
         this.greenTee918Service.hideGolferComponent();
         this.greenTee918Service.hideClubAdminComponent();
         this.greenTee918Service.hideAdminComponent();
+        this.greenTee918Service.hideFreeTrialComponent();
+        this.greenTee918Service.hideFreeTrialPinFormComponent();
+        this.greenTee918Service.hideRegisterFreeTrialUserComponent();
         this.greenTee918Service.showAboutComponent();
     }
 }

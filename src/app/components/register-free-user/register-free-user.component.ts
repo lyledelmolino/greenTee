@@ -1,36 +1,36 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { Greentee918Service } from '../../../services/greentee918.service';
-import { User } from '../../../models/User';
-import { PhoneNumber } from '../../../models/PhoneNumer';
+import { Greentee918Service } from '../../services/greentee918.service';
+import { User } from '../../models/User';
+import { PhoneNumber } from '../../models/PhoneNumer';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['../../../app.component.css', './profile.component.css']
+  selector: 'app-register-free-user',
+  templateUrl: './register-free-user.component.html',
+  styleUrls: ['../../app.component.css', './register-free-user.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class RegisterFreeUserComponent implements OnInit {
 
     appUser;
     componentUser;
-    affiliationsDetailVisible = false;
+//    affiliationsDetailVisible = false;
     addressDetailVisible = false;
-    emailDetailVisible = false;
+//    emailDetailVisible = false;
     phoneDetailVisible = false;
     updatedUser = new User();
 
     constructor( private greenTee918Service: Greentee918Service ) {
         this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
-//        this.componentUser = this.appUser;
+        this.componentUser = this.appUser;
         this.componentUser = JSON.parse(JSON.stringify(this.appUser));
 
         console.log('In profile.component.ts ---> constructor()');
         console.log(this.componentUser);
 
-        if (this.componentUser === null && this.componentUser.phoneNumbers.length === 0) {
-            console.log('this.componentUser.phoneNumbers[0] === null');
-            console.log(this.componentUser.phoneNumbers[0]);
-            this.componentUser.phoneNumbers.push(new PhoneNumber());
-        }
+//        if (this.componentUser === null && this.componentUser.phoneNumbers.length === 0) {
+ ////           console.log('this.componentUser.phoneNumbers[0] === null');
+  //          console.log(this.componentUser.phoneNumbers[0]);
+    //        this.componentUser.phoneNumbers.push(new PhoneNumber());
+      //  }
 
         console.log(this.appUser);
     }
@@ -85,19 +85,27 @@ export class ProfileComponent implements OnInit {
     }
 
     toggleAffiliationsDetailVisible() {
-        this.affiliationsDetailVisible = !this.affiliationsDetailVisible;
+//        this.affiliationsDetailVisible = !this.affiliationsDetailVisible;
     }
 
     toggleAddressDetailVisible() {
+        console.log('In profile.component.ts 1 ---> toggleAddressDetailVisible()');
+        console.log(this.addressDetailVisible);
         this.addressDetailVisible = !this.addressDetailVisible;
+        console.log('In profile.component.ts 2 ---> toggleAddressDetailVisible()');
+        console.log(this.addressDetailVisible);
     }
 
     toggleEmailDetailVisible() {
-        this.emailDetailVisible = !this.emailDetailVisible;
+//        this.emailDetailVisible = !this.emailDetailVisible;
     }
 
     togglePhoneDetailVisible() {
+        console.log('In profile.component.ts 1 ---> togglePhoneDetailVisible()');
+        console.log(this.phoneDetailVisible);
         this.phoneDetailVisible = !this.phoneDetailVisible;
+        console.log('In profile.component.ts 2 ---> togglePhoneDetailVisible()');
+        console.log(this.phoneDetailVisible);
     }
 
     setAddressContainerClasses() {
@@ -114,7 +122,8 @@ export class ProfileComponent implements OnInit {
 
         // tslint:disable-next-line:prefer-const
         let classes = {
-            'detail-actuator': true
+            'detail-actuator': true,
+            'form-largest': true
         };
 
         return classes;

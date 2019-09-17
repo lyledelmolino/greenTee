@@ -1,0 +1,22 @@
+<div [ngClass]="setContainerContainerClass()">
+    <div [ngClass]="setDetailContainerClasses()">
+        <form [ngClass]="setProfileClasses()" (ngSubmit)="registerFreeTrialUser()">
+            <div style="display: block">
+                <div style="display: inline">
+                    <input type="text" placeholder="Username" autocapitalize="none" name="username" [(ngModel)]="freeTrialUser.username" autocomplete="off">
+                    <input type="password" placeholder="Password" autocapitalize="none" name="password" [(ngModel)]="freeTrialUser.password" autocomplete="off">
+                    <input type="email" maxlength="120" title="There must be an @ character." name="emails" [(ngModel)]="freeTrialUser.emails[0]" placeholder="Email" onkeyup="checkFormValidityForSubmit(event)">
+                    <input type="text" maxlength="50" name="first_name" [(ngModel)]="freeTrialUser.firstName" placeholder="First Name">
+                    <input type="text" maxlength="1" name="middle_name" [(ngModel)]="freeTrialUser.middleName" placeholder="MI" style="width:22px">
+                    <input type="text" maxlength="50" name="last_name" [(ngModel)]="freeTrialUser.lastName" placeholder="Last Name">
+                </div>
+            </div>
+			<button type="submit" title="">Begin Free Trial</button>
+			<button type="button" (click)="cancel()">Cancel</button> 
+        </form>
+    </div>
+</div>
+<!-- <section [ngClass]="setFreeTrialContainerClasses()">
+	<button type="button" (click)="registerFreeTrialUser()">Begin Free Trial</button>
+	<button type="button" (click)="cancel()">Cancel</button> 
+</section> -->

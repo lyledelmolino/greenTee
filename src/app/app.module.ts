@@ -39,6 +39,9 @@ import { AddressserveComponent } from './components/golfer-section/profile/addre
 import { GolferMenuComponent } from './components/golfer-section/golfer-menu/golfer-menu.component';
 import { ScoreComponent } from './components/golfer-section/scoring/score/score.component';
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
+import { FreeTrialComponent } from './components/free-trial/free-trial.component';
+import { PinFormComponent } from './components/free-trial/pin-form/pin-form.component';
+import { RegisterFreeUserComponent } from './components/register-free-user/register-free-user.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +76,9 @@ import { LoginFormComponent } from './components/login/login-form/login-form.com
     GolferMenuComponent,
     ScoreComponent,
     LoginFormComponent,
+    FreeTrialComponent,
+    PinFormComponent,
+    RegisterFreeUserComponent,
   ],
   imports: [
     BrowserModule,

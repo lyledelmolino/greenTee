@@ -42,6 +42,7 @@ export class UserComponent implements OnInit {
         this.greenTee918Service.showLoginComponent();
         this.greenTee918Service.hideFoundGolfersComponent();
         this.greenTee918Service.hideAboutComponent();
+        this.greenTee918Service.hideRegisterFreeTrialUserComponent();
     }
 
     logoutUser() {

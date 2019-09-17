@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-
+import { User } from '../models/User';
 
 const HTTP_OPTIONS = {
     headers: new HttpHeaders({
@@ -25,12 +25,14 @@ export class Greentee918Service {
 
     private theURL = 'https://www.greentee.info/angular/api/index.php';
     private mFoundGolfers: Array<any>;
+    private mRegisterForFreeTrialSessionId: string;
     private appUser = {
         userLevel: 0
     };
 
     private user = new BehaviorSubject<any>(this.appUser);
     private foundGolfers = new BehaviorSubject<any[]>(this.mFoundGolfers);
+    private registerForFreeTrialSessionId = new BehaviorSubject<string>(this.mRegisterForFreeTrialSessionId);
     private loginComponentVisibility = new BehaviorSubject<any>('');
     private loginFormComponentVisibility = new BehaviorSubject<any>('');
     private forgotPasswordComponentVisibility = new BehaviorSubject<any>('');
@@ -44,9 +46,13 @@ export class Greentee918Service {
     private clubAdminComponentVisibility = new BehaviorSubject<any>('');
     private adminComponentVisibility = new BehaviorSubject<any>('');
     private aboutComponentVisibility = new BehaviorSubject<any>('');
+    private registerFreeUserComponentVisibility = new BehaviorSubject<any>('');
+    private freeTrialComponentVisibility = new BehaviorSubject<any>('');
+    private freeTrialPinFormComponentVisibility = new BehaviorSubject<any>('');
 
     castUser = this.user.asObservable();
     castFoundGolfers = this.foundGolfers.asObservable();
+    castRegisterForFreeTrialSessionId = this.registerForFreeTrialSessionId.asObservable();
     castLoginVisibility = this.loginComponentVisibility.asObservable();
     castLoginFormComponentVisibility = this.loginFormComponentVisibility.asObservable();
     castForgotPasswordComponentVisibility = this.forgotPasswordComponentVisibility.asObservable();
@@ -60,6 +66,9 @@ export class Greentee918Service {
     castClubAdminComponentVisibility = this.clubAdminComponentVisibility.asObservable();
     castAdminComponentVisibility = this.adminComponentVisibility.asObservable();
     castAboutComponentVisibility = this.aboutComponentVisibility.asObservable();
+    castRegisterFreeUserComponentVisibility = this.registerFreeUserComponentVisibility.asObservable();
+    castFreeTrialComponentVisibility = this.freeTrialComponentVisibility.asObservable();
+    castFreeTrialPinFormComponentVisibility = this.freeTrialPinFormComponentVisibility.asObservable();
 
     constructor( private http: HttpClient ) {
     }
@@ -75,6 +84,7 @@ export class Greentee918Service {
         this.hideClubAdminComponent();
         this.hideAdminComponent();
         this.hideAboutComponent();
+        this.hideFreeTrialComponent();
         this.showHomeComponent();
     }
 
@@ -95,6 +105,39 @@ export class Greentee918Service {
         });
         console.log('In greentee918.service.ts ---> loginUser(): Observable<User>');
         console.log(this.appUser);
+    }
+
+    registerFreeTrialUser(pUserToRegisterForFreeTrial: User) {
+        // set header vars action...
+        let body = new HttpParams();
+        body = body.set('form', JSON.stringify(pUserToRegisterForFreeTrial));
+        body = body.set('action', 'initialize_free_trial');
+
+        this.http.post<any>(this.theURL, body, HTTP_OPTIONS)
+            .subscribe((sessionId: any) => {
+                this.registerForFreeTrialSessionId.next(sessionId);
+                console.log('In greentee918.service.ts ---> -registerFreeTrialUser(userToRegisterForFreeTrial) sessionId:');
+                console.log(sessionId);
+                console.log(this.registerForFreeTrialSessionId.getValue());
+        });
+    }
+
+    finalizeFreeTrialRegistration(freeTrialRegistrationPin: string, freeTrialRegistrationSessionId: string) {
+        // set header vars action...
+        let body = new HttpParams();
+        body = body.set('form', JSON.stringify(freeTrialRegistrationPin));
+        body = body.set('ob_tacgod', freeTrialRegistrationSessionId);
+        body = body.set('action', 'finalize_free_trial');
+
+        console.log('In greentee918.service.ts ---> -mRegisterForFreeTrialSessionId(userToRegisterForFreeTrial)');
+        console.log(this.registerForFreeTrialSessionId.getValue());
+
+        this.http.post<any>(this.theURL, body, HTTP_OPTIONS)
+            .subscribe((freeTrialUser: any) => {
+                this.user.next(freeTrialUser);
+                console.log('In greentee918.service.ts ---> -registerFreeTrialUser(userToRegisterForFreeTrial)');
+                console.log(freeTrialUser);
+        });
     }
 
     findGolfer(formData) {
@@ -278,5 +321,29 @@ export class Greentee918Service {
 
     hideAboutComponent() {
         this.aboutComponentVisibility.next(false);
+    }
+
+    showRegisterFreeTrialUserComponent() {
+        this.registerFreeUserComponentVisibility.next(true);
+    }
+
+    hideRegisterFreeTrialUserComponent() {
+        this.registerFreeUserComponentVisibility.next(false);
+    }
+
+    showFreeTrialComponent() {
+        this.freeTrialComponentVisibility.next(true);
+    }
+
+    hideFreeTrialComponent() {
+        this.freeTrialComponentVisibility.next(false);
+    }
+
+    showFreeTrialPinFormComponent() {
+        this.freeTrialPinFormComponentVisibility.next(true);
+    }
+
+    hideFreeTrialPinFormComponent() {
+        this.freeTrialPinFormComponentVisibility.next(false);
     }
 }

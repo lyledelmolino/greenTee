@@ -1,13 +1,12 @@
 .user button {
-    background-color: white;
-    border: 1px solid grey;
+    background-color: rgba(247, 248, 224, 1);
+    border: 1px solid rgba(247, 248, 224, 1);
     padding: 3px 20px;
     margin-left: 5px;
 }
 
 .user button:hover {
-    border: 2px solid rgba(127, 166, 130, 1);
-    padding: 2px 20px;
+    border: 1px solid rgba(127, 166, 130, 1);
 }
 
 div.user {

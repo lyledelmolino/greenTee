@@ -92,21 +92,26 @@
 form button:not(.detail-actuator) {
     background-color: rgba(247, 248, 224, 1);
     min-width: 150px;
-    border: none;
+    border: 1px solid rgba(247, 248, 224, 1);
     margin: 3px;
 }
 
 form button:not(.detail-actuator):hover {
-    background-color: white;
-    min-width: 150px;
-    border: 1px solid green;
-    margin: 1px 3px;
+    border: 1px solid rgba(127, 166, 130, 1);
+}
+
+.profile-form button:not(.detail-actuator) {
+    margin: auto; 
+    width: 40%;
+    height: 30px;
 }
 
 form .container-container {
     width: 100%;
-    border: none;
-    background-color: #f2f5a9;
+    border: 3px solid rgba(127, 166, 130, 1);
+    /* background-color: #f2f5a9; */
+    background-color: white;
+    padding: 10px;
 }
 
 form input, select, option  {
@@ -114,7 +119,6 @@ form input, select, option  {
     border-radius: 2px;
     margin-right: 5px;
     color: #555;
-    padding: 2px;
     margin-bottom: 2px;
 }
 
@@ -150,13 +154,18 @@ form ::placeholder {
 }
 
 .three_numbers_wide {
-    max-width: 33px;
+    max-width: 75px;
     width: 30%;
-}
+    height: 50px;
+    font-size: 20px;
+    padding-left: 20px;}
 
 .four_numbers_wide {
-    max-width: 44px;
-	width: 40%;
+    max-width: 100px;
+    width: 40%;
+    height: 50px;
+    font-size: 20px;
+    padding-left: 20px;
 }
 
 fieldset.found-golfer .name {

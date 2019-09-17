@@ -1,0 +1,14 @@
+<div [ngClass]="setContainerContainerClass()">
+    <div [ngClass]="setDetailContainerClasses()">
+        <form [ngClass]="setProfileClasses()" (ngSubmit)="finalizeFreeTrialRegistration()">
+            <div style="display: block">
+                <div style="display: inline">
+<!--                    <input type="text" maxlength="50" name="free_trial_pin" [(ngModel)]="freeTrialUser.firstName" placeholder="Free Trial Pin">
+-->                    <input type="text" maxlength="50" name="free_trial_pin" [(ngModel)]="freeTrialRegistrationPin" placeholder="Free Trial Pin">
+                </div>
+            </div>
+			<button type="submit" title="">Finalize Free Trial Registration</button>
+			<button type="button" (click)="cancel()">Cancel</button> 
+        </form>
+    </div>
+</div>
