@@ -1,196 +1,309 @@
 :root {
-	--primary-button-bg-color: #a00;
-	--active-button-bg-color: #090;
-	--active-button-color: #fff;
-	--table-row-bg-color: #ddd;
-	--slender_font_size: .8em;
-	--primary-container-bg-color: #fff;
+  --primary-button-bg-color: #a00;
+  --active-button-bg-color: #090;
+  --active-button-color: #fff;
+  --table-row-bg-color: #ddd;
+  --slender_font_size: .8em;
+  --primary-container-bg-color: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+.appContainer {
+  max-width: 100%;
+  min-width: 0px;
+  margin: 0px 1px;
+}
+
+p {
+  margin: 0px;
+}
+
+label {
+  font-weight: 500;
 }
 
 .app-container {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 }
 
-.container-container {
-    background-color: rgba(187, 226, 190, 1);
-    width: 100%; 
-    display: inline-block;
+.main-container {
+  width: 50%;
+  margin: auto;
+}
+
+.gt-main-container {
+  width: 50%;
+  margin: auto;
+}
+
+.gt-main-content-container {
+  min-width: 456px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.detail-container-container {
+  display: block;
+  clear: both;
+  background-color: rgba(127, 166, 130, 1);
+  padding: 0px 1px 1px;
+}
+
+.detail-container {
+  background-color: white;
+  padding: 4px;
+  display: inline-block;
+  width: 100%;
+}
+
+.form-largest {
+  width: 100%;
+  padding-left: 12px;
+  height: 35px;
+  border: 1px solid gray;
+  /*border-radius: 4px;*/
+  margin: 3px 0px;
 }
 
 .scoring-group-component .container-container {
-    background-color: red;
+  background-color: red;
 }
 
 .container-container fieldset {
-    margin: 3px;
-    border: none;
-    background-color: white;
-}
-
-.container-container label {
-    float: left;
-    width: 75px;
-    text-align: right;
-    padding-right: 4px;
+  border: none;
+  background-color: white;
 }
 
 .post-score .container-container {
-    border-color: #f2f5a9;
+  border-color: #f2f5a9;
+}
+
+fieldset.profile-detail {
+  padding: 10px 10px 0px;
 }
 
 .profile-detail label {
-    width: 4em;
-    padding-top: 3px;
+  width: 4em;
+  padding-top: 3px;
 }
 
 .profile-affiliations-detail input {
-    width: 100%;
+  width: 100%;
 }
 
 .profile-affiliations-detail div {
-    background-color: white;
-    padding: 3px;
+  background-color: white;
+  padding: 3px;
 }
 
 .profile-affiliations-detail div.even {
-    padding-top: 0px;
-    padding-bottom: 3px;
+  padding-top: 0px;
+  padding-bottom: 3px;
 }
 
 .profile-affiliations-detail p {
-    padding: 3px;
-    background-color: #e0e0e0;
+  padding: 3px 7px;
+  background-color: #e0e0e0;
 }
-/*
-.detail-container {
-    background-color: rgba(218, 165, 32, 1);
-    background-color: white;
-    border: none;
-    margin: .2em;
-    padding: .2em;
-}
-*/
 
-.detail-actuator.active {
-  background-color: rgba(187, 226, 190, 1);
-  color: black;
-  border-top: 2px solid rgba(127, 166, 130, 1);
+.first-name {
+  display: inline-block;
+  width: 50%;
+  padding-right: 2px;
+}
+
+.last-name {
+  display: inline-block;
+  width: 50%;
+  padding-left: 2px;
 }
 
 .detail-actuator {
-    display: block;
-    border: none;
-    text-align: left;
-    padding: 3px 16px;
-    width: 100%;
-    margin: 2px 0px 0px 0px;
-    background-color: rgba(127, 166, 130, 1);
-    color: white;
+  display: inline-block;
+  border: none;
+  border: 1px solid rgba(127, 166, 130, 1);
+  text-align: left;
+  padding: 3px 1px 3px 10px;
+  width: 100%;
+  margin: 2px 0px 0px 0px;
+  background-color: white;
+  color: white;
+  color: #555;
+  float: right;
+}
+
+.detail-actuator.active {
+  /*border-bottom-left-radius: 0;*/
+  /*border-bottom-right-radius: 0;*/
+  border-bottom: none;
 }
 
 form button:not(.detail-actuator) {
-    background-color: rgba(247, 248, 224, 1);
-    min-width: 150px;
-    border: 1px solid rgba(247, 248, 224, 1);
-    margin: 3px;
+  background-color: rgba(187, 226, 190, 0.2);
+  border: 1px solid #3c763d;
 }
 
 form button:not(.detail-actuator):hover {
-    border: 1px solid rgba(127, 166, 130, 1);
+  background-color: rgba(222, 243, 224, 1);
+}
+
+.profile-form button.alert {
+  background-color: white;
+  border-color: #a94442;
 }
 
 .profile-form button:not(.detail-actuator) {
-    margin: auto; 
-    width: 40%;
-    height: 30px;
+  margin: auto;
+  width: 40%;
+  height: 30px;
+  display: block;
+}
+
+.profile-form-div {
+  margin: 20px auto 0px;
+  width: 100%;
+  display: inline-block;
+}
+
+.profile-form-half-div {
+  margin: 20px auto 0px;
+  width: 50%;
+  display: inline-block;
+}
+
+div.profile-form-half-div > button {
+  width: 80%;
 }
 
 form .container-container {
-    width: 100%;
-    border: 3px solid rgba(127, 166, 130, 1);
-    /* background-color: #f2f5a9; */
-    background-color: white;
-    padding: 10px;
+  display: block;
+  clear: both;
+  width: 100%;
+  border-right: 1px solid rgba(127, 166, 130, 1);
+  border-left: 1px solid rgba(127, 166, 130, 1);
+  border-bottom: 1px solid rgba(127, 166, 130, 1);
+  background-color: white;
+  padding: 0px;
 }
 
-form input, select, option  {
-    border: 1px solid #555;
-    border-radius: 2px;
-    margin-right: 5px;
-    color: #555;
-    margin-bottom: 2px;
+form input, select, option {
+  /*border: 1px solid #555;*/
+  /*border-radius: 2px;*/
+  /*margin-right: 5px;*/
+  /*color: #555;*/
+  /*margin-bottom: 2px;*/
 }
 
 form ::placeholder {
-    color: #888;
+  color: #888;
 }
 
 .score-table {
-/*    display: block; */
-    border-spacing: 0px;
-/*    margin: .2em; */
-/*    background-color: red; */
-/*    border: 2px solid blue; */
+  width: 100%;
+  margin: 0px auto;
+  border: 1px solid rgba(127, 166, 130, 1);
+  font-size: 8pt;
 }
 
 .score-table td, .score-table th {
-	text-align: center;
-	vertical-align: bottom;
+  text-align: center;
+  vertical-align: bottom;
 }
 
 .score-table td {
-    padding: 1px 10px;
+  padding: 1px 10px;
 }
 
 .score-table th {
-    padding: 5px 10px;
+  padding: 5px 3px;
 }
 
 @media screen and (max-width: 600px) {
-    div.profile-group-component {
-        width: calc(-4px + 100%);
-    }
+
+  div.profile-group-component {
+    width: calc(100%);
+  }
+
+  .detail-container {
+    padding: 5px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .gt-main-content-container {
+    width: 100%;
+  }
+
+  .app-header {
+    margin: 5px 0px 5px 0px;
+  }
+
+  .gt-main-content-container {
+    min-width: 0px;
+  }
 }
 
 .three_numbers_wide {
-    max-width: 75px;
-    width: 30%;
-    height: 50px;
-    font-size: 20px;
-    padding-left: 20px;}
+  max-width: 75px;
+  width: 30%;
+  font-size: 20px;
+  padding-left: 20px;
+}
 
 .four_numbers_wide {
-    max-width: 100px;
-    width: 40%;
-    height: 50px;
-    font-size: 20px;
-    padding-left: 20px;
-}
-
-fieldset.found-golfer .name {
-}
-
-fieldset.found-golfer .club-name {
-}
-
-fieldset.found-golfer .address {
+  max-width: 100px;
+  width: 40%;
+  font-size: 20px;
+  padding-left: 20px;
 }
 
 fieldset.found-golfer > div {
-    border: 1px solid #E6E6E6;
-    margin-bottom: 1px;
+  border: 1px solid #E6E6E6;
+  margin-bottom: 1px;
 }
 
 fieldset.found-golfer div {
-    padding: 2px;
+  padding: 2px;
 }
 
 fieldset.found-golfer div.even > div, fieldset.found-golfer div.odd > div {
-    background-color: #e0f8f7;
-    border: 1px solid #A9E2F3;
+  background-color: #e0f8f7;
+  border: 1px solid #A9E2F3;
 }
 
 fieldset.found-golfer div > div.even {
-    margin-top: 2px;
+  margin-top: 2px;
+}
+
+.triangle-down {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 8px solid rgba(127, 166, 130, 1);
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 3px;
+  float: right;
+}
+
+.triangle-up {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 8px solid rgba(127, 166, 130, 1);
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 3px;
+  float: right;
 }

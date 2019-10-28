@@ -1,65 +1,66 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Greentee918Service } from '../../../../services/greentee918.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {Greentee918Service} from '../../../../services/greentee918.service';
 
 @Component({
   selector: 'app-current-scoring-record',
   templateUrl: './current-scoring-record.component.html',
-  styleUrls: ['../../../../app.component.css', './current-scoring-record.component.css']
+  styleUrls: ['../../../../app.component.css', '../scoring.component.css',  './current-scoring-record.component.css']
 })
 export class CurrentScoringRecordComponent implements OnInit {
 
-    appUser;
-    @Input() aGolfer;
-    currentScoringRecordDetailVisible = false;
+  appUser;
+  @Input() aGolfer;
+  currentScoringRecordDetailVisible = false;
 
-    constructor( private greenTee918Service: Greentee918Service ) { }
+  constructor(private greenTee918Service: Greentee918Service) {
+  }
 
-    ngOnInit() {
-        this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
-    }
+  ngOnInit() {
+    this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
+  }
 
-    toggleCurrentScoringRecordDetailVisible() {
-        this.currentScoringRecordDetailVisible = !this.currentScoringRecordDetailVisible;
-    }
+  toggleCurrentScoringRecordDetailVisible() {
+    this.currentScoringRecordDetailVisible = !this.currentScoringRecordDetailVisible;
+  }
 
-    setDetailActuatorClass() {
+  setDetailActuatorClass() {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'detail-actuator': true,
-            active: this.currentScoringRecordDetailVisible
-        };
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-actuator': true,
+      'form-largest': true,
+      active: this.currentScoringRecordDetailVisible
+    };
 
-        return classes;
-    }
+    return classes;
+  }
 
-    setContainerContainerClass() {
+  setContainerContainerClass() {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'container-container': true
-        };
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-container-container': true
+    };
 
-        return classes;
-    }
+    return classes;
+  }
 
-    setDetailContainerClass() {
+  setScoreTableContainerClass() {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'detail-container': true
-        };
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'score-table-container': true
+    };
+    return classes;
+  }
 
-        return classes;
-    }
+  setScoringRecordClass() {
 
-    setScoringRecordClass() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'scoring-record': true
+    };
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'scoring-record': true
-        };
-
-        return classes;
-    }
+    return classes;
+  }
 }

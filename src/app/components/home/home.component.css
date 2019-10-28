@@ -1,0 +1,41 @@
+
+p.emphasis {
+  font-size: 20pt;
+  text-align: center;
+  margin: 25px 0px;
+}
+
+p.home {
+  font-size: 12pt;
+  text-align: center;
+  margin: 25px 10px;
+}
+
+p {
+  text-align: center;
+}
+
+form button {
+  margin: 25px auto 35px;
+  display: block;
+  padding: 5px 25px;
+}
+
+form button:not(.detail-actuator):hover {
+
+}
+@media screen and (max-width: 600px) {
+  p.emphasis {
+    font-size: 15pt;
+    margin: 0px 5px;
+  }
+
+  p.home {
+    font-size: 9pt;
+    margin: 15px 5px;
+  }
+
+  form button {
+    margin: 15px auto 10px;
+  }
+}

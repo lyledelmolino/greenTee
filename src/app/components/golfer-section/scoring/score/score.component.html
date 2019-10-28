@@ -12,7 +12,7 @@
         <td>{{score.score}}</td>
         <td>{{score.courseRating}}</td>
         <td>{{score.slope}}</td>
-        <td>{{score.type}}</td>
-        <td>{{score.handicapDifferential}}</td>
+        <td>{{score.type}}<span *ngIf="score.isTournamentScore==1">T</span></td>
+      <td>{{score.handicapDifferential}}<span *ngIf="score.revisionScore">*</span></td>
     </tr>
 </table>

@@ -1,10 +1,12 @@
-<button (click)="toggleTournamentScoringRecordDetailVisible()" [ngClass]="setDetailActuatorClass()">
-  Tournament Scoring Record
-</button>
-<div>
-    <div *ngIf="detailVisible" [ngClass]="setContainerContainerClass()">
-        <div [ngClass]="setDetailContainerClass()">
-            <app-score [scores]="scores"></app-score>
-        </div>
+<div [ngClass]="setScoringRecordContainerClass()">
+  <button (click)="toggleTournamentScoringRecordDetailVisible()" [ngClass]="setDetailActuatorClass()">
+    Tournament Scoring Record
+    <div *ngIf="!detailVisible" class="triangle-down"></div>
+    <div *ngIf="detailVisible" class="triangle-up"></div>
+  </button>
+  <div *ngIf="detailVisible" [ngClass]="setContainerContainerClass()">
+    <div [ngClass]="setScoreTableContainerClass()">
+      <app-score [scores]="scores"></app-score>
     </div>
+  </div>
 </div>

@@ -39,9 +39,9 @@ export class FreeTrialComponent implements OnInit {
 //        console.log(this.password);
         // todo: does this composnt need the user? thinking no
 //        this.greenTee918Service.loginUser('golfer1', 'password');
-        this.greenTee918Service.registerFreeTrialUser(this.freeTrialUser);
+       // this.greenTee918Service.registerFreeTrialUser(this.freeTrialUser);
         this.greenTee918Service.hideFreeTrialComponent();
-        this.greenTee918Service.showFreeTrialPinFormComponent();
+        this.greenTee918Service.showPinFormComponent();
     }
 
     cancel() {

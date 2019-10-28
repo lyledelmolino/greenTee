@@ -1,86 +1,99 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Greentee918Service } from '../../../../services/greentee918.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {Greentee918Service} from '../../../../services/greentee918.service';
 
 @Component({
   selector: 'app-latest-rev-scoring-record',
   templateUrl: './latest-rev-scoring-record.component.html',
-  styleUrls: ['../../../../app.component.css', './latest-rev-scoring-record.component.css']
+  styleUrls: ['../../../../app.component.css', '../scoring.component.css', './latest-rev-scoring-record.component.css']
 })
 export class LatestRevScoringRecordComponent implements OnInit {
 
-    @Input() appUser;
-    @Input() aGolfer;
-    latestRevScoringRecordDetailVisible = false;
+  @Input() aFreeUser;
+  @Input() aGolfer;
+  latestRevScoringRecordDetailVisible = false;
 
-    constructor( private greenTee918Service: Greentee918Service ) { }
+  constructor(private greenTee918Service: Greentee918Service) {
+  }
 
-    ngOnInit() {
-//        this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
-        console.log('In latest-rev-scoring-record.component.ts - ngOnInit()!!');
-        console.log(this.appUser);
-    }
+  ngOnInit() {
+    this.greenTee918Service.castUser.subscribe(user => this.aFreeUser = user);
 
-    setTournamentScoringRecordClasses() {
+    console.log('In latest-rev-scoring-record.component.ts - ngOnInit()!!');
+    console.log(this.aGolfer.clubRoles[0].club.clubId);
+    //     console.log(this.appUser);
+  }
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            tournamentScoringRecord: true
-        };
-        return classes;
-    }
+  setTournamentScoringRecordClasses() {
 
-    setTwoLowEligibleTScoresClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'scoring-record-component': true
+    };
+    return classes;
+  }
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            twoLowEligibleTScores: true
-        };
+  setScoreTableContainerClass() {
 
-        return classes;
-    }
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'score-table-container': true
+    };
+    return classes;
+  }
 
-    toggleLatestRevScoringRecordDetailVisible() {
-        this.latestRevScoringRecordDetailVisible = !this.latestRevScoringRecordDetailVisible;
-    }
+  setTwoLowEligibleTScoresClasses() {
 
-    setDetailActuatorClass() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      twoLowEligibleTScores: true
+    };
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'detail-actuator': true,
-            active: this.latestRevScoringRecordDetailVisible
-        };
+    return classes;
+  }
 
-        return classes;
-    }
+  toggleLatestRevScoringRecordDetailVisible() {
+    this.latestRevScoringRecordDetailVisible = !this.latestRevScoringRecordDetailVisible;
+  }
 
-    setContainerContainerClass() {
+  setDetailActuatorClass() {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'container-container': true
-        };
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-actuator': true,
+      'form-largest': true,
+      active: this.latestRevScoringRecordDetailVisible
+    };
 
-        return classes;
-    }
+    return classes;
+  }
 
-    setDetailContainerClass() {
+  setContainerContainerClass() {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'detail-container': true
-        };
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-container-container': true
+    };
 
-        return classes;
-    }
+    return classes;
+  }
 
-    setScoringRecordClass() {
+  setDetailContainerClass() {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'score-table': true
-        };
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-container': true
+    };
 
-        return classes;
-    }
+    return classes;
+  }
+
+  setScoringRecordClass() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'score-table': true
+    };
+
+    return classes;
+  }
 }

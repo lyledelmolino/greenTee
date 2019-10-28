@@ -1,5 +1,5 @@
 export class Golfer {
     firstName: '';
-    lastName: '';
-    state: '';
+    lastName: string = '';
+    state: string = '';
 }

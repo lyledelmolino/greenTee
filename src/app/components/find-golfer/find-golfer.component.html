@@ -1,100 +1,129 @@
-<div id="find-golfer" [ngClass]="setContainerContainerClass()">
-    <div [ngClass]="setDetailContainerClasses()">
-        <form [ngClass]="setFindGolferClasses()" (ngSubmit)="findGolfer()">
-            <p style="font-size:larger">Enter golfer's name to retrieve handicap index.</p><br>
-            <p style="font-size:smaller">At least a partial last name is required. <br>You can enter a first name and/or club state to narrow the results.</p>
-    		<div>
-    			<div>
-    	            <input name="first_name" [(ngModel)]="golferToFind.firstName" type="text" maxlength="50" placeholder="First Name (partial is ok)">
-        	        <input style="display:block" name="last_name" [(ngModel)]="golferToFind.lastName" type="text" maxlength="50" placeholder="Last Name (partial is ok)" required="required" >
-            	</div>
-            	<select name="state" [(ngModel)]="golferToFind.state">
-    			<option selected="selected">State</option>
-    			<option value="AB">AB - ALBERTA</option>
-    			<option value="AK">AK - Alaska</option>
-    			<option value="AL">AL - Alabama</option>
-    			<option value="AR">AR - Arkansas</option>
-    			<option value="AZ">AZ - Arizona</option>
-    			<option value="BC">BC - BRITISH COLUMBIA</option>
-    			<option value="CA">CA - California</option>
-    			<option value="CN">CN - CANADA</option>
-    			<option value="CO">CO - Colorado</option>
-    			<option value="CT">CT - Connecticut</option>
-    			<option value="DC">DC - District of Columbia</option>
-    			<option value="DE">DE - Delaware</option>
-    			<option value="FL">FL - Florida</option>
-    			<option value="GA">GA - Georgia</option>
-    			<option value="HI">HI - Hawaii</option>
-    			<option value="IA">IA - Iowa</option>
-    			<option value="ID">ID - Idaho</option>
-    			<option value="IL">IL - Illinois</option>
-    			<option value="IN">IN - Indiana</option>
-    			<option value="KS">KS - Kansas</option>
-    			<option value="KY">KY - Kentucky</option>
-    			<option value="LA">LA - Louisiana</option>
-    			<option value="MA">MA - Massachusetts</option>
-    			<option value="MB">MB - MANITOBA</option>
-    			<option value="MD">MD - Maryland</option>
-    			<option value="ME">ME - Maine</option>
-    			<option value="MI">MI - Michigan</option>
-    			<option value="MN">MN - Minnesota</option>
-    			<option value="MO">MO - Missouri</option>
-    			<option value="MS">MS - Mississippi</option>
-    			<option value="NB">NB - NEW BRUNSWICK</option>
-    			<option value="MT">MT - Montana</option>
-    			<option value="NC">NC - North Carolina</option>
-    			<option value="ND">ND - North Dakota</option>
-    			<option value="NE">NE - Nebraska</option>
-    			<option value="NH">NH - New Hampshire</option>
-    			<option value="NJ">NJ - New Jersey</option>
-    			<option value="NM">NM - New Mexico</option>
-    			<option value="NS">NS - NOVA SCOTIA</option>
-    			<option value="NT">NT - NORTHWEST TERRITORIES</option>
-    			<option value="NU">NU - NUNAVUT</option>
-    			<option value="NV">NV - Nevada</option>
-    			<option value="NY">NY - New York</option>
-    			<option value="OH">OH - Ohio</option>
-    			<option value="OK">OK - Oklahoma</option>
-    			<option value="ON">ON - ONTARIO</option>
-    			<option value="OR">OR - Oregon</option>
-    			<option value="PA">PA - Pennsylvania</option>
-    			<option value="PE">PE - PRINCE EDWARD ISLAND</option>
-    			<option value="PR">PR - Puerto Rico</option>
-    			<option value="QC">QC - QUEBEC</option>
-    			<option value="RI">RI - Rhode Island</option>
-    			<option value="SC">SC - South Carolina</option>
-    			<option value="SD">SD - South Dakota</option>
-    			<option value="SK">SK - SASKATCHEWAN</option>
-    			<option value="TN">TN - Tennessee</option>
-    			<option value="TX">TX - Texas</option>
-    			<option value="UT">UT - Utah</option>
-    			<option value="VA">VA - Virginia</option>
-    			<option value="VI">VI - U.S. Virgin Islands</option>
-    			<option value="VT">VT - Vermont</option>
-    			<option value="WA">WA - Washington</option>
-    			<option value="WI">WI - Wisconsin</option>
-    			<option value="WV">WV - West Virginia</option>
-    			<option value="WY">WY - Wyoming</option>
-    			<option value="YT">YT - YUKON TERRITORY</option>
-    			</select>
-                <button (click)="findGolfer()" type="button">Find Golfer</button>
-            </div>
-        </form>
+<div [ngClass]="setContainerContainerClass()">
+  <div *ngIf="searchGolferVisible" [ngClass]="setDetailContainerClasses()">
+    <form [ngClass]="setFindGolferClasses()" (ngSubmit)="findGolfer()">
+      <div class="profile-form-div">
+        <button *ngIf="last_name_v.valid" type="submit">Find Golfer</button>
+<!--        <label *ngIf="last_name_v.invalid" type="button"-->
+<!--               style="background-color: white; border: 1px solid white; height: 24px"> </label>-->
+        <p *ngIf="last_name_v.invalid">Enter golfer's name to retrieve handicap index.</p>
+      </div>
+<!--      <p style="font-size:smaller; margin-bottom: 15px;">At least a partial last name is required. <br>You can enter a-->
+<!--        first name and/or club-->
+<!--        state to narrow the results.-->
+<!--      </p>-->
+      <div class="first-name">
+        <input class="form-largest" type="text" maxlength="50" name="first_name" [(ngModel)]="golferToFind.firstName"
+               placeholder="First Name">
+      </div>
+      <div class="last-name">
+        <input class="form-largest" type="text" maxlength="50" name="last_name" [(ngModel)]="golferToFind.lastName"
+               placeholder="Last Name (partial required)" required #last_name_v="ngModel">
+      </div>
+      <select [ngClass]="setSelectStateClasses()" [(ngModel)]="golferToFind.state" name="state" type="select">
+        <option value="state" selected>State</option>
+        <option value="AB">AB - ALBERTA</option>
+        <option value="AK">AK - Alaska</option>
+        <option value="AL">AL - Alabama</option>
+        <option value="AR">AR - Arkansas</option>
+        <option value="AZ">AZ - Arizona</option>
+        <option value="BC">BC - BRITISH COLUMBIA</option>
+        <option value="CA">CA - California</option>
+        selected
+        <option value="CO">CO - Colorado</option>
+        <option value="CT">CT - Connecticut</option>
+        <option value="DC">DC - District of Columbia</option>
+        <option value="DE">DE - Delaware</option>
+        <option value="FL">FL - Florida</option>
+        <option value="GA">GA - Georgia</option>
+        <option value="HI">HI - Hawaii</option>
+        <option value="IA">IA - Iowa</option>
+        <option value="ID">ID - Idaho</option>
+        <option value="IL">IL - Illinois</option>
+        <option value="IN">IN - Indiana</option>
+        <option value="KS">KS - Kansas</option>
+        <option value="KY">KY - Kentucky</option>
+        <option value="LA">LA - Louisiana</option>
+        <option value="MA">MA - Massachusetts</option>
+        <option value="MB">MB - MANITOBA</option>
+        <option value="MD">MD - Maryland</option>
+        <option value="ME">ME - Maine</option>
+        <option value="MI">MI - Michigan</option>
+        <option value="MN">MN - Minnesota</option>
+        <option value="MO">MO - Missouri</option>
+        <option value="MS">MS - Mississippi</option>
+        <option value="NB">NB - NEW BRUNSWICK</option>
+        <option value="MT">MT - Montana</option>
+        <option value="NC">NC - North Carolina</option>
+        <option value="ND">ND - North Dakota</option>
+        <option value="NE">NE - Nebraska</option>
+        <option value="NH">NH - New Hampshire</option>
+        <option value="NJ">NJ - New Jersey</option>
+        <option value="NM">NM - New Mexico</option>
+        <option value="NS">NS - NOVA SCOTIA</option>
+        <option value="NT">NT - NORTHWEST TERRITORIES</option>
+        <option value="NU">NU - NUNAVUT</option>
+        <option value="NV">NV - Nevada</option>
+        <option value="NY">NY - New York</option>
+        <option value="OH">OH - Ohio</option>
+        <option value="OK">OK - Oklahoma</option>
+        <option value="ON">ON - ONTARIO</option>
+        <option value="OR">OR - Oregon</option>
+        <option value="PA">PA - Pennsylvania</option>
+        <option value="PE">PE - PRINCE EDWARD ISLAND</option>
+        <option value="PR">PR - Puerto Rico</option>
+        <option value="QC">QC - QUEBEC</option>
+        <option value="RI">RI - Rhode Island</option>
+        <option value="SC">SC - South Carolina</option>
+        <option value="SD">SD - South Dakota</option>
+        <option value="SK">SK - SASKATCHEWAN</option>
+        <option value="TN">TN - Tennessee</option>
+        <option value="TX">TX - Texas</option>
+        <option value="UT">UT - Utah</option>
+        <option value="VA">VA - Virginia</option>
+        <option value="VI">VI - U.S. Virgin Islands</option>
+        <option value="VT">VT - Vermont</option>
+        <option value="WA">WA - Washington</option>
+        <option value="WI">WI - Wisconsin</option>
+        <option value="WV">WV - West Virginia</option>
+        <option value="WY">WY - Wyoming</option>
+        <option value="YT">YT - YUKON TERRITORY</option>
+      </select>
+<!--      <div class="profile-form-div">-->
+<!--        <button *ngIf="last_name_v.valid" type="submit">Find Golfer</button>-->
+<!--        <label *ngIf="last_name_v.invalid" type="button"-->
+<!--               style="background-color: white; border: 1px solid white; height: 24px"> </label>-->
+<!--      </div>-->
+    </form>
+  </div>
+  <!--  <div *ngIf="foundGolfers?.length > 0" [ngClass]="setListContainerClasses()">-->
+  <div *ngIf="!searchGolferVisible" [ngClass]="setListContainerClasses()">
+    <form>
+      <button (click)="searchAgain()" type="button">Search Again</button>
+    </form>
+    <div *ngFor="let foundGolfer of foundGolfers; let i = index" [ngClass]="setListItemContainerClasses()">
+      <span class="name" style="display: inline-block; height: 30px;"
+            title="Read only data.">{{foundGolfer.firstName}} {{foundGolfer.lastName}}
+        | H.I. - {{foundGolfer.handicapIndex}}</span>
+      <div class="toggle-scoring-record" (click)="toggleFoundGolfersScoringRecordVisible(i, $event)">
+        <button type="button">
+          Scoring Record
+        </button>
+        <div *ngIf="!foundGolfersScoringRecordVisible[i]" class="triangle-down"></div>
+        <div *ngIf="foundGolfersScoringRecordVisible[i]" class="triangle-up"></div>
+      </div>
+      <div *ngFor="let clubRole of foundGolfer.clubRoles;let j = index"
+           [ngClass]="{'odd': j % 2 == 0, 'even': j % 2 == 1}">
+        <p class="club-name" title="Read only data.">{{clubRole.club.name}}<br>
+          <span class="address"
+                *ngIf="clubRole.club.location.aAddress.addressId != null">{{clubRole.club.location.aAddress.city + ', ' + clubRole.club.location.aAddress.state }}</span>
+        </p>
+      </div>
+      <div *ngIf="foundGolfersScoringRecordVisible[i]" [ngClass]="setScoringComponentClasses()">
+        <app-latest-rev-scoring-record [aGolfer]="foundGolfer"
+                                       [ngClass]="setScoringRecordClasses()"></app-latest-rev-scoring-record>
+        <app-current-scoring-record [aGolfer]="foundGolfer"
+                                    [ngClass]="setScoringRecordClasses()"></app-current-scoring-record>
+      </div>
     </div>
-    <div *ngIf="foundGolfers?.length > 0" [ngClass]="setContainerContainerClass()">
-        <fieldset [ngClass]="setDetailContainerClasses()">
-            <div *ngFor="let foundGolfer of foundGolfers; let i = index" [ngClass]="{'odd': i % 2 == 0, 'even': i % 2 == 1}">
-                <span class="name" title="Read only data.">{{foundGolfer.firstName}} {{foundGolfer.lastName}}</span>
-                <button type="button" (click)="toggleFoundGolfersScoringRecordVisible(i)" [ngClass]="setDetailActuatorClass()">Show Scoring Record</button>
-                <div *ngFor="let clubRole of foundGolfer.clubRoles;let j = index" [ngClass]="{'odd': j % 2 == 0, 'even': j % 2 == 1}">
-                    <p class="club-name" title="Read only data.">{{clubRole.club.name}}<br><span class="address" *ngIf="clubRole.club.location.aAddress != null" >{{clubRole.club.location.aAddress.city + ', ' + clubRole.club.location.aAddress.state }}</span></p>
-                </div>
-                <div *ngIf="foundGolfersScoringRecordVisible[i]" [ngClass]="setScoringComponentClasses()">
-                    <app-latest-rev-scoring-record [aGolfer]="foundGolfer" [ngClass]="setScoringRecordClasses()"></app-latest-rev-scoring-record>
-                    <app-current-scoring-record [aGolfer]="foundGolfer" [ngClass]="setScoringRecordClasses()"></app-current-scoring-record>
-                </div>
-            </div>
-        </fieldset>
-    </div>
+  </div>
 </div>
-    

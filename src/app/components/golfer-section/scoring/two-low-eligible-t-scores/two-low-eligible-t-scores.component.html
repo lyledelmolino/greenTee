@@ -1,8 +1,12 @@
-<button (click)="toggleDetailVisible()" [ngClass]="setDetailActuatorClass()">
-Two Lowest Eligible T-Scores
-</button>
-<div *ngIf="detailVisible" [ngClass]="setContainerContainerClass()">
-    <div [ngClass]="setDetailContainerClass()">
-        <app-score [scores]="scores"></app-score>
+<div [ngClass]="setScoringRecordContainerClass()">
+  <button (click)="toggleDetailVisible()" [ngClass]="setDetailActuatorClass()">
+    Two Lowest Eligible T-Scores
+    <div *ngIf="!detailVisible" class="triangle-down"></div>
+    <div *ngIf="detailVisible" class="triangle-up"></div>
+  </button>
+  <div *ngIf="detailVisible" [ngClass]="setContainerContainerClass()">
+    <div [ngClass]="setScoreTableContainerClass()">
+      <app-score [scores]="scores"></app-score>
     </div>
+  </div>
 </div>

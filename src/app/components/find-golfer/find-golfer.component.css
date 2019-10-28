@@ -1,11 +1,119 @@
+.container-container {
+  margin-top: 30px;
+  padding: 7px;
+  border: 1px solid grey;
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
 #find-golfer form {
-    margin: 20px;
+  padding: 30px;
 }
 
 #find-golfer form p {
-    margin: 0px 0px 20px 0px;
+  margin: 0px 0px 20px 0px;
 }
 
 #find-golfer form input {
-    margin: 0px 3px 4px 0px;
+  margin: 0px 3px 4px 0px;
+}
+
+.list-container {
+  background-color: white;
+  padding: 8px;
+  display: block;
+}
+
+.list-container button:not(.detail-actuator) {
+  border: 1px solid transparent;
+  padding: 3px;
+  padding-left: 5px;
+  background-color: transparent;
+  color: #3da645;
+}
+
+.list-item-container {
+  display: inline-block;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid lightgray;
+  padding: 8px;
+  margin-top: 3px;
+}
+
+.hide-container {
+  display: none;
+}
+
+.show-container {
+  display: inline-block;
+}
+
+p.club-name {
+  margin: 0px;
+}
+
+.odd, .even {
+  padding: 7px;
+  border: 1px solid lightgray;
+  margin: 2px 0px;
+}
+
+.name {
+  padding-left: 7px;
+}
+
+.grey-default {
+  color: grey;
+}
+
+.profile-form-div {
+  margin: 0px auto 7px;
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.profile-form-div > label {
+  display: block;
+  width: 268px;
+  height: 30px;
+  margin: auto;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.toggle-scoring-record {
+  display: inline-block;
+  float: right;
+  border: 1px solid white;
+}
+
+.toggle-scoring-record:hover {
+  cursor: pointer;
+  border: 1px solid rgba(127, 166, 130, 1);
+}
+
+@media screen and (max-width: 600px) {
+
+  .container-container {
+    margin-top: 10px;
+  }
+
+  .profile-form-div {
+    font-size: 12px;
+    margin-bottom: 0px;
+  }
+
+  .list-container button:not(.detail-actuator) {
+    text-align: left;
+    padding: 3px 16px;
+    float: none;
+  }
+
+  .toggle-scoring-record {
+    display: block;
+    float: none;
+    border: 1px solid #3c763d;
+  }
 }

@@ -1,0 +1,8 @@
+#user-info {
+  margin: 15px 0px;
+  padding: 5px;
+  display: inline-block;
+  background-color: white;
+  border-bottom: 1px solid GRAY;
+  border-top: 1px solid gray;
+}

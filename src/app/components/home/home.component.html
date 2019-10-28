@@ -1,1 +1,12 @@
+<p class="emphasis">
+  Welcome to GreenTee.info! <br>The free handicap calculation service available to all golfers, clubs and organizations.
+</p>
+<p class="home">
+  You can use this free service to post your golf scores and track your handicap index.
+  With this service you can search other golfers to see their handicap index and scoring record as well.
+</p>
+<form>
+  <button *ngIf="appUser.userLevel<1" type="button"
+          (click)="showRegisterFreeUserComponent()" value="Subscribe Free Now!">Subscribe Free Now!</button>
+</form>
 <app-find-golfer [ngClass]="setFindGolferClasses()"></app-find-golfer>

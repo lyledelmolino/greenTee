@@ -1,42 +1,26 @@
-#golfer-profile-name-label {
-    min-height: 60px;
+.alert {
+  background-color: white;
+  height: 25px;
+  padding: 0px 0px 0px 15px;
+  border: none;
 }
 
-.profile-form input, select {
-    margin-bottom: 10px;
+.alert-danger {
+  color: #a94442;
+  border-color: #ebccd1;
 }
 
-.detail-actuator {
-    margin-top: 10px;
+.valid {
+  height: 25px;
+  padding: 0px 0px 0px 15px;
+  color: green;
 }
 
-.profile-form {
-    width: 600px;
-    margin: 5px auto;
-}
-
-.form-largest {
-    width: 100%;
-    font-size: 20px;
-    height: 50px;
-    padding-left: 12px;
-}
-
-.first-name {
-    display: inline-block; 
-    width: 50%; 
-    padding-right: 2px;
-}
-
-.last-name {
-    display: inline-block; 
-    width: 50%; 
-    padding-left: 2px;
-}
-
-@media screen and (max-width: 600px) {
-
-    #golfer-profile-name-label {
-        min-height: 0px;
-    }
+.profile-form-div > label {
+  display: block;
+  width: 270px;
+  height: 30px;
+  margin: auto;
+  font-size: 20px;
+  font-weight: lighter;
 }

@@ -1,0 +1,41 @@
+.even_row {
+  background: rgb(224, 235, 225);
+}
+
+.odd_row {
+  background: white;
+}
+
+th {
+  background-color: rgb(224, 235, 225);
+  font-weight: normal;
+}
+
+.score-table-container {
+  display: block;
+  clear: both;
+  background-color: white;
+  padding: 3px;
+}
+
+.scoring-record-container {
+  padding: 5px 0px 0px 0px;
+  display: inline-block;
+  width: 100%;
+}
+
+.triangle-down {
+  margin-top: 6px;
+}
+
+.triangle-up {
+  margin-top: 6px;
+}
+
+@media screen and (max-width: 600px) {
+  .toggle-scoring-record {
+    float: none;
+    background-color: #e0ebe1;
+    border: 1px solid #e0ebe1;
+  }
+}

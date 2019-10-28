@@ -40,8 +40,9 @@ import { GolferMenuComponent } from './components/golfer-section/golfer-menu/gol
 import { ScoreComponent } from './components/golfer-section/scoring/score/score.component';
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
 import { FreeTrialComponent } from './components/free-trial/free-trial.component';
-import { PinFormComponent } from './components/free-trial/pin-form/pin-form.component';
+import { PinFormComponent } from './components/pin-form/pin-form.component';
 import { RegisterFreeUserComponent } from './components/register-free-user/register-free-user.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { RegisterFreeUserComponent } from './components/register-free-user/regis
     FreeTrialComponent,
     PinFormComponent,
     RegisterFreeUserComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,

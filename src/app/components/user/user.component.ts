@@ -1,51 +1,70 @@
-import { Component, OnInit } from '@angular/core';
-import { Greentee918Service } from '../../services/greentee918.service';
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
+import {Greentee918Service} from '../../services/greentee918.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css', '../../app.component.css']
 })
 
 export class UserComponent implements OnInit {
 
-    appUser;
+  appUser;
 
-    constructor( private greenTee918Service: Greentee918Service ) { }
+  constructor(private greenTee918Service: Greentee918Service) {
+  }
 
-    ngOnInit() {
-        this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
-    }
+  ngOnInit() {
+    this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
+  }
 
-    setLoginClasses() {
+  backClicked() {
+    console.log ("back clicked!");
+  }
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            login: true
-        };
+  setLoginClasses() {
 
-        return classes;
-    }
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      login: true
+    };
 
-    setUserComponentClasses() {
+    return classes;
+  }
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            user: true
-        };
+  setLoginButtonClasses() {
 
-        return classes;
-    }
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'login-button': true
+    };
 
-    showLoginComponent() {
+    return classes;
+  }
+
+  setUserComponentClasses() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      user: true
+    };
+
+    return classes;
+  }
+
+  showLoginComponent() {
 //        console.log('In user.component.ts - showLogin()!!');
-        this.greenTee918Service.showLoginComponent();
-        this.greenTee918Service.hideFoundGolfersComponent();
-        this.greenTee918Service.hideAboutComponent();
-        this.greenTee918Service.hideRegisterFreeTrialUserComponent();
-    }
 
-    logoutUser() {
-        this.greenTee918Service.logoutUser();
-    }
+    this.greenTee918Service.showLoginComponent();
+    this.greenTee918Service.hideHomeComponent();
+    this.greenTee918Service.hideFoundGolfersComponent();
+    this.greenTee918Service.hideAboutComponent();
+    this.greenTee918Service.hideRegisterFreeTrialUserComponent();
+  }
+
+  logoutUser() {
+    this.greenTee918Service.logoutUser();
+    this.greenTee918Service.hideResponsiveMenu();
+  }
 }

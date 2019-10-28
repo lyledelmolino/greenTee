@@ -1,0 +1,20 @@
+<div [ngClass]="setContainerContainerClass()">
+  <div [ngClass]="setDetailContainerClasses()">
+    <form [ngClass]="setProfileClasses()" (ngSubmit)="confirmPin()" autocomplete="off">
+      <div style="display: block; width: 125px; margin: auto;">
+        <div style="display: inline">
+          <!--                    <input type="text" maxlength="50" name="free_trial_pin" [(ngModel)]="freeTrialUser.firstName" placeholder="Free Trial Pin">
+          -->
+          <input class="form-largest" type="text" placeholder="Enter code" style="text-align: center"
+                 name="pin" [(ngModel)]="pin" autocomplete="off" autofocus="autofocus">
+        </div>
+      </div>
+      <div class="profile-form-div">
+        <button type="submit" title="">Confirm Code</button>
+      </div>
+      <div class="profile-form-div">
+        <button type="button" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

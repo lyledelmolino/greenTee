@@ -1,226 +1,167 @@
-.topnav, .golfer-menu  {
-    overflow: hidden;
-    background-color: rgba(127, 166, 130, 1);
-    margin-top: 2px;
-}
-
 .topnav button.active, .golfer-menu button.active {
   background-color: rgba(187, 226, 190, 1);
-  color: black;
-}
-
-.responsive-menu button {
-    border-top: 2px solid white;
+  color: green;
 }
 
 .topnav button, .golfer-menu button {
-    background-color: rgba(127, 166, 130, 1);
-    color: #f2f2f2;
-    padding: 3px;
-    min-width: 150px;
-    text-decoration: none;
-    border: none;
-    border-right: .5px solid #fff;
+  background-color: rgb(224, 235, 225);
+  color: #3da645;
+  min-width: 150px;
+  text-decoration: none;
+  border: 1px solid #3da645;
+  margin: 0px 1px;
 }
 
-.topnav button:hover, .golfer-menu button:hover {
-    background-color: rgba(187, 226, 190, 1);
-    color: black;
-    border-bottom: 1px solid green;
-    padding: 3px 3px 2px 3px;
+.topnav button {
+  height: 40px;
+}
+
+.topnav {
+  width: 456px;
+  margin: auto;
+}
+
+.topnav button:hover:not(.active), .golfer-menu button:hover {
+  background-color: rgba(187, 226, 190, 1);
+  color: black;
+  background-color: rgba(187, 255, 190, 1);
 }
 
 div.responsive-menu {
-    margin: 5px;
-    padding: 0 5px;
-    width: 30px;
-    display: none;
-    vertical-align: bottom;
+  /*margin: 5px;*/
+  padding: 0 5px;
+  width: 30px;
+  display: none;
+  vertical-align: bottom;
+  /*background-color: rgba(187, 226, 190, 1);*/
+}
+
+.responsive-menu button {
+  border-top: 2px solid white;
 }
 
 button.responsive-menu {
-    display: block !important;
+  display: block !important;
 }
 
 button.responsive-menu:hover {
 
 }
 
+.golfer-menu button {
+  margin-top: 2px;
+  width: 226px;
+}
+
+.golfer-menu {
+  width: 456px;
+  margin: auto;
+}
+
 @media screen and (max-width: 600px) {
-    
-    div.responsive-menu {
-        display: inline-block;
-        margin: 0px 5px;
-        padding: 0 5px;
-        width: 30px;
-        vertical-align: bottom;
-        height: 100%;
-    }
 
-    .topnav button.active {
-        width: calc(-50px + 100%);
-        height: 29px;
-        border-top: 2px solid rgba(187, 226, 190, 1);
-        padding: 5px 0px;
-    }
+  div.responsive-menu {
+    display: inline-block;
+  }
 
-    .topnav button:not(.active) {
-        display: none;
-        width: 100%;
-        border-top: 2px solid rgba(187, 226, 190, 1);
-        padding: 5px 0px;
-    }
+  .topnav {
+    width: calc(1px + 100%);
+    /*background-color: rgba(187, 226, 190, 1);*/
+  }
 
-    .golfer-menu button {
-        width: 50%;
-    }
+  .topnav button.active {
+    width: calc(-32px + 100%);
+    height: 29px;
+    border-radius: 0px;
+    border-bottom: none;
+    background-color: white;
+  }
+
+  .topnav button:not(.active) {
+    display: none;
+    width: 100%;
+    padding: 5px 0px;
+    border-radius: 0px;
+    border: none;
+    margin: 4px 0px 2px 0px;
+  }
+
+  .topnav button, .golfer-menu button {
+    border: none;
+  }
+
+  .golfer-menu button {
+    width: calc(50% - 2px);
+  }
+
+  .golfer-menu {
+    width: 100%;
+  }
 }
 
 div.responsive-menu:hover {
-    background-color: rgba(187, 255, 190, 1);
+  background-color: rgba(187, 255, 190, 1);
 }
 
 div.responsive-menu > div {
-    height: 3px;
-    background-color: white;
-    margin: 5px auto;
-    display: block;
-    padding: 0px;
-    width: 90%;
+  height: 3px;
+  background-color: rgba(127, 166, 130, 1);
+  margin: 5px auto;
+  display: block;
+  padding: 0px;
+  width: 90%;
 }
 
 div.responsive-menu button {
-    border-top: 2px solid white;
-    border-bottom: 2px solid white;
-    padding: 5px 0px;
-}
-/*
-@keyframes arrow-animate-down {
-    0%   {
-        width: 0; 
-        height: 0; 
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-
-        border-bottom: 5px solid rgba(187, 255, 190, 1);
-        margin-top: -12px;
-        margin-bottom: 7px;
-        margin-left: 10px;
-    }
-    50%  {
-        width: 0; 
-        height: 0; 
-        border-top: 5px solid transparent;
-        border-bottom: 5px solid transparent;
-
-        border-left: 5px solid rgba(187, 255, 190, 1);
-        margin-top: -12px;
-        margin-bottom: 7px;
-        margin-left: 10px;
-    }
-    100% {
-        width: 0; 
-        height: 0; 
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-
-        border-top: 5px solid rgba(187, 255, 190, 1);
-        margin-top: -12px;
-        margin-bottom: 7px;
-        margin-left: 10px;
-    }
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  padding: 5px 0px;
 }
 
-.animate-arrow-down {
-  animation-name: arrow-animate-down;
-  animation-duration: 5s;
-}
-
-@keyframes arrow-animate-up {
-    0%   {
-        width: 0; 
-        height: 0; 
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-
-        border-top: 5px solid rgba(187, 255, 190, 1);
-        margin-top: -12px;
-        margin-bottom: 7px;
-        margin-left: 10px;
-    }
-    50%  {
-        width: 0; 
-        height: 0; 
-        border-top: 5px solid transparent;
-        border-bottom: 5px solid transparent;
-
-        border-right: 5px solid rgba(187, 255, 190, 1);
-        margin-top: -12px;
-        margin-bottom: 7px;
-        margin-left: 10px;
-    }
-    100% {
-        width: 0; 
-        height: 0; 
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-
-        border-bottom: 5px solid rgba(187, 255, 190, 1);
-        margin-top: -12px;
-        margin-bottom: 7px;
-        margin-left: 10px;
-    }
-}
-
-.animate-arrow-up {
-    animation-name: arrow-animate-up;
-    animation-duration: 1s;
-}
-*/
 .arrow-up {
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
 
-    border-bottom: 5px solid rgba(187, 255, 190, 1);
-    margin-top: -12px;
-    margin-bottom: 7px;
-    margin-left: 10px;
+  border-bottom: 5px solid rgba(187, 255, 190, 1);
+  margin-top: -12px;
+  margin-bottom: 7px;
+  margin-left: 10px;
 }
 
 .arrow-down {
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
 
-    border-top: 5px solid rgba(187, 255, 190, 1);
-    margin-top: -12px;
-    margin-bottom: 7px;
-    margin-left: 10px;
+  border-top: 5px solid rgba(187, 255, 190, 1);
+  margin-top: -12px;
+  margin-bottom: 7px;
+  margin-left: 10px;
 }
 
 .arrow-right {
-    width: 0; 
-    height: 0; 
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
 
-    border-left: 5px solid rgba(187, 255, 190, 1);
-    margin-top: -12px;
-    margin-bottom: 7px;
-    margin-left: 10px;
+  border-left: 5px solid rgba(187, 255, 190, 1);
+  margin-top: -12px;
+  margin-bottom: 7px;
+  margin-left: 10px;
 }
 
 .arrow-left {
-    width: 0; 
-    height: 0; 
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent; 
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
 
-    border-right: 5px solid rgba(187, 255, 190, 1); 
-    margin-top: -12px;
-    margin-bottom: 7px;
-    margin-left: 10px;
+  border-right: 5px solid rgba(187, 255, 190, 1);
+  margin-top: -12px;
+  margin-bottom: 7px;
+  margin-left: 10px;
 }

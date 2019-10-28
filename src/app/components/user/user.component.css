@@ -1,31 +1,41 @@
-.user button {
-    background-color: rgba(247, 248, 224, 1);
-    border: 1px solid rgba(247, 248, 224, 1);
-    padding: 3px 20px;
-    margin-left: 5px;
-}
+/*.user button {*/
+/*    background-color: rgba(247, 248, 224, 1);*/
+/*    border: 1px solid rgba(247, 248, 224, 1);*/
+/*    padding: 3px 20px;*/
+/*    margin-left: 5px;*/
+/*}*/
 
-.user button:hover {
-    border: 1px solid rgba(127, 166, 130, 1);
-}
+/*.user button:hover {*/
+/*    border: 1px solid rgba(127, 166, 130, 1);*/
+/*}*/
 
 div.user {
-    padding: 4px;
+  /*padding: 4px;*/
 }
 
 div.user > * {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 div.login-user {
-    margin-bottom: 7px;
+  margin-bottom: 7px;
 }
 
 .user {
-    background-color: rgba(187, 226, 190, 1);
+  float: right;
+  /*background-color: rgba(187, 226, 190, 1);*/
 }
 
 #user-info {
-    display: inline-block;
-    margin: 0px 5px;
+  /*display: inline-block;*/
+  display: block;
+  margin: 0px 5px;
+  font-size: 50%;
+}
+
+.login-button {
+  font-size: 10pt;
+  width: 100px;
+  /*float: right;*/
+  margin: 7px 10px 0px 0px;
 }

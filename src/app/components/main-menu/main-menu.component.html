@@ -1,14 +1,27 @@
 <div class="topnav" id="myTopnav">
-    <div class="responsive-menu" (click)="showResponsiveMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <button [ngClass]="setHomeButtonClasses()" (click)="showHomeComponent()">Home<div [ngClass]="setArrowClasses()"></div></button>
-    <button *ngIf="appUser.userLevel>599" [ngClass]="setGolferButtonClasses()" (click)="showGolferComponent()">Golfer</button>
-    <button *ngIf="appUser.userLevel>699" [ngClass]="setClubAdminButtonClasses()" (click)="showClubAdminComponent()">Club Admin</button>
-    <button *ngIf="appUser.userLevel>899" [ngClass]="setAdminButtonClasses()" (click)="showAdminComponent()">Admin</button>
-    <!-- <button *ngIf="appUser.userLevel<1" [ngClass]="setFreeTrialButtonClasses()" (click)="showFreeTrialComponent()">Register (Its free!)</button> -->
-    <button *ngIf="appUser.userLevel<1" [ngClass]="setRegisterFreeUserButtonClasses()" (click)="showRegisterFreeUserComponent()">Register (Its free!)</button>
-    <button [ngClass]="setAboutButtonClasses()" (click)="showAboutComponent()">About</button>
+  <div class="responsive-menu" (click)="showResponsiveMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <button [ngClass]="setHomeButtonClasses()" (click)="showHomeComponent()">Home
+    <div [ngClass]="setArrowClasses()"></div>
+  </button>
+<!--  <button [ngClass]="setHomeButtonClasses()" routerLink="home" (click)="showHomeComponent()">Home-->
+<!--    <div [ngClass]="setArrowClasses()"></div>-->
+<!--  </button>-->
+  <button *ngIf="appUser.userLevel>599" [ngClass]="setGolferButtonClasses()" (click)="showGolferComponent()">Golfer
+  </button>
+<!--  <button *ngIf="appUser.userLevel>599" [ngClass]="setGolferButtonClasses()" routerLink="golfer">Golfer-->
+<!--  </button>-->
+  <button *ngIf="appUser.userLevel>699" [ngClass]="setClubAdminButtonClasses()" (click)="showClubAdminComponent()">Club
+    Admin
+  </button>
+  <button *ngIf="appUser.userLevel>899" [ngClass]="setAdminButtonClasses()" (click)="showAdminComponent()">Admin
+  </button>
+  <button *ngIf="appUser.userLevel<1" [ngClass]="setRegisterFreeUserButtonClasses()"
+          (click)="showRegisterFreeUserComponent()">Subscribe (Its free!)
+  </button>
+  <button [ngClass]="setAboutButtonClasses()" (click)="showAboutComponent()">About</button>
+<!--  <button [ngClass]="setAboutButtonClasses()" routerLink="about">About</button>-->
 </div>

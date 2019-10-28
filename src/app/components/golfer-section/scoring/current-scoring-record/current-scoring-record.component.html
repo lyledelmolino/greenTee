@@ -1,8 +1,10 @@
 <button (click)="toggleCurrentScoringRecordDetailVisible()" [ngClass]="setDetailActuatorClass()">
-Current Scoring Record
+  Current Scoring Records
+  <div *ngIf="!currentScoringRecordDetailVisible" class="triangle-down"></div>
+  <div *ngIf="currentScoringRecordDetailVisible" class="triangle-up"></div>
 </button>
 <div *ngIf="currentScoringRecordDetailVisible" [ngClass]="setContainerContainerClass()">
-    <div [ngClass]="setDetailContainerClass()">
-        <app-score [scores]="aGolfer.currentScoringRecord"></app-score>
-    </div>
+  <div [ngClass]="setScoreTableContainerClass()">
+    <app-score [scores]="aGolfer.currentScoringRecord"></app-score>
+  </div>
 </div>

@@ -1,122 +1,187 @@
-import { Component, OnInit } from '@angular/core';
-import { Greentee918Service } from '../../services/greentee918.service';
-import { Golfer } from '../../models/Golfer';
+import {Component, OnInit} from '@angular/core';
+import {Greentee918Service} from '../../services/greentee918.service';
+import {Golfer} from '../../models/Golfer';
 
 @Component({
   selector: 'app-find-golfer',
   templateUrl: './find-golfer.component.html',
-  styleUrls: ['./find-golfer.component.css', '../../app.component.css']
+  styleUrls: ['../../app.component.css', './find-golfer.component.css']
 })
 export class FindGolferComponent implements OnInit {
 
-    golferToFind = new Golfer();
-    foundGolfersVisible = false;
-    foundGolfersScoringRecordVisible: Array<any> = [''];
-    foundGolfers: Array<any>;
-//    foundGolfers: Array<any> = [''];
+  golferToFind = new Golfer();
+  searchGolferVisible = true;
+  foundGolfersVisible = false;
+  foundGolfersScoringRecordVisible: Array<any> = [''];
+  foundGolfers: Array<any>;
 
-    constructor( private greenTee918Service: Greentee918Service ) {}
+  constructor(private greenTee918Service: Greentee918Service) {
+  }
 
-    ngOnInit() {
-        this.greenTee918Service.castFoundGolfers.subscribe(foundGolfers => this.foundGolfers = foundGolfers);
+  ngOnInit() {
+    this.greenTee918Service.castFoundGolfers.subscribe(foundGolfers => this.foundGolfers = foundGolfers);
+    this.golferToFind.state = "state";
+  }
+
+  findGolfer() {
+    // console.log('In findGolfer.component.ts ---> findGolfer() - this.golferToFind.lastName != null');
+    // console.log('|' + this.golferToFind.lastName + '|');
+    // != null (includes undefined !== does not)
+    if (this.golferToFind.lastName != null && this.golferToFind.lastName != '') {
+      this.greenTee918Service.findGolfer(this.golferToFind);
+
+      this.searchGolferVisible = false;
+      this.foundGolfers.forEach(index => {
+        this.foundGolfersScoringRecordVisible[index] = false;
+      })
+    } else {
+      this.greenTee918Service.hideFoundGolfersComponent();
     }
+  }
 
-    findGolfer() {
-        console.log('In findGolfer.component.ts ---> findGolfer() - this.golferToFind.lastName != null');
-        console.log('|'+this.golferToFind.lastName+'|');
-        // != null (includes undefined !== does not)
-        if( this.golferToFind.lastName != null && this.golferToFind.lastName != '' ) {
-            this.greenTee918Service.findGolfer(this.golferToFind);
-            this.foundGolfers.forEach( index => {
-                this.foundGolfersScoringRecordVisible[index] = false;
-            }) 
-        } else {
-            this.greenTee918Service.hideFoundGolfersComponent();
-        }
-    }
+  searchAgain() {
+    this.searchGolferVisible = true;
+    this.foundGolfers = null;
+  }
 
-    toggleFoundGolfersScoringRecordVisible(index) {
-        this.foundGolfersScoringRecordVisible[index] = !this.foundGolfersScoringRecordVisible[index];
-    }
+  toggleFoundGolfersScoringRecordVisible(index, event) {
+    // console.log("toggleFoundGolfersScoringRecordVisible(index) !this.foundGolfersScoringRecordVisible[index]:");
+    // console.log(!this.foundGolfersScoringRecordVisible[index]);
+    this.foundGolfersScoringRecordVisible[index] = !this.foundGolfersScoringRecordVisible[index];
+    // if (this.foundGolfersScoringRecordVisible[index]) {
+    //   event.target.innerHTML = 'Hide Scoring Record';
+    // } else {
+    //   event.target.innerHTML = 'Show Scoring Record';
+    // }
+  }
 
-    setDetailActuatorClass() {
+  toggleReset(e) {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'detail-actuator': true
-        };
+  }
 
-        return classes;
-    }
+  setDetailActuatorClass() {
 
-    setContainerContainerClass() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-actuator': true
+    };
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'container-container': true
-        };
+    return classes;
+  }
 
-        return classes;
-    }
+  setContainerContainerClass() {
 
-    setDetailContainerClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'container-container': true
+    };
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'detail-container': true,
-            'found-golfer': true
-        };
+    return classes;
+  }
 
-        return classes;
-    }
+  setListContainerClasses() {
 
-    setFindGolferClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'list-container': true,
+    };
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-        };
+    return classes;
+  }
 
-        return classes;
-    }
+  setListItemContainerClasses() {
 
-    setScoringComponentClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'list-item-container': true,
+    };
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'scoring-group-component': true
-        };
+    return classes;
+  }
 
-        return classes;
-    }
+  setDetailContainerClasses() {
 
-    setPostScoreClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-container': true,
+//      'found-golfer': true,
+      //just to get it done... ng generate results in error too be fixed later
+      'show-container': this.searchGolferVisible,
+      'hide-container': !this.searchGolferVisible
+    };
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'post-score': true
-        };
+    return classes;
+  }
 
-        return classes;
-    }
+  setFindGolferClasses() {
 
-    setScoringRecordClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'profile-form': true
+    };
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
+    return classes;
+  }
+
+  setScoringComponentClasses() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'scoring-group-component': true
+    };
+
+    return classes;
+  }
+
+  setPostScoreClasses() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'post-score': true
+    };
+
+    return classes;
+  }
+
+  setScoringRecordClasses() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
 //            'latest-revision-scoring-record': true
-            'scoring-record': true
-        };
+      'scoring-record': true
+    };
 
-        return classes;
-    }
+    return classes;
+  }
 
-    setCurrentScoringRecordClasses() {
+  setCurrentScoringRecordClasses() {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'current-scoring-record': true
-        };
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'current-scoring-record': true
+    };
 
-        return classes;
-    }
+    return classes;
+  }
+
+  setTriangleAcuatorClasses() {
+
+    let classes = {
+      'triangle-down': true,
+      'triangle-up': true,
+    };
+
+    return classes;
+  }
+
+  setSelectStateClasses() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'form-largest': true,
+      'grey-default': this.golferToFind.state == 'state'
+    };
+
+    return classes;
+  }
 }

@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-score',
   templateUrl: './score.component.html',
-  styleUrls: ['../../../../app.component.css', './score.component.css']
+  styleUrls: ['../../../../app.component.css', '../scoring.component.css', './score.component.css']
 })
 
 export class ScoreComponent implements OnInit {

@@ -6,7 +6,7 @@ import { PhoneNumber } from '../../../models/PhoneNumer';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['../../../app.component.css', './profile.component.css']
+  styleUrls: ['../../../app.component.css', '../scoring/scoring.component.css', './profile.component.css']
 })
 export class ProfileComponent implements OnInit {
 
@@ -23,24 +23,24 @@ export class ProfileComponent implements OnInit {
 //        this.componentUser = this.appUser;
         this.componentUser = JSON.parse(JSON.stringify(this.appUser));
 
-        console.log('In profile.component.ts ---> constructor()');
-        console.log(this.componentUser);
+        // console.log('In profile.component.ts ---> constructor()');
+        // console.log(this.componentUser);
 
         if (this.componentUser === null && this.componentUser.phoneNumbers.length === 0) {
-            console.log('this.componentUser.phoneNumbers[0] === null');
-            console.log(this.componentUser.phoneNumbers[0]);
+            // console.log('this.componentUser.phoneNumbers[0] === null');
+            // console.log(this.componentUser.phoneNumbers[0]);
             this.componentUser.phoneNumbers.push(new PhoneNumber());
         }
 
-        console.log(this.appUser);
+        // console.log(this.appUser);
     }
 
     ngOnInit() {
     }
 
     updateUserProfile() {
-        console.log('In profile.component.ts ---> updateUserProfile()');
-        console.log(this.componentUser);
+        // console.log('In profile.component.ts ---> updateUserProfile()');
+        // console.log(this.componentUser);
         this.greenTee918Service.updateUserProfile(this.componentUser);
     }
 
@@ -89,6 +89,8 @@ export class ProfileComponent implements OnInit {
     }
 
     toggleAddressDetailVisible() {
+      // console.log("toggleAddressDetailVisible() - this.componentUser: ");
+      // console.log(this.componentUser);
         this.addressDetailVisible = !this.addressDetailVisible;
     }
 
@@ -114,7 +116,8 @@ export class ProfileComponent implements OnInit {
 
         // tslint:disable-next-line:prefer-const
         let classes = {
-            'detail-actuator': true
+            'detail-actuator': true,
+            'form-largest': true
         };
 
         return classes;

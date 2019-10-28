@@ -1,41 +1,62 @@
-.login-header {
-    width: 330px;
-    margin: 30px auto;
-    font-size: 400%;
+body {
+  padding-top: 9px;
 }
 
-@media screen and (max-width: 600px) {
-    .login-header {
-        width: 55%;
-        margin: 30px auto;
-        font-size: 200%;
-    }
+.login-header {
+  width: 330px;
+  margin: 30px auto;
+  font-size: 400%;
+}
+
+.user-not-logged-in {
+  margin-bottom: 30px;
 }
 
 .app-header {
-    margin: 10px 0px 10px 2px;
-    color: rgba(127, 166, 130, 1);
-    font-size: 30px;
-    background-color: white;
+  color: rgba(127, 166, 130, 1);
+  font-size: 200%;
+  background-color: white;
+  padding: 0px 0px 0px 10px;
+  /*border-radius: 6px;*/
+  border: 1px solid #7fa682;
+  min-width: 456px;
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .login-header {
+    width: 55%;
+    margin: 30px auto;
+    font-size: 200%;
+  }
+
+  .app-header {
+    min-width: 0px;
+    margin: 0px 1px 9px;
+    font-size: 150%;
+    border: none;
+  }
 }
 
 .span1-logo {
-    color: rgba(127, 166, 130, 1);
+  color: rgba(127, 166, 130, 1);
 }
 
 .span2-logo {
-/*    display: inline-block; */
-    color: rgba(127, 166, 130, 1);
-    border-radius: 35px 0px;
-    padding: 10px;
-    height: 35px;
-    background-color: rgba(187, 255, 190, 1);
+  /*    display: inline-block; */
+  color: rgba(127, 166, 130, 1);
+  border-radius: 35px 0px;
+  padding: 10px;
+  height: 35px;
+  background-color: rgba(187, 255, 190, 1);
 }
 
 div.login-header > .span2-logo {
-    height: 100%;
+  height: 100%;
 }
 
 .span3-logo {
-    font-size: 15px;
+  font-size: 15px;
 }

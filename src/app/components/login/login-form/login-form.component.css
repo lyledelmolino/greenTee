@@ -1,0 +1,11 @@
+#remember-me {
+  margin: 15px;
+}
+
+@media screen and (max-width: 600px) {
+
+  .profile-form button:not(.detail-actuator) {
+    width: 75%;
+  }
+
+}

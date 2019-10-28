@@ -1,12 +1,18 @@
-<button (click)="toggleLatestRevScoringRecordDetailVisible()" [ngClass]="setDetailActuatorClass()">
-Latest Rev Scoring Record
-</button>
+<div>
+  <button (click)="toggleLatestRevScoringRecordDetailVisible()" [ngClass]="setDetailActuatorClass()">
+    Latest Rev Scoring Record
+    <div *ngIf="!latestRevScoringRecordDetailVisible" class="triangle-down"></div>
+    <div *ngIf="latestRevScoringRecordDetailVisible" class="triangle-up"></div>
+  </button>
+</div>
 <div *ngIf="latestRevScoringRecordDetailVisible" [ngClass]="setContainerContainerClass()">
-    <div [ngClass]="setDetailContainerClass()">
-        <app-score [scores]="aGolfer.revisionScoringRecord"></app-score>
-        <div id="latest-revision-tournament-scoring">
-            <app-tournament-scoring-record [scores]="aGolfer.eligibleTournamentScoringRecord" [ngClass]="setTournamentScoringRecordClasses()"></app-tournament-scoring-record>
-            <app-two-low-eligible-t-scores [scores]="aGolfer.twoLowestEligibleTournamentScores" [ngClass]="setTwoLowEligibleTScoresClasses()"></app-two-low-eligible-t-scores>
-        </div>
-    </div>
+  <div [ngClass]="setScoreTableContainerClass()">
+    <app-score *ngIf="aGolfer.clubRoles[0].club.clubId === '14335'" [scores]="aFreeUser.revisionScoringRecord"></app-score>
+    <app-score *ngIf="aGolfer.clubRoles[0].club.clubId !== '14335'" [scores]="aGolfer.revisionScoringRecord"></app-score>
+<!--    <app-score [scores]="aGolfer.revisionScoringRecord"></app-score>-->
+    <app-tournament-scoring-record *ngIf="aGolfer.clubRoles[0].club.clubId === '14335'" [scores]="aFreeUser.eligibleTournamentScoringRecord"></app-tournament-scoring-record>
+    <app-tournament-scoring-record *ngIf="aGolfer.clubRoles[0].club.clubId !== '14335'" [scores]="aGolfer.eligibleTournamentScoringRecord"></app-tournament-scoring-record>
+    <app-two-low-eligible-t-scores *ngIf="aGolfer.clubRoles[0].club.clubId === '14335'" [scores]="aFreeUser.twoLowestEligibleTournamentScores"></app-two-low-eligible-t-scores>
+    <app-two-low-eligible-t-scores *ngIf="aGolfer.clubRoles[0].club.clubId !== '14335'" [scores]="aGolfer.twoLowestEligibleTournamentScores"></app-two-low-eligible-t-scores>
+  </div>
 </div>

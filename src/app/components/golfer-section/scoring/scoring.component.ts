@@ -28,7 +28,17 @@ export class ScoringComponent implements OnInit {
         return classes;
     }
 
-    setContainerContainerClass() {
+  setDetailContainerClasses() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-container': true
+    };
+
+    return classes;
+  }
+
+  setContainerContainerClass() {
 
         // tslint:disable-next-line:prefer-const
         let classes = {

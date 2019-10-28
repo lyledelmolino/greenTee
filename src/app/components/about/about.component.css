@@ -1,14 +1,8 @@
-#about .detail-container {
-    background-color: white;
-    padding: 20px;
-}
-
-#about.container-container {
-    padding: 4px;
-    background-color: rgba(187, 226, 190, 1);
+#about {
+  padding: 20px 8px;
 }
 
 #about p {
-    margin: 8px;
-    font-size: 100%;
+  margin: 8px;
+  font-size: 100%;
 }

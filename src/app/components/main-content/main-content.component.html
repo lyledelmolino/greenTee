@@ -1,9 +1,18 @@
-<app-main-menu [ngClass]="setMainMenuClasses()"></app-main-menu>
-<app-home *ngIf="homeComponentVisible" [ngClass]="setHomeClasses()"></app-home>
-<app-golfer-section *ngIf="golferComponentVisible" [ngClass]="setGolferClasses()"></app-golfer-section>
-<app-club-admin *ngIf="clubAdminComponentVisible" [ngClass]="setClubAdminClasses()"></app-club-admin>
-<app-admin *ngIf="adminComponentVisible" [ngClass]="setAdminClasses()"></app-admin>
-<app-about *ngIf="aboutComponentVisible" [ngClass]="setAboutClasses()"></app-about>
-<!-- <app-free-trial *ngIf="freeTrialComponentVisible" [ngClass]="setAboutClasses()"></app-free-trial> -->
-<app-register-free-user *ngIf="registerFreeUserComponentVisible" [ngClass]="setProfileClasses()"></app-register-free-user>
-<app-pin-form *ngIf="freeTrialPinFormComponentVisible" [ngClass]="setAboutClasses()"></app-pin-form>
+<div [ngClass]="setMainContentClasses()">
+  <div *ngIf="appUser.userLevel>0"
+       id="user-info">{{ appUser.firstName }} {{ appUser.middleInitial }} {{ appUser.lastName }} |
+    H.I. {{ appUser.handicapIndex }}</div>
+  <!--  <div *ngIf="appUser.userLevel>0" id="user-info">Test User | H.I. 14.2</div>-->
+
+  <app-main-menu [ngClass]="setMainMenuClasses()"></app-main-menu>
+  <app-home *ngIf="homeComponentVisible" [ngClass]="setHomeClasses()"></app-home>
+  <app-golfer-section *ngIf="golferComponentVisible" [ngClass]="setGolferClasses()"></app-golfer-section>
+  <app-club-admin *ngIf="clubAdminComponentVisible" [ngClass]="setClubAdminClasses()"></app-club-admin>
+  <app-admin *ngIf="adminComponentVisible" [ngClass]="setAdminClasses()"></app-admin>
+  <app-about *ngIf="aboutComponentVisible" [ngClass]="setAboutClasses()"></app-about>
+  <!-- <app-free-trial *ngIf="freeTrialComponentVisible" [ngClass]="setAboutClasses()"></app-free-trial> -->
+  <app-register-free-user *ngIf="registerFreeUserComponentVisible"
+                          [ngClass]="setProfileClasses()"></app-register-free-user>
+  <!--  <app-pin-form *ngIf="pinFormComponentVisible" [ngClass]="setAboutClasses()"></app-pin-form>-->
+  <app-pin-form *ngIf="freeUserPinFormComponentVisible" [ngClass]="setAboutClasses()"></app-pin-form>
+</div>

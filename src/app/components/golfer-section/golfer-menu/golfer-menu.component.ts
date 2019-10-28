@@ -34,7 +34,8 @@ export class GolferMenuComponent implements OnInit {
 
         // tslint:disable-next-line:prefer-const
         let classes = {
-            active: this.profileComponentVisible
+          'golfer-menu-button': true,
+          active: this.profileComponentVisible
         };
 
         return classes;
