@@ -22,10 +22,5 @@ export class User {
   userLevel: number = 0;
 
   constructor(userLevel?: number) {
-
-    if (userLevel != undefined)
-      this.userLevel = userLevel;
-
-//    this.locations[0] = new Location();
   }
 }

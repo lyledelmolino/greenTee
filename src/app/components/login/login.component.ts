@@ -22,36 +22,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    //
     this.greenTee918Service.castLoginFormComponentVisibility
       .subscribe(visibility => {
         this.loginFormComponentVisible = visibility;
       });
-
-    this.greenTee918Service.castForgotPasswordComponentVisibility
-      .subscribe(visibility => {
-        this.forgotPasswordComponentVisible = visibility;
-      });
-
-    this.greenTee918Service.castPasswordResetEmailComponentVisibility
-      .subscribe(visibility => {
-        this.passwordResetEmailComponentVisible = visibility;
-      });
-
-    this.greenTee918Service.castPasswordResetComponentVisibility
-      .subscribe(visibility => {
-        this.passwordResetComponentVisible = visibility;
-      });
-
-    this.greenTee918Service.castPinFormComponentVisibility.subscribe(visibility =>
-      this.pinFormComponentVisible = visibility);
-
-    this.greenTee918Service.castPasswordResetPhoneComponentVisibility
-      .subscribe(visibility => {
-        this.passwordResetPhoneComponentVisible = visibility;
-      });
-
-    this.greenTee918Service.showLoginFormComponent();
   }
 
   setTopLevelContainerClasses() {
@@ -121,7 +96,6 @@ export class LoginComponent implements OnInit {
   }
 
   cancel() {
-//        console.log('In login.component.ts - cancel()!!');
     this.greenTee918Service.hideLoginComponent();
   }
 }

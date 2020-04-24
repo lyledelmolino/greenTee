@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 import {Greentee918Service} from '../../services/greentee918.service';
 
 @Component({
@@ -11,22 +12,20 @@ export class PasswordResetComponent implements OnInit {
   password: string;
   passwordConfirm: string;
 
-  constructor(private greenTee918Service: Greentee918Service) {
+  constructor(private greenTee918Service: Greentee918Service, private router: Router) {
   }
 
   ngOnInit() {
   }
 
   cancel() {
-//       console.log('In password-reset-email.component.ts - cancel()!!');
     this.greenTee918Service.hidePasswordResetComponent();
     this.greenTee918Service.showForgotPasswordComponent();
   }
 
   resetPassword() {
-    // console.log("resetPassword()");
     if (this.password == this.passwordConfirm) {
-      this.greenTee918Service.resetPassword(this.password);
+      this.greenTee918Service.resetPassword(this.password, this.router);
     }
   }
 
@@ -43,6 +42,15 @@ export class PasswordResetComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'login-container': true
+    };
+
+    return classes;
+  }
+
+  setPasswordButtonClasses() {
+
+    let classes = {
+      'common-button': true
     };
 
     return classes;

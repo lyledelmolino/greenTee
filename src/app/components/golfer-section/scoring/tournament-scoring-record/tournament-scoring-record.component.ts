@@ -7,7 +7,7 @@ import {Greentee918Service} from '../../../../services/greentee918.service';
   styleUrls: ['../../../../app.component.css', '../scoring.component.css', './tournament-scoring-record.component.css']
 })
 
-export class TScoringRecordComponent implements OnInit {
+export class TournamentScoringRecordComponent implements OnInit {
 
   @Input() scores;
   appUser;
@@ -69,7 +69,7 @@ export class TScoringRecordComponent implements OnInit {
 
     // tslint:disable-next-line:prefer-const
     let classes = {
-      'scoring-record-container': true
+      'scoring-record': true
     };
     return classes;
   }

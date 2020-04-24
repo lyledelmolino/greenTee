@@ -1,8 +1,49 @@
 #user-info {
-  margin: 15px 0px;
+  margin-bottom: 3px;
   padding: 5px;
   display: inline-block;
   background-color: white;
-  border-bottom: 1px solid GRAY;
+  border-bottom: 1px solid gray;
   border-top: 1px solid gray;
+}
+
+@media screen and (max-width: 757px) {
+  #user-info {
+    margin-top: 18px;
+    padding: 5px;
+    display: block;
+    background-color: white;
+    border-bottom: none;
+    border-top: none;
+  }
+}
+
+.social-media {
+  height: 28px;
+  /*position: relative;*/
+  /*position: absolute;*/
+  margin: 30px 5px;
+  bottom: 10px;
+  /*float: right;*/
+}
+
+.social-media-icon {
+  display: inline-block;
+  height: 100%;
+  width: 28px;
+  margin: 2px;
+  background-color: #dddddd;
+  background-color: transparent;
+  border: 1px solid white;
+  border: 1px solid #708090;
+  border-radius: 5px;
+}
+
+#privacy-policy-div {
+  display: inline-block;
+  float: right;
+}
+
+#privacy-policy-div > button:hover {
+  border: 1px solid var(--common-active-color);
 }

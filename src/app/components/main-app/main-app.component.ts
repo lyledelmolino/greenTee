@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 import { Greentee918Service } from '../../services/greentee918.service';
 
 @Component({
@@ -11,25 +12,14 @@ export class MainAppComponent implements OnInit {
   appUser: any;
   loginComponentVisible = false;
 
-  constructor( private greenTee918Service: Greentee918Service ) { }
+  constructor( private greenTee918Service: Greentee918Service, private router: Router ) {}
 
   ngOnInit() {
-    // todo: does this component deed to know the user??
+
+    // todo: does this component need to know the user??
     this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
-    this.greenTee918Service.loginUser('not_logged_in', 'password');
-    this.greenTee918Service.castLoginVisibility.subscribe(user => this.loginComponentVisible = user);
     this.greenTee918Service.showHomeComponent();
   }
-
-    setAppUserClasses() {
-
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-// /            user: true
-        };
-
-        return classes;
-    }
 
     setHeaderClasses() {
 
@@ -62,9 +52,5 @@ export class MainAppComponent implements OnInit {
 
   showLoginComponent() {
         this.loginComponentVisible = true;
-    }
-
-    hideLoginComponent() {
-//        this.loginComponentVisible = false;
     }
 }

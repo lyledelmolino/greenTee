@@ -1,21 +1,39 @@
 .even_row {
-  background: rgb(224, 235, 225);
+  /*background-color: green;*/
 }
 
 .odd_row {
-  background: white;
+  background-color:  var(--common-inactive-bg-color);;
+  color: var(--common-inactive-color);;
 }
 
-th {
-  background-color: rgb(224, 235, 225);
-  font-weight: normal;
+.detail-container-container {
+  /*padding: 0px;*/
+}
+
+.score-table {
+  margin: 0px auto;
+  border: 1px solid var(--common-border-color);
+  font-size: 8pt;
+  width: 100%;
 }
 
 .score-table-container {
-  display: block;
-  clear: both;
-  background-color: white;
-  padding: 3px;
+  padding: 0 5px;
+}
+
+.score-table td, .score-table th {
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.score-table td {
+  padding: 1px 10px;
+}
+
+.score-table th {
+  padding: 5px 3px;
+  font-weight: normal;
 }
 
 .scoring-record-container {
@@ -24,15 +42,25 @@ th {
   width: 100%;
 }
 
-.triangle-down {
-  margin-top: 6px;
+.scoring-record {
+  border: 1px solid var(--common-border-color);
+  margin: 3px 0;
+  width: 100%;
+  /*margin: 3px 0;*/
+  /*padding: 1px 3px;*/
 }
 
-.triangle-up {
-  margin-top: 6px;
-}
+/*.triangle-down {*/
+/*  margin-top: 6px;*/
+/*  border-top: 8px solid white;*/
+/*}*/
 
-@media screen and (max-width: 600px) {
+/*.triangle-up {*/
+/*  margin-top: 6px;*/
+/*  border-top: 8px solid white;*/
+/*}*/
+
+@media screen and (max-width: 757px) {
   .toggle-scoring-record {
     float: none;
     background-color: #e0ebe1;

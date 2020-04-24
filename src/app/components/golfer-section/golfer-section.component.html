@@ -1,3 +1,5 @@
-<app-golfer-menu [ngClass]="setGolferMenuClasses()"></app-golfer-menu>
-<app-scoring *ngIf="scoringComponentVisible" [ngClass]="setScoringClasses()"></app-scoring>
-<app-profile *ngIf="profileComponentVisible" [ngClass]="setProfileClasses()"></app-profile>
+<div [ngClass]="setGolferSectionClasses()">
+  <app-golfer-menu *ngIf="golferMenuVisible" [ngClass]="setGolferMenuClasses()"></app-golfer-menu>
+  <app-scoring *ngIf="scoringComponentVisible" [ngClass]="setScoringClasses()"></app-scoring>
+  <app-profile *ngIf="profileComponentVisible" [ngClass]="setProfileClasses()"></app-profile>
+</div>

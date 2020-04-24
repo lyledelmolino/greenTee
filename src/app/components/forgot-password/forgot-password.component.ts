@@ -53,7 +53,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   cancel() {
-    // console.log('In forget-password.component.ts - cancel()!!');
     this.greenTee918Service.hideForgotPasswordComponent();
     this.greenTee918Service.showLoginFormComponent();
   }
@@ -61,12 +60,19 @@ export class ForgotPasswordComponent implements OnInit {
   showPasswordResetEmailComponent() {
     this.greenTee918Service.showPasswordResetEmailComponent();
     this.greenTee918Service.hideForgotPasswordComponent();
-    // console.log('In ForgotPasswordComponent.component.ts - showPasswordResetEmailComponent()!!');
   }
 
   showPasswordResetPhoneComponent() {
     this.greenTee918Service.showPasswordResetPhoneComponent();
     this.greenTee918Service.hideForgotPasswordComponent();
-    // console.log('In login.component.ts - showForgotPasswordComponent()!!');
+  }
+
+  setForgotPasswordButtonClasses() {
+
+    let classes = {
+      'common-button': true
+    };
+
+    return classes;
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Greentee918Service} from "../../services/greentee918.service";
 
 @Component({
   selector: 'app-about',
@@ -7,28 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-    constructor() { }
+  aboutComponentVisible = false;
 
-    ngOnInit() {
-    }
+  constructor(private greenTee918Service: Greentee918Service) {
+  }
 
-    setContainerContainerClass() {
+  ngOnInit() {
+    this.greenTee918Service.castAboutComponentVisibility.subscribe(visibility => this.aboutComponentVisible = visibility);
+  }
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'container-container': true
-        };
+  setContainerContainerClass() {
 
-        return classes;
-    }
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'container-container': true
+    };
 
-    setDetailClasses() {
+    return classes;
+  }
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'detail-container': true
-        };
+  setDetailClasses() {
 
-        return classes;
-    }
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-container': true,
+      active: true
+    };
+
+    return classes;
+  }
 }

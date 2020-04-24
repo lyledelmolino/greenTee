@@ -78,7 +78,7 @@ export class TwoLowEligibleTScoresComponent implements OnInit {
 
     // tslint:disable-next-line:prefer-const
     let classes = {
-      'scoring-record-container': true
+      'scoring-record': true
     };
     return classes;
   }

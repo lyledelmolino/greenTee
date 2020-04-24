@@ -1,53 +1,68 @@
-import { Component, OnInit } from '@angular/core';
-import { Greentee918Service } from '../../../services/greentee918.service';
+import {Component, OnInit} from '@angular/core';
+import {Greentee918Service} from '../../../services/greentee918.service';
 
 @Component({
   selector: 'app-golfer-menu',
   templateUrl: './golfer-menu.component.html',
-  styleUrls: ['../../main-menu/main-menu.component.css']
+  styleUrls: ['../../../app.component.css', '../../main-menu/main-menu.component.css']
 })
 export class GolferMenuComponent implements OnInit {
 
-    appUser;
-    scoringComponentVisible = false;
-    profileComponentVisible = false;
+  appUser;
+  scoringComponentVisible = false;
+  profileComponentVisible = false;
 
-    constructor( private greenTee918Service: Greentee918Service ) { }
+  constructor(private greenTee918Service: Greentee918Service) {
+  }
 
-    ngOnInit() {
-        this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
-        this.greenTee918Service.castScoringComponentVisibility.subscribe(visibility => this.scoringComponentVisible = visibility);
-        this.greenTee918Service.castProfileComponentVisibility.subscribe(visibility => this.profileComponentVisible = visibility);
-    }
+  ngOnInit() {
+    this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
+    this.greenTee918Service.castScoringComponentVisibility.subscribe(visibility => this.scoringComponentVisible = visibility);
+    this.greenTee918Service.castProfileComponentVisibility.subscribe(visibility => this.profileComponentVisible = visibility);
+  }
 
-    setScoringButtonClasses() {
+  setScoringButtonClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'golfer-menu-button': true,
+      active: this.scoringComponentVisible,
+      'common-button': true
+    };
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            active: this.scoringComponentVisible
-        };
+    return classes;
+  }
 
-        return classes;
-    }
+  setGolferButtonClasses() {
 
-    setProfileButtonClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'golfer-menu-button': true,
+      active: this.scoringComponentVisible,
+      'common-button': true
+    };
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-          'golfer-menu-button': true,
-          active: this.profileComponentVisible
-        };
+    return classes;
+  }
 
-        return classes;
-    }
 
-    showScoringComponent() {
-        this.greenTee918Service.showScoringComponent();
-        this.greenTee918Service.hideProfileComponent();
-    }
+  setProfileButtonClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'golfer-menu-button': true,
+      active: this.profileComponentVisible,
+      'common-button': true
+    };
 
-    showProfileComponent() {
-        this.greenTee918Service.hideScoringComponent();
-        this.greenTee918Service.showProfileComponent();
-    }
+    return classes;
+  }
+
+  showScoringComponent() {
+    this.greenTee918Service.showScoringComponent();
+    this.greenTee918Service.hideProfileComponent();
+  }
+
+  showProfileComponent() {
+    this.greenTee918Service.hideScoringComponent();
+    this.greenTee918Service.showProfileComponent();
+  }
 }

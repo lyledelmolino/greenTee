@@ -21,8 +21,7 @@ export class ScoringComponent implements OnInit {
 
         // tslint:disable-next-line:prefer-const
         let classes = {
-            'scoring-group-component container-container': true,
-//            'container-container': true
+            'scoring-group-component container-container': true
         };
 
         return classes;
@@ -77,4 +76,13 @@ export class ScoringComponent implements OnInit {
 
         return classes;
     }
+
+  setDetailActuateClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'scoring-record': true
+    };
+
+    return classes;
+  }
 }

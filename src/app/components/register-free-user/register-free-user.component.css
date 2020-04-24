@@ -1,12 +1,12 @@
 .alert {
-  background-color: white;
+  background-color: transparent;
   height: 25px;
   padding: 0px 0px 0px 15px;
   border: none;
 }
 
 .alert-danger {
-  color: #a94442;
+  color: white;
   border-color: #ebccd1;
 }
 
@@ -23,4 +23,28 @@
   margin: auto;
   font-size: 20px;
   font-weight: lighter;
+}
+
+.form-largest[name=email] {
+  margin-top: 10px;
+}
+
+p{
+  margin: 35px 10px;
+}
+
+p.alert, p.valid {
+  margin: 0px;
+}
+
+@media screen and (max-width: 757px) {
+
+  p {
+    margin: 0 10px 15px;
+  }
+
+  .detail-container {
+    padding-top: 0;
+  }
+
 }

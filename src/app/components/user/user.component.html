@@ -2,12 +2,15 @@
   <div *ngIf="appUser.userLevel>0">
     <!--      <div id="user-info">{{ appUser.firstName }} {{ appUser.middleInitial }} {{ appUser.lastName }} | H.I. {{ appUser.handicapIndex }}</div>-->
     <form>
-      <button [ngClass]="setLoginButtonClasses()" type="button" (click)="logoutUser()">Logout</button>
+      <button [ngClass]="setLoginButtonClasses()" type="button" routerLink="home"
+              routerLinkActive="active" (click)="logoutUser()">Log Out</button>
     </form>
   </div>
   <form>
-    <button *ngIf="appUser.userLevel==0" [ngClass]="setLoginButtonClasses()" type="button"
-            (click)="showLoginComponent()">Login
+    <!--    <button *ngIf="appUser.userLevel==0" [ngClass]="setLoginButtonClasses()" type="button"-->
+    <!--            (click)="showLoginComponent()">Login-->
+    <button *ngIf="appUser.userLevel==0" [ngClass]="setLoginButtonClasses()" type="button" routerLink="login"
+            routerLinkActive="active" (click)="showLoginComponent()">Sign In
     </button>
   </form>
 </div>

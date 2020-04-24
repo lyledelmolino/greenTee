@@ -5,20 +5,20 @@
             <img src="img_avatar2.png" alt="Avatar" class="avatar">
         </div>
     -->
-    <div style="margin: 40px auto 20px; width: 60%">
+    <p>Sign In</p>
+    <div style="margin: auto; width: 60%">
       <input class="form-largest" type="text" placeholder="Username" autocapitalize="none" name="username"
              [(ngModel)]="username" autocomplete="on">
       <input class="form-largest" type="password" placeholder="Password" autocapitalize="none" name="password"
              [(ngModel)]="password" autocomplete="off">
     </div>
     <div class="profile-form-div">
-      <button type="button" (click)="loginUser()">Sign In</button>
+      <button [ngClass]="setSignInButtonClasses()" type="button" (click)="loginUser()">Sign In</button>
     </div>
     <div class="profile-form-div">
-      <button type="button" (click)="cancel()">Cancel</button>
-    </div>
-    <div class="profile-form-div">
-      <button type="button" (click)="showRegisterFreeUserComponent()" value="Subscribe Free Now!">Subscribe Free Now!
+      <!--      <button type="button" (click)="showRegisterFreeUserComponent()" value="Subscribe Free Now!">Subscribe Free Now!-->
+      <button [ngClass]="setSignInButtonClasses()" type="button" routerLink="../register-free-user" value="Subscribe Free Now!" (click)="showRegisterFreeUserComponent()">
+        Subscribe Free Now!
       </button>
     </div>
     <!--      todo: implement this post deploy-->
@@ -28,7 +28,12 @@
     <!--      </div>-->
     <div class="profile-form-div">
       <!--      <button type="button" (click)="showForgotPasswordComponent()">Forgot Password</button>-->
-      <button type="button" (click)="showPasswordResetEmailComponent()">Forgot Password</button>
+      <!--      <button type="button" (click)="showPasswordResetEmailComponent()">Forgot Password</button>-->
+      <button [ngClass]="setSignInButtonClasses()" type="button" routerLink="../forgot-password">Forgot Password</button>
+    </div>
+    <div class="profile-form-div">
+      <!--      <button type="button" (click)="cancel()">Cancel</button>-->
+      <button [ngClass]="setSignInButtonClasses()" type="button" routerLink="../home" (click)="cancel()">Cancel</button>
     </div>
   </form>
 </section>

@@ -1,7 +1,13 @@
 <div [ngClass]="setScoringComponentClasses()" style="padding-bottom: 0px;">
   <div [ngClass]="setDetailContainerClasses()">
-    <app-post-score [ngClass]="setPostScoreClasses()"></app-post-score>
-    <app-latest-rev-scoring-record [aGolfer]="appUser" [ngClass]="setScoringRecordClasses()"></app-latest-rev-scoring-record>
-    <app-current-scoring-record [aGolfer]="appUser" [ngClass]="setScoringRecordClasses()"></app-current-scoring-record>
+    <div [ngClass]="setDetailActuateClasses()">
+      <app-post-score [ngClass]="setPostScoreClasses()"></app-post-score>
+    </div>
+    <div [ngClass]="setDetailActuateClasses()">
+      <app-latest-rev-scoring-record [aGolfer]="appUser"></app-latest-rev-scoring-record>
+    </div>
+    <div [ngClass]="setDetailActuateClasses()">
+      <app-current-scoring-record [aGolfer]="appUser"></app-current-scoring-record>
+    </div>
   </div>
 </div>

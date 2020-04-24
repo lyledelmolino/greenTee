@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Greentee918Service } from '../../services/greentee918.service';
+import {Component, OnInit} from '@angular/core';
+import {Greentee918Service} from '../../services/greentee918.service';
 
 @Component({
   selector: 'app-golfer-section',
@@ -9,44 +9,57 @@ import { Greentee918Service } from '../../services/greentee918.service';
 
 export class GolferSectionComponent implements OnInit {
 
-    scoringComponentVisible = false;
-    profileComponentVisible = false;
+  appUser;
+  golferMenuVisible = false;
+  scoringComponentVisible = false;
+  profileComponentVisible = false;
 
-    constructor( private greenTee918Service: Greentee918Service ) { }
+  constructor(private greenTee918Service: Greentee918Service) {
+  }
 
-    ngOnInit() {
-        this.greenTee918Service.castScoringComponentVisibility.subscribe(visibility => this.scoringComponentVisible = visibility);
-        this.greenTee918Service.castProfileComponentVisibility.subscribe(visibility => this.profileComponentVisible = visibility);
-    }
+  ngOnInit() {
+    this.greenTee918Service.castGolferMenuVisibility.subscribe(visibility => this.golferMenuVisible = visibility);
+    this.greenTee918Service.castScoringComponentVisibility.subscribe(visibility => this.scoringComponentVisible = visibility);
+    this.greenTee918Service.castProfileComponentVisibility.subscribe(visibility => this.profileComponentVisible = visibility);
+  }
 
-    setGolferMenuClasses() {
+  setGolferMenuClasses() {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            'golfer-menu': true
-        };
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'golfer-menu': true
+    };
 
-        return classes;
-    }
+    return classes;
+  }
 
-    setScoringClasses() {
+  setScoringClasses() {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            scoring: true
-        };
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      scoring: true
+    };
 
-        return classes;
-    }
+    return classes;
+  }
 
-    setProfileClasses() {
+  setProfileClasses() {
 
-        // tslint:disable-next-line:prefer-const
-        let classes = {
-            profile: true
-        };
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      profile: true
+    };
 
-        return classes;
-    }
+    return classes;
+  }
 
+  setGolferSectionClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+        active: true
+      }
+    ;
+
+    return classes;
+  }
 }

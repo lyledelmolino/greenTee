@@ -1,7 +1,18 @@
-<div [ngClass]="setHeaderClasses()">
-  <div (click)="showHome()" style="display: inline-block">
-    <span class="span1-logo" >Green</span><span class="span2-logo">Tee</span><span
-    class="span3-logo">.info</span>
+<div id="header-section">
+  <div [ngClass]="setHeaderClasses()">
+    <div style="display: inline-block;">
+      <div tabindex="0" [ngClass]="setResponsiveMenuClasses()" _ngcontent-c5=""
+           routerlink="main-menu" routerlinkactive="active" (click)="showMainMenu()">
+        <div _ngcontent-c5=""></div>
+        <div _ngcontent-c5=""></div>
+        <div _ngcontent-c5=""></div>
+      </div>
+    </div>
+    <span id="logo" routerLink="home" routerLinkActive="active" (click)="showHome()">
+      <span class="span1-logo">Green</span>
+      <span class="span2-logo">Tee</span>
+      <span class="span3-logo dot-info-text">.info</span>
+    </span>
+    <app-user *ngIf="!loginComponentVisible" class="wide-media"></app-user>
   </div>
-  <app-user *ngIf="!loginComponentVisible"></app-user>
 </div>

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Greentee918Service} from '../../services/greentee918.service';
+import {DebugService} from "../../services/debug.service";
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,12 @@ import {Greentee918Service} from '../../services/greentee918.service';
 export class HomeComponent implements OnInit {
 
   appUser;
+  homeComponentVisible = false;
+  debug;
 
-  constructor(private greenTee918Service: Greentee918Service) {
+  constructor(private greenTee918Service: Greentee918Service, private debugService: DebugService) {
     this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
+    this.greenTee918Service.castHomeComponentVisibility.subscribe(visibility => this.homeComponentVisible = visibility);
   }
 
   ngOnInit() {
@@ -37,4 +41,22 @@ export class HomeComponent implements OnInit {
     return classes;
   }
 
+  setSubscribeFreeUserButtonClasses() {
+
+    let classes = {
+      'common-button': true
+    };
+
+    return classes;
+  }
+
+  setHomeSectionClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+        active: true
+      }
+    ;
+
+    return classes;
+  }
 }

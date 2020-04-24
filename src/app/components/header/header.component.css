@@ -1,62 +1,45 @@
-body {
-  padding-top: 9px;
-}
-
-.login-header {
-  width: 330px;
-  margin: 30px auto;
-  font-size: 400%;
-}
-
-.user-not-logged-in {
-  margin-bottom: 30px;
-}
-
 .app-header {
-  color: rgba(127, 166, 130, 1);
   font-size: 200%;
-  background-color: white;
-  padding: 0px 0px 0px 10px;
-  /*border-radius: 6px;*/
-  border: 1px solid #7fa682;
+  margin: 7px auto;
+  background-color: slategrey;
   min-width: 456px;
-  max-width: 600px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
-@media screen and (max-width: 600px) {
-  .login-header {
-    width: 55%;
-    margin: 30px auto;
-    font-size: 200%;
-  }
-
-  .app-header {
-    min-width: 0px;
-    margin: 0px 1px 9px;
-    font-size: 150%;
-    border: none;
-  }
+#logo {
+  display: inline-block;
+  margin-left: 5px;
+  background-color: transparent;
 }
 
 .span1-logo {
-  color: rgba(127, 166, 130, 1);
+  color: white;
 }
 
 .span2-logo {
-  /*    display: inline-block; */
-  color: rgba(127, 166, 130, 1);
+  color: green;
   border-radius: 35px 0px;
   padding: 10px;
   height: 35px;
   background-color: rgba(187, 255, 190, 1);
 }
 
-div.login-header > .span2-logo {
-  height: 100%;
-}
-
 .span3-logo {
   font-size: 15px;
+  color: white;
+}
+
+.user-not-logged-in {
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 757px) {
+  #header-section {
+    width: 100%;
+    min-width: 0;
+    margin-top: 5px;
+  }
+
+  .app-header {
+    min-width: 0px;
+  }
 }

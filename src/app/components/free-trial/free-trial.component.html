@@ -1,3 +1,4 @@
+<!--<div *ngIf="freeTrialComponentVisible" [ngClass]="setContainerContainerClass()">-->
 <div [ngClass]="setContainerContainerClass()">
     <div [ngClass]="setDetailContainerClasses()">
         <form [ngClass]="setProfileClasses()" (ngSubmit)="registerFreeTrialUser()">
@@ -12,11 +13,11 @@
                 </div>
             </div>
 			<button type="submit" title="">Begin Free Trial</button>
-			<button type="button" (click)="cancel()">Cancel</button> 
+			<button type="button" (click)="cancel()">Cancel</button>
         </form>
     </div>
 </div>
 <!-- <section [ngClass]="setFreeTrialContainerClasses()">
 	<button type="button" (click)="registerFreeTrialUser()">Begin Free Trial</button>
-	<button type="button" (click)="cancel()">Cancel</button> 
+	<button type="button" (click)="cancel()">Cancel</button>
 </section> -->

@@ -1,18 +1,19 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {Greentee918Service} from '../../services/greentee918.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css', '../../app.component.css']
+  styleUrls: ['../../app.component.css', './user.component.css']
 })
 
 export class UserComponent implements OnInit {
 
   appUser;
 
-  constructor(private greenTee918Service: Greentee918Service) {
+  constructor(private greenTee918Service: Greentee918Service, private router: Router) {
   }
 
   ngOnInit() {
@@ -20,7 +21,6 @@ export class UserComponent implements OnInit {
   }
 
   backClicked() {
-    console.log ("back clicked!");
   }
 
   setLoginClasses() {
@@ -37,7 +37,8 @@ export class UserComponent implements OnInit {
 
     // tslint:disable-next-line:prefer-const
     let classes = {
-      'login-button': true
+      'login-button': true,
+      'common-button': true
     };
 
     return classes;
@@ -54,9 +55,8 @@ export class UserComponent implements OnInit {
   }
 
   showLoginComponent() {
-//        console.log('In user.component.ts - showLogin()!!');
-
     this.greenTee918Service.showLoginComponent();
+    this.greenTee918Service.hideMainMenu();
     this.greenTee918Service.hideHomeComponent();
     this.greenTee918Service.hideFoundGolfersComponent();
     this.greenTee918Service.hideAboutComponent();
@@ -64,7 +64,7 @@ export class UserComponent implements OnInit {
   }
 
   logoutUser() {
-    this.greenTee918Service.logoutUser();
+    this.greenTee918Service.logoutUser(this.router);
     this.greenTee918Service.hideResponsiveMenu();
   }
 }

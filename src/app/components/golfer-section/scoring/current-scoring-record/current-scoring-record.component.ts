@@ -28,7 +28,6 @@ export class CurrentScoringRecordComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'detail-actuator': true,
-      'form-largest': true,
       active: this.currentScoringRecordDetailVisible
     };
 
@@ -39,7 +38,8 @@ export class CurrentScoringRecordComponent implements OnInit {
 
     // tslint:disable-next-line:prefer-const
     let classes = {
-      'detail-container-container': true
+      'detail-container-container': true,
+      active: this.currentScoringRecordDetailVisible
     };
 
     return classes;

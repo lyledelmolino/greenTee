@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 import {Greentee918Service} from '../../services/greentee918.service';
 
 @Component({
@@ -9,26 +10,21 @@ import {Greentee918Service} from '../../services/greentee918.service';
 
 export class PinFormComponent implements OnInit {
 
-  constructor(private greenTee918Service: Greentee918Service) {
+  constructor(private greenTee918Service: Greentee918Service, private router: Router) {
   }
 
   pin: string;
 
   ngOnInit() {
-    // this.greenTee918Service.castRegisterForFreeTrialSessionId.subscribe(sessionId => this.sessionId = sessionId);
   }
 
   cancel() {
     this.greenTee918Service.hidePinFormComponent();
-    // this.greenTee918Service.showForgotPasswordComponent();
     this.greenTee918Service.showLoginFormComponent();
   }
 
   confirmPin() {
-    // console.log('In PinFormComponent.ts ---> confirmPin()');
-    // console.log(this.pin);
-
-    this.greenTee918Service.confirmPin(this.pin);
+    this.greenTee918Service.confirmPin(this.pin, this.router);
   }
 
   setContainerContainerClass() {
@@ -57,6 +53,16 @@ export class PinFormComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'profile-form': true
+    };
+
+    return classes;
+  }
+
+  setPinFormButtonClasses() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'common-button': true
     };
 
     return classes;

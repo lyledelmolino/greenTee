@@ -9,13 +9,13 @@ import {Greentee918Service} from '../../services/greentee918.service';
 export class MainContentComponent implements OnInit {
 
   appUser;
+  loginComponentVisible = false;
   homeComponentVisible = true;
   golferComponentVisible = false;
   clubAdminComponentVisible = false;
   adminComponentVisible = false;
   aboutComponentVisible = false;
   freeTrialComponentVisible = false;
-  // pinFormComponentVisible = false;
   freeUserPinFormComponentVisible = false;
   registerFreeUserComponentVisible = false;
 
@@ -31,11 +31,9 @@ export class MainContentComponent implements OnInit {
     this.greenTee918Service.castAboutComponentVisibility.subscribe(visibility => this.aboutComponentVisible = visibility);
     this.greenTee918Service.castRegisterFreeUserComponentVisibility.subscribe(visibility =>
       this.registerFreeUserComponentVisible = visibility);
-    this.greenTee918Service.castFreeTrialComponentVisibility.subscribe(visibility => this.freeTrialComponentVisible = visibility);
-    // this.greenTee918Service.castPinFormComponentVisibility.subscribe(visibility =>
-    //   this.pinFormComponentVisible = visibility);
     this.greenTee918Service.castPinFormComponentVisibility.subscribe(visibility =>
       this.freeUserPinFormComponentVisible = visibility);
+    this.greenTee918Service.castLoginVisibility.subscribe(visibility => this.loginComponentVisible = visibility);
   }
 
   setMainMenuClasses() {
@@ -116,5 +114,18 @@ export class MainContentComponent implements OnInit {
     };
 
     return classes;
+  }
+
+  showPrivacyPolicyComponent() {
+    this.greenTee918Service.hideMainMenu();
+    this.greenTee918Service.hideHomeComponent();
+    this.greenTee918Service.hideGolferComponent();
+    this.greenTee918Service.hideGolferMenu();
+    this.greenTee918Service.hideClubAdminComponent();
+    this.greenTee918Service.hideAdminComponent();
+    this.greenTee918Service.hideFreeTrialComponent();
+    this.greenTee918Service.hidePinFormComponent();
+    this.greenTee918Service.hideRegisterFreeTrialUserComponent();
+    this.greenTee918Service.hideAboutComponent();
   }
 }

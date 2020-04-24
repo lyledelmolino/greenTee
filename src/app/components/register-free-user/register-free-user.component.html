@@ -1,19 +1,23 @@
+<!--<div *ngIf="componentVisible" [ngClass]="setContainerContainerClass()">-->
 <div [ngClass]="setContainerContainerClass()">
   <div [ngClass]="setDetailContainerClasses()">
-    <form [ngClass]="setProfileClasses()" (ngSubmit)="initializeRegisterFreeUser()">
+    <!--    <form [ngClass]="setProfileClasses()" (ngSubmit)="initializeRegisterFreeUser()">-->
+    <p style="font-size: 20px">Enter an email address and password to join GreenTee.info and start tracking your handicap right now!</p>
+    <p>Its free and GreenTee.info will not share your email with anyone.</p>
+    <form [ngClass]="setProfileClasses()">
       <div class="first-name">
         <input class="form-largest" type="text" maxlength="25" name="first_name" [(ngModel)]="componentForm.firstName"
-               placeholder="First Name">
+               placeholder="First Name" pattern="(?!.*[&!])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{1,25}">
       </div>
       <div class="last-name">
-        <input class="form-largest" type="text" maxlength="25" minlength="3" name="last_name" [(ngModel)]="componentForm.lastName"
-               placeholder="Last Name">
+        <input class="form-largest" type="text" maxlength="25" minlength="3" name="last_name"
+               [(ngModel)]="componentForm.lastName" placeholder="Last Name" pattern="(?!.*[&!])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{1,25}">
       </div>
       <!--      <input class="form-largest" type="text" maxlength="50" name="email" [(ngModel)]="componentForm.emails"-->
       <!--             placeholder="Email Address" autocapitalize="none" autocomplete="off">-->
       <input class="form-largest" type="email" placeholder="Enter Email Address" maxlength="50"
              name="email" [(ngModel)]="componentForm.emails[0]" autocomplete="on" required
-             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #email_v="ngModel"
+             pattern="(?!&)[a-z0-9._%+-]+@(?!&)[a-z0-9.-]+\.(?!&)[a-z]{2,}$" #email_v="ngModel"
              (keyup)="emailKeypress()">
       <div *ngIf="email_v.invalid">
         <div *ngIf="(email_v.dirty || email_v.touched)">
@@ -34,10 +38,10 @@
       <div *ngIf="email_v.valid">
         <p class="valid">Looks good!</p>
       </div>
-      <input class="form-largest" type="password" placeholder="Create Password" maxlength="8" name="password"
+      <input class="form-largest" type="password" placeholder="Create Password" maxlength="17" name="password"
              [(ngModel)]="componentForm.password"
              placeholder="Create Password" autocapitalize="none" autocomplete="off" required
-             pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$" #password_v="ngModel">
+             pattern="^(?!.*&)(?=.*\d)(?!&)(?=.*[a-z])(?=.*[A-Z]).{4,17}$" #password_v="ngModel">
       <div *ngIf="password_v.invalid">
         <div *ngIf="(password_v.dirty || password_v.touched)">
           <div *ngIf="password_v.invalid">
@@ -54,9 +58,9 @@
       <div *ngIf="password_v.valid">
         <p class="valid">Looks good!</p>
       </div>
-<!--      <button type="button" (click)="toggleAddressDetailVisible()" [ngClass]="setDetailActuatorClass()">Address</button>-->
-<!--      <div *ngIf="addressDetailVisible" [ngClass]="setContainerContainerClass()">-->
-        <div *ngIf="false" [ngClass]="setContainerContainerClass()">
+      <!--      <button type="button" (click)="toggleAddressDetailVisible()" [ngClass]="setDetailActuatorClass()">Address</button>-->
+      <!--      <div *ngIf="addressDetailVisible" [ngClass]="setContainerContainerClass()">-->
+      <div *ngIf="false" [ngClass]="setContainerContainerClass()">
         <!--        <fieldset [ngClass]="setProfileDetailContainerClasses()">-->
         <div>
           <input class="form-largest" type="text" maxlength="100"
@@ -139,11 +143,13 @@
         </select>
         <div>
           <input class="form-largest" [(ngModel)]="componentForm.locations[0].aAddress.zipCode" name="zipCode"
-                 type="text" digitOnly maxlength="5" pattern="(^\d{5})" placeholder="Zip" (keyup)="inputOnlyIntegerZip($event)">
+                 type="text" digitOnly maxlength="5" pattern="(^\d{5})" placeholder="Zip"
+                 (keyup)="inputOnlyIntegerZip($event)">
         </div>
         <div>
           <input class="form-largest" [(ngModel)]="componentForm.locations[0].aAddress.zipPlus4" name="zipPlus4"
-                 type="number" maxlength="4" pattern="(^\d{4})" placeholder="Zip+4" (keyup)="inputOnlyIntegerZipPlus4($event)">
+                 type="number" maxlength="4" pattern="(^\d{4})" placeholder="Zip+4"
+                 (keyup)="inputOnlyIntegerZipPlus4($event)">
         </div>
         <select class="form-largest" [(ngModel)]="componentForm.locations[0].aAddress.country" name="country"
                 onchange="toggleReset(event)">
@@ -412,10 +418,12 @@
       <!--        </fieldset>-->
       <!--      </div>-->
       <div class="profile-form-div">
-        <button *ngIf="email_v.valid && password_v.valid" type="submit" title="">Continue</button>
+        <!--        <button *ngIf="email_v.valid && password_v.valid" type="submit" title="" routerLink="../initialize-subscribe-user">Continue</button>-->
+        <button *ngIf="email_v.valid && password_v.valid" [ngClass]="setRegisterFreeUserButtonClasses()" type="button" (click)="initializeRegisterFreeUser()"
+                routerLink="../initialize-subscribe-user">Continue
+        </button>
         <label *ngIf="email_v.invalid || password_v.invalid" title="">Enter Subscription Information</label>
       </div>
     </form>
   </div>
 </div>
-<div style="height: 200px"></div>

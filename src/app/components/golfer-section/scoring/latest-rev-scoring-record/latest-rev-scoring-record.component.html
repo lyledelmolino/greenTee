@@ -1,8 +1,8 @@
-<div>
+<div [ngClass]="setContainerClass()">
   <button (click)="toggleLatestRevScoringRecordDetailVisible()" [ngClass]="setDetailActuatorClass()">
     Latest Rev Scoring Record
-    <div *ngIf="!latestRevScoringRecordDetailVisible" class="triangle-down"></div>
-    <div *ngIf="latestRevScoringRecordDetailVisible" class="triangle-up"></div>
+    <div *ngIf="!latestRevScoringRecordDetailVisible" class="triangle down"></div>
+    <div *ngIf="latestRevScoringRecordDetailVisible" class="triangle up"></div>
   </button>
 </div>
 <div *ngIf="latestRevScoringRecordDetailVisible" [ngClass]="setContainerContainerClass()">

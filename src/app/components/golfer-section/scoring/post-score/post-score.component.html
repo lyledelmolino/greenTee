@@ -1,7 +1,7 @@
 <button [ngClass]="setDetailActuatorClass()" (click)="togglePostScoreDetailVisible()">
   Post Score
-  <div *ngIf="!postScoreDetailVisible" class="triangle-down"></div>
-  <div *ngIf="postScoreDetailVisible" class="triangle-up"></div>
+  <div *ngIf="!postScoreDetailVisible" class="triangle down"></div>
+  <div *ngIf="postScoreDetailVisible" class="triangle up"></div>
 </button>
 <div *ngIf="postScoreDetailVisible" [ngClass]="setContainerContainerClass()">
   <div [ngClass]="setDetailContainerClasses()">
@@ -9,9 +9,9 @@
       <div class="gt-form-section">
         <div class="gt-form-group">
           <label class="post-score-label">Date</label>
-          <input [ngClass]="{ 'is-invalid': date_v.invalid, 'is-valid': date_v.valid, 'post-score-input-date' : true }"
-                 [(ngModel)]="scoreToPost.date" name="date" type="date"
-                 required="required" #date_v="ngModel" min="2018-04-01" max="2020-01-01">
+          <input [ngClass]="{ 'is-invalid': date_v.invalid, 'is-valid': date_v.valid }"
+                 [(ngModel)]="scoreToPost.date" name="date" type="date" value="{ today }"
+                 required="required" #date_v="ngModel" min="2020-01-01" max="{ today }">
         </div>
         <div class="gt-form-group">
           <label class="post-score-label">Score</label>
@@ -50,8 +50,8 @@
         <!--                title="">Post Score-->
         <!--        </button>-->
         <input
-          *ngIf="date_v.valid && score_v.valid && scoreValid && course_rating_v.valid && slope_v.valid && slopeValid "
-          id="post_score_button" type="submit" value="Post Score">
+          *ngIf="date_v.valid && score_v.valid && scoreValid && course_rating_v.valid && slope_v.valid && slopeValid"
+          id="post_score_button" [ngClass]="setPostScoreButtonClasses()" type="submit" value="Post Score">
       </div>
       <!--      </div>-->
       <!--            <div>-->
@@ -87,8 +87,7 @@
       <!--        <input class="form-check-input" [(ngModel)]="scoreToPost.tournament_score" name="tournament_score"-->
       <div class="gt-form-section">
         <!--        <input class="form-check-input" [(ngModel)]="scoreToPost.tournament_score" name="tournament_score"-->
-        <input [(ngModel)]="scoreToPost.tournament_score" name="tournament_score"
-               type="checkbox">
+        <input [(ngModel)]="scoreToPost.tournament_score" name="tournament_score" type="checkbox">
         <!--        <label class="form-check-label"-->
         <label title="Check if the posted score is a tournament score. A &quot;tournament score&quot;
               (T-Score) is a score made in a competition organized and conducted by the Committee in charge of the competition.

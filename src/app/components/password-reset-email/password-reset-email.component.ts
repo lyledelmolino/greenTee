@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 import {Greentee918Service} from '../../services/greentee918.service';
 import {FormBuilder, FormControl, FormGroup, FormArray, Validators} from "@angular/forms";
 
@@ -14,7 +15,7 @@ export class PasswordResetEmailComponent implements OnInit {
   email: string;
   message_fail: boolean;
 
-  constructor(private greenTee918Service: Greentee918Service) {
+  constructor(private greenTee918Service: Greentee918Service, private router: Router) {
   }
 
   ngOnInit() {
@@ -26,24 +27,18 @@ export class PasswordResetEmailComponent implements OnInit {
   }
 
   cancel() {
-//       console.log('In password-reset-email.component.ts - cancel()!!');
     this.greenTee918Service.hidePasswordResetEmailErrorMsgComponent();
     this.greenTee918Service.hidePasswordResetEmailComponent();
-    // this.greenTee918Service.showForgotPasswordComponent();
     this.greenTee918Service.showLoginFormComponent();
   }
 
   emailKeypress() {
-    // console.log("emailKeypress()");
     this.message_fail = false;
   }
 
   initializePasswordReset() {
-    // console.log("initializePasswordReset()");
-    // console.log(this.email);
-    // console.log(this.username);
-    // console.log(this.password);
     this.greenTee918Service.initializePasswordReset(this.email);
+    this.router.navigate(['../initialize-password-reset']);
   }
 
   setResetPasswordEmailFormClasses() {
@@ -59,6 +54,15 @@ export class PasswordResetEmailComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'login-container': true
+    };
+
+    return classes;
+  }
+
+  setPasswordResetEmailButtonClasses() {
+
+    let classes = {
+      'common-button': true
     };
 
     return classes;

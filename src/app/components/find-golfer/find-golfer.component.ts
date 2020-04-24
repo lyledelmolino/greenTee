@@ -5,7 +5,7 @@ import {Golfer} from '../../models/Golfer';
 @Component({
   selector: 'app-find-golfer',
   templateUrl: './find-golfer.component.html',
-  styleUrls: ['../../app.component.css', './find-golfer.component.css']
+  styleUrls: ['../../app.component.css', '../golfer-section/scoring/scoring.component.css', './find-golfer.component.css']
 })
 export class FindGolferComponent implements OnInit {
 
@@ -24,9 +24,6 @@ export class FindGolferComponent implements OnInit {
   }
 
   findGolfer() {
-    // console.log('In findGolfer.component.ts ---> findGolfer() - this.golferToFind.lastName != null');
-    // console.log('|' + this.golferToFind.lastName + '|');
-    // != null (includes undefined !== does not)
     if (this.golferToFind.lastName != null && this.golferToFind.lastName != '') {
       this.greenTee918Service.findGolfer(this.golferToFind);
 
@@ -45,14 +42,7 @@ export class FindGolferComponent implements OnInit {
   }
 
   toggleFoundGolfersScoringRecordVisible(index, event) {
-    // console.log("toggleFoundGolfersScoringRecordVisible(index) !this.foundGolfersScoringRecordVisible[index]:");
-    // console.log(!this.foundGolfersScoringRecordVisible[index]);
     this.foundGolfersScoringRecordVisible[index] = !this.foundGolfersScoringRecordVisible[index];
-    // if (this.foundGolfersScoringRecordVisible[index]) {
-    //   event.target.innerHTML = 'Hide Scoring Record';
-    // } else {
-    //   event.target.innerHTML = 'Show Scoring Record';
-    // }
   }
 
   toggleReset(e) {
@@ -104,8 +94,6 @@ export class FindGolferComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'detail-container': true,
-//      'found-golfer': true,
-      //just to get it done... ng generate results in error too be fixed later
       'show-container': this.searchGolferVisible,
       'hide-container': !this.searchGolferVisible
     };
@@ -147,7 +135,6 @@ export class FindGolferComponent implements OnInit {
 
     // tslint:disable-next-line:prefer-const
     let classes = {
-//            'latest-revision-scoring-record': true
       'scoring-record': true
     };
 
@@ -180,6 +167,53 @@ export class FindGolferComponent implements OnInit {
     let classes = {
       'form-largest': true,
       'grey-default': this.golferToFind.state == 'state'
+    };
+
+    return classes;
+  }
+
+  setFindGolferButtonClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'common-button': true
+    };
+
+    return classes;
+  }
+
+  setLatestRevScoringRecordComponentClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'scoring-record': true,
+      'show-scoring-record': true
+    };
+
+    return classes;
+  }
+
+  setScoringRecordButtonClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-actuator-button': true
+    };
+
+    return classes;
+  }
+
+  setScoringRecordDivClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'detail-actuator': true,
+      'show-scoring-record': true
+    };
+
+    return classes;
+  }
+
+  setSearchAgainButtonClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'common-button': true
     };
 
     return classes;

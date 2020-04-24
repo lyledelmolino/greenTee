@@ -1,8 +1,12 @@
-#about {
-  padding: 20px 8px;
-}
-
 #about p {
   margin: 8px;
   font-size: 100%;
+}
+
+@media screen and (max-width: 757px) {
+
+  #about {
+    padding-top: 0;
+  }
+
 }

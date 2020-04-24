@@ -17,10 +17,6 @@ export class LatestRevScoringRecordComponent implements OnInit {
 
   ngOnInit() {
     this.greenTee918Service.castUser.subscribe(user => this.aFreeUser = user);
-
-    console.log('In latest-rev-scoring-record.component.ts - ngOnInit()!!');
-    console.log(this.aGolfer.clubRoles[0].club.clubId);
-    //     console.log(this.appUser);
   }
 
   setTournamentScoringRecordClasses() {
@@ -60,7 +56,6 @@ export class LatestRevScoringRecordComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'detail-actuator': true,
-      'form-largest': true,
       active: this.latestRevScoringRecordDetailVisible
     };
 
@@ -71,7 +66,8 @@ export class LatestRevScoringRecordComponent implements OnInit {
 
     // tslint:disable-next-line:prefer-const
     let classes = {
-      'detail-container-container': true
+      'detail-container-container': true,
+      active: this.latestRevScoringRecordDetailVisible
     };
 
     return classes;
@@ -92,6 +88,15 @@ export class LatestRevScoringRecordComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'score-table': true
+    };
+
+    return classes;
+  }
+
+  setContainerClass() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      active: this.latestRevScoringRecordDetailVisible
     };
 
     return classes;
