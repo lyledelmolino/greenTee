@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 // import {OnInit} from '@angular/core';
 import {Greentee918Service} from '../../services/greentee918.service';
 import {DebugService} from "../../services/debug.service";
-import {Router} from "@angular/router";
+import {AppComponent} from "../../app.component";
+// import {Router} from "@angular/router";
+
 // import {Component, trigger, state, style, transition, animate} from '@angular/animations';
 
 @Component({
@@ -22,11 +24,14 @@ export class MainMenuComponent implements OnInit {
   freeTrialComponentVisible = false;
   registerFreeUserComponentVisible = false;
   aboutComponentVisible = false;
+  loginComponentVisible = false;
+  privacyPolicyComponentVisible;
   responsiveMenuVisible = false;
   animateArrowDown = false;
   animateArrowUp = true;
+  isDarkMode = false;
 
-  constructor(private greenTee918Service: Greentee918Service, private debugService: DebugService) {
+  constructor(private greenTee918Service: Greentee918Service, private appComponent: AppComponent, private debugService: DebugService) {
   }
 
   ngOnInit() {
@@ -39,7 +44,10 @@ export class MainMenuComponent implements OnInit {
     this.greenTee918Service.castAdminComponentVisibility.subscribe(visibility => this.adminComponentVisible = visibility);
     this.greenTee918Service.castRegisterFreeUserComponentVisibility.subscribe(visibility => this.registerFreeUserComponentVisible = visibility);
     this.greenTee918Service.castAboutComponentVisibility.subscribe(visibility => this.aboutComponentVisible = visibility);
+    this.greenTee918Service.castLoginFormComponentVisibility.subscribe(visibility => this.loginComponentVisible = visibility);
+    this.greenTee918Service.castPrivacyPolicyVisibility.subscribe(visibility => this.privacyPolicyComponentVisible = visibility);
     this.greenTee918Service.castMainMenuVisibility.subscribe(visibility => this.responsiveMenuVisible = visibility);
+    this.greenTee918Service.castIsDarkMode.subscribe(isDarkMode => this.isDarkMode = isDarkMode);
   }
 
   setArrowClasses() {
@@ -59,6 +67,22 @@ export class MainMenuComponent implements OnInit {
     let classes = {
       active: this.aboutComponentVisible,
       'responsive-menu': this.responsiveMenuVisible,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode,
+      'common-button': true
+    };
+
+    return classes;
+  }
+
+  setSignInButtonClasses() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      active: this.loginComponentVisible,
+      'responsive-menu': this.responsiveMenuVisible,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode,
       'common-button': true
     };
 
@@ -81,6 +105,19 @@ export class MainMenuComponent implements OnInit {
     let classes = {
       active: this.golferComponentVisible,
       'responsive-menu': this.responsiveMenuVisible,
+      'common-button': true,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode
+    };
+
+    return classes;
+  }
+
+  setPrivacyPolicyButtonClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      // active: this.privacyPolicyComponentVisible,
+      'responsive-menu': this.responsiveMenuVisible,
       'common-button': true
     };
 
@@ -92,7 +129,64 @@ export class MainMenuComponent implements OnInit {
     let classes = {
       active: this.registerFreeUserComponentVisible,
       'responsive-menu': this.responsiveMenuVisible,
-      'common-button': true
+      'common-button': true,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode
+    };
+
+    return classes;
+  }
+
+  setPrivacyPolicyDivClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      active: this.privacyPolicyComponentVisible,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode
+    };
+
+    return classes;
+  }
+
+  setGolferDivClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      active: this.golferComponentVisible,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode
+    };
+
+    return classes;
+  }
+
+  setRegisterFreeUserDivClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      active: this.registerFreeUserComponentVisible,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode
+    };
+
+    return classes;
+  }
+
+  setAboutDivClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      active: this.aboutComponentVisible,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode
+    };
+
+    return classes;
+  }
+
+  setSignInDivClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      active: this.loginComponentVisible,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode
     };
 
     return classes;
@@ -108,6 +202,7 @@ export class MainMenuComponent implements OnInit {
     this.greenTee918Service.hideRegisterFreeTrialUserComponent();
     this.greenTee918Service.hideAboutComponent();
     this.greenTee918Service.hideGolferMenu();
+    this.greenTee918Service.hidePrivacyPolicyComponent();
   }
 
   showHomeComponent() {
@@ -125,6 +220,7 @@ export class MainMenuComponent implements OnInit {
     this.greenTee918Service.hidePinFormComponent();
     this.greenTee918Service.hideRegisterFreeTrialUserComponent();
     this.greenTee918Service.hideAboutComponent();
+    this.greenTee918Service.hidePrivacyPolicyComponent();
   }
 
   showGolferComponent() {
@@ -138,6 +234,7 @@ export class MainMenuComponent implements OnInit {
     this.greenTee918Service.hidePinFormComponent();
     this.greenTee918Service.hideRegisterFreeTrialUserComponent();
     this.greenTee918Service.hideAboutComponent();
+    this.greenTee918Service.hidePrivacyPolicyComponent();
   }
 
   showClubAdminComponent() {
@@ -150,6 +247,7 @@ export class MainMenuComponent implements OnInit {
     this.greenTee918Service.hidePinFormComponent();
     this.greenTee918Service.hideRegisterFreeTrialUserComponent();
     this.greenTee918Service.hideAboutComponent();
+    this.greenTee918Service.hidePrivacyPolicyComponent();
   }
 
   showAdminComponent() {
@@ -162,6 +260,7 @@ export class MainMenuComponent implements OnInit {
     this.greenTee918Service.hidePinFormComponent();
     this.greenTee918Service.hideRegisterFreeTrialUserComponent();
     this.greenTee918Service.hideAboutComponent();
+    this.greenTee918Service.hidePrivacyPolicyComponent();
   }
 
   showFreeTrialComponent() {
@@ -174,6 +273,7 @@ export class MainMenuComponent implements OnInit {
     this.greenTee918Service.showFreeTrialComponent();
     this.greenTee918Service.hidePinFormComponent();
     this.greenTee918Service.hideRegisterFreeTrialUserComponent();
+    this.greenTee918Service.hidePrivacyPolicyComponent();
   }
 
   showRegisterFreeUserComponent() {
@@ -185,6 +285,7 @@ export class MainMenuComponent implements OnInit {
     this.greenTee918Service.hideAboutComponent();
     this.greenTee918Service.showRegisterFreeTrialUserComponent();
     this.greenTee918Service.hidePinFormComponent();
+    this.greenTee918Service.hidePrivacyPolicyComponent();
     // console.log("---- main-menu.component ---- freeTrialComponentVisible: " + this.freeTrialComponentVisible);
   }
 
@@ -198,5 +299,33 @@ export class MainMenuComponent implements OnInit {
     this.greenTee918Service.hidePinFormComponent();
     this.greenTee918Service.hideRegisterFreeTrialUserComponent();
     this.greenTee918Service.showAboutComponent();
+    this.greenTee918Service.hidePrivacyPolicyComponent();
+  }
+
+  showPrivacyPolicyComponent() {
+    this.responsiveMenuVisible = false;
+    this.greenTee918Service.hideHomeComponent();
+    this.greenTee918Service.hideGolferComponent();
+    this.greenTee918Service.hideClubAdminComponent();
+    this.greenTee918Service.hideAdminComponent();
+    this.greenTee918Service.hideFreeTrialComponent();
+    this.greenTee918Service.hidePinFormComponent();
+    this.greenTee918Service.hideRegisterFreeTrialUserComponent();
+    this.greenTee918Service.hidePostScoreComponent();
+    this.greenTee918Service.showPrivacyPolicyComponent();
+  }
+
+  showLoginComponent() {
+    this.responsiveMenuVisible = false;
+    this.greenTee918Service.hideHomeComponent();
+    this.greenTee918Service.hideGolferComponent();
+    this.greenTee918Service.hideClubAdminComponent();
+    this.greenTee918Service.hideAdminComponent();
+    this.greenTee918Service.hideFreeTrialComponent();
+    this.greenTee918Service.hidePinFormComponent();
+    this.greenTee918Service.hideRegisterFreeTrialUserComponent();
+    this.greenTee918Service.hidePostScoreComponent();
+    this.greenTee918Service.hidePrivacyPolicyComponent();
+    this.greenTee918Service.showLoginComponent();
   }
 }

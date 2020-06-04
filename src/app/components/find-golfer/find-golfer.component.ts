@@ -1,33 +1,56 @@
 import {Component, OnInit} from '@angular/core';
 import {Greentee918Service} from '../../services/greentee918.service';
 import {Golfer} from '../../models/Golfer';
+import {Event as NavigationEvent, NavigationStart, Router} from "@angular/router";
 
 @Component({
   selector: 'app-find-golfer',
   templateUrl: './find-golfer.component.html',
-  styleUrls: ['../../app.component.css', '../golfer-section/scoring/scoring.component.css', './find-golfer.component.css']
+  styleUrls: ['../../app.component.css', '../privacy-policy/privacy-policy.component.css', '../golfer-section/scoring/scoring.component.css', './find-golfer.component.css']
 })
 export class FindGolferComponent implements OnInit {
 
   golferToFind = new Golfer();
   searchGolferVisible = true;
   foundGolfersVisible = false;
-  foundGolfersScoringRecordVisible: Array<any> = [''];
+  foundGolfersScoringRecordVisible: Array<any> = [false];
   foundGolfers: Array<any>;
+  isDarkMode = false;
+  homeComponentVisibile = false;
 
-  constructor(private greenTee918Service: Greentee918Service) {
+  constructor(private greenTee918Service: Greentee918Service,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.greenTee918Service.castFoundGolfers.subscribe(foundGolfers => this.foundGolfers = foundGolfers);
+
+    this.greenTee918Service.castFoundGolfers.subscribe(
+      foundGolfers => this.foundGolfers = foundGolfers);
+
+    this.greenTee918Service.castIsDarkMode.subscribe(
+      isDarkMode => this.isDarkMode = isDarkMode);
+
+    this.greenTee918Service.castHomeComponentVisibility.subscribe(
+      homeComponentVisibile => this.homeComponentVisibile = homeComponentVisibile);
+
     this.golferToFind.state = "state";
+
+    this.searchGolferVisible = this.searchGolferVisible && this.homeComponentVisibile;
+    // debugger;
   }
 
   findGolfer() {
+    // debugger;
     if (this.golferToFind.lastName != null && this.golferToFind.lastName != '') {
-      this.greenTee918Service.findGolfer(this.golferToFind);
 
       this.searchGolferVisible = false;
+
+      this.greenTee918Service.findGolfer(this.golferToFind, this.router);
+
+      this.greenTee918Service.hideHomeComponent();
+
+      // debugger;
+      if(this.foundGolfers != null)
       this.foundGolfers.forEach(index => {
         this.foundGolfersScoringRecordVisible[index] = false;
       })
@@ -94,8 +117,8 @@ export class FindGolferComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'detail-container': true,
-      'show-container': this.searchGolferVisible,
-      'hide-container': !this.searchGolferVisible
+      // 'show-container': this.searchGolferVisible,
+      // 'hide-container': !this.searchGolferVisible
     };
 
     return classes;
@@ -105,7 +128,8 @@ export class FindGolferComponent implements OnInit {
 
     // tslint:disable-next-line:prefer-const
     let classes = {
-      'profile-form': true
+      'profile-form': true,
+      'dark-mode': this.isDarkMode
     };
 
     return classes;
@@ -175,7 +199,8 @@ export class FindGolferComponent implements OnInit {
   setFindGolferButtonClasses() {
     // tslint:disable-next-line:prefer-const
     let classes = {
-      'common-button': true
+      'common-button': true,
+      'dark-mode': this.isDarkMode
     };
 
     return classes;
@@ -214,6 +239,17 @@ export class FindGolferComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'common-button': true
+    };
+
+    return classes;
+  }
+
+  setModeClass(j) {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'dark-mode': this.isDarkMode,
+      odd: j % 2 == 0,
+      even: j % 2 == 1
     };
 
     return classes;

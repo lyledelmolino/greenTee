@@ -39,9 +39,7 @@ export class Greentee918Service {
   private mResetPasswordSessionId: string;
   private mRegisterForFreeTrialSessionId: string;
   private mPinForm: string = "";
-  private appUser = {
-    userLevel: 0
-  };
+  private appUser = new User();
 
   private user = new BehaviorSubject<any>(this.appUser);
   private foundGolfers = new BehaviorSubject<any[]>(this.mFoundGolfers);
@@ -68,6 +66,16 @@ export class Greentee918Service {
   private freeTrialComponentVisibility = new BehaviorSubject<any>('');
   private freeTrialPinFormComponentVisibility = new BehaviorSubject<any>('');
   private mainMenuVisibility = new BehaviorSubject<any>('');
+  private postScoreVisibility = new BehaviorSubject<any>('');
+  private scoringRecordVisibility = new BehaviorSubject<any>('');
+  private scoringVisibility = new BehaviorSubject<any>('');
+  private profileVisibility = new BehaviorSubject<any>('');
+  private privacyPolicyVisibility = new BehaviorSubject<any>('');
+
+  private isDarkMode = new BehaviorSubject<any>('');
+  castIsDarkMode = this.isDarkMode.asObservable();
+  private isIOSApp = new BehaviorSubject<any>(false);
+  //castIsIOSApp = this.isIOSApp.asObservable();
 
   castUser = this.user.asObservable();
   castFoundGolfers = this.foundGolfers.asObservable();
@@ -92,8 +100,16 @@ export class Greentee918Service {
   castPinFormComponentVisibility = this.pinFormComponentVisibility.asObservable();
   castFreeTrialPinFormComponentVisibility = this.freeTrialPinFormComponentVisibility.asObservable();
   castMainMenuVisibility = this.mainMenuVisibility.asObservable();
+  castPostScoreVisibility = this.postScoreVisibility.asObservable();
+  castScoringRecordVisibility = this.scoringRecordVisibility.asObservable();
+  castScoringVisibility = this.scoringVisibility.asObservable();
+  castProfileVisibility = this.profileVisibility.asObservable();
+  castPrivacyPolicyVisibility = this.privacyPolicyVisibility.asObservable();
 
-  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService, private debugService: DebugService) {
+  constructor(private http: HttpClient,
+              private router: Router,
+              private cookieService: CookieService,
+              private debugService: DebugService) {
 
     this.debugService.castDebugApp.subscribe(debugApp => this.debugApp = debugApp);
     this.debugService.castDebugGreenTee918Service.subscribe(debugModule => this.debugModule = debugModule);
@@ -136,6 +152,13 @@ export class Greentee918Service {
           if (event.restoredState) {
           }
 
+          //if (this.debugApp || this.debugModule || true) debugger;
+
+ //         this.cookieService.set('last-route', event.url, 3000);
+
+          if (this.cookieService.check('mode'))
+            this.setDarkMode(this.cookieService.get('mode'));
+
           if (event.url == '/register-free-user') {
             this.hideLoginComponent();
             this.hideMainMenu();
@@ -143,32 +166,48 @@ export class Greentee918Service {
             this.showRegisterFreeTrialUserComponent();
             this.hideAboutComponent();
             this.hideGolferComponent();
+            this.hideScoringComponent();
+            this.hidePostScoreComponent();
+            this.hideScoringRecordComponent();
+            this.hidePrivacyPolicyComponent();
           } else if (event.url == '/about') {
             this.hideLoginComponent();
             this.hideMainMenu();
             this.hideHomeComponent();
             this.hideRegisterFreeTrialUserComponent();
             this.showAboutComponent();
+            this.hideScoringComponent();
             this.hideGolferComponent();
+            this.hidePostScoreComponent();
+            this.hideScoringRecordComponent();
+            this.hidePrivacyPolicyComponent();
           } else if (event.url == '/home') {
-            this.hideLoginComponent();
-            this.hideMainMenu();
-            this.showHomeComponent();
-            this.hideRegisterFreeTrialUserComponent();
-            this.hideAboutComponent();
-            this.hideGolferComponent();
+            // this.hideLoginComponent();
+            // this.hideMainMenu();
+            // this.showHomeComponent();
+            // this.hideRegisterFreeTrialUserComponent();
+            // this.hideAboutComponent();
+            // this.hideGolferComponent();
+            // this.hideScoringComponent();
+            // this.hidePostScoreComponent();
+            // this.hideScoringRecordComponent();
+            // this.hidePrivacyPolicyComponent();
           } else if (event.url == '/login') {
-            if (this.user.value.userLevel > 0) {
-              // event.url = "/golfer";
-              // event.restoredState.navigationId = event.id;
-              // event.restoredState.navigationId = 1;
-            }
+            // if (this.user.value.userLevel > 0) {
+            //   // event.url = "/golfer";
+            //   // event.restoredState.navigationId = event.id;
+            //   // event.restoredState.navigationId = 1;
+            // }
             this.showLoginComponent();
             this.hideMainMenu();
             this.hideHomeComponent();
             this.hideRegisterFreeTrialUserComponent();
             this.hideAboutComponent();
             this.hideGolferComponent();
+            this.hideScoringComponent();
+            this.hidePostScoreComponent();
+            this.hideScoringRecordComponent();
+            this.hidePrivacyPolicyComponent();
           } else if (event.url == '/golfer') {
             this.hideLoginComponent();
             this.hideMainMenu();
@@ -176,12 +215,118 @@ export class Greentee918Service {
             this.hideRegisterFreeTrialUserComponent();
             this.hideAboutComponent();
             this.showGolferComponent();
+            this.showScoringComponent();
+            this.showPostScoreComponent();
+            this.hideScoringRecordComponent();
+            this.hidePrivacyPolicyComponent();
+          } else if (event.url == '/post-score') {
+            this.hideLoginComponent();
+            this.hideMainMenu();
+            this.hideHomeComponent();
+            this.hideRegisterFreeTrialUserComponent();
+            this.hideAboutComponent();
+            this.showGolferComponent();
+            this.showScoringComponent();
+            this.showPostScoreComponent();
+            this.hideScoringRecordComponent();
+            this.hidePrivacyPolicyComponent();
+          } else if (event.url == '/scoring-record') {
+            if (this.debugApp || this.debugModule) debugger;
+            this.hideLoginComponent();
+            this.hideMainMenu();
+            this.hideHomeComponent();
+            this.hideRegisterFreeTrialUserComponent();
+            this.hideAboutComponent();
+            this.showGolferComponent();
+            this.hidePostScoreComponent();
+            this.showScoringComponent();
+            this.showScoringRecordComponent();
+            this.hidePrivacyPolicyComponent();
+          } else if (event.url == '/scoring') {
+            if (this.debugApp || this.debugModule) debugger;
+            // this.hideLoginComponent();
+            // this.hideMainMenu();
+            // this.hideHomeComponent();
+            // this.hideRegisterFreeTrialUserComponent();
+            // this.hideAboutComponent();
+            // this.showGolferComponent();
+            // this.showScoringComponent();
+            // this.hidePostScoreComponent();
+            // this.hideScoringRecordComponent();
+            // this.hidePrivacyPolicyComponent();
+            // this.hideProfileComponent();
+          } else if (event.url == '/profile') {
+            if (this.debugApp || this.debugModule) debugger;
+            // this.hideLoginComponent();
+            // this.hideMainMenu();
+            // this.hideHomeComponent();
+            // this.hideRegisterFreeTrialUserComponent();
+            // this.hideAboutComponent();
+            // this.showGolferComponent();
+            // this.hidePostScoreComponent();
+            // this.hideScoringRecordComponent();
+            // this.hideScoringComponent();
+            // this.hidePrivacyPolicyComponent();
+            // this.showProfileComponent();
+          } else if (event.url == '/privacy-policy') {
+            if (this.debugApp || this.debugModule) debugger;
+            // this.hideLoginComponent();
+            // this.hideMainMenu();
+            // this.hideHomeComponent();
+            // this.hideRegisterFreeTrialUserComponent();
+            // this.hideAboutComponent();
+            // this.hideGolferComponent();
+            // this.hidePostScoreComponent();
+            // this.hideScoringComponent();
+            // this.hideProfileComponent();
+            // this.showPrivacyPolicyComponent();
+          } else if (event.url == '/about/privacy-policy') {
+            if (this.debugApp || this.debugModule) debugger;
+            this.hideLoginComponent();
+            this.hideMainMenu();
+            this.hideHomeComponent();
+            this.hideRegisterFreeTrialUserComponent();
+            this.hideAboutComponent();
+            this.hideGolferComponent();
+            this.hidePostScoreComponent();
+            this.hideScoringComponent();
+            this.showPrivacyPolicyComponent();
+          } else if (event.url == '/dark-mode') {
+            if (this.debugApp || this.debugModule) debugger;
+            this.hideLoginComponent();
+            this.hideMainMenu();
+            this.showHomeComponent();
+            this.hideRegisterFreeTrialUserComponent();
+            this.hideAboutComponent();
+            this.hideGolferComponent();
+            this.hideScoringComponent();
+            this.hidePostScoreComponent();
+            this.hideScoringRecordComponent();
+            this.hidePrivacyPolicyComponent();
+            this.isDarkMode.next(true);
+          } else if (event.url == '/light-mode') {
+            if (this.debugApp || this.debugModule) debugger;
+            this.hideLoginComponent();
+            this.hideMainMenu();
+            this.showHomeComponent();
+            this.hideRegisterFreeTrialUserComponent();
+            this.hideAboutComponent();
+            this.hideGolferComponent();
+            this.hideScoringComponent();
+            this.hidePostScoreComponent();
+            this.hideScoringRecordComponent();
+            this.hidePrivacyPolicyComponent();
+            this.isDarkMode.next(false);
           }
         }
       );
   }
 
   ngOnInit() {
+  }
+
+  logoutUser2() {
+    this.user.next(new User(0));
   }
 
   logoutUser(router) {
@@ -192,7 +337,7 @@ export class Greentee918Service {
     this.showHomeComponent();
   }
 
-  loginUser(username, password, router) {
+  loginUser(username, password, rememberMe, router) {
 
     if (this.debugApp || this.debugModule) debugger;
 
@@ -206,21 +351,57 @@ export class Greentee918Service {
       .subscribe((loggedInUser: any) => {
         this.user.next(loggedInUser);
 
+        if (loggedInUser == null) {
+          loggedInUser = new User();
+        }
+
         if (this.debugApp || this.debugModule) {
           debugger;
           // console.log("In loginUser - loggedInUser.userLevel: " + loggedInUser.userLevel);
         }
 
-        if (loggedInUser.userLevel != null && loggedInUser.userLevel > 0) {
+        // if (loggedInUser.userLevel != null && loggedInUser.userLevel > 0) {
+        if (loggedInUser != null && loggedInUser.userLevel > 0) {
           this.loginComponentVisibility.next(false);
-          router.navigate(['../golfer']);
-          // this.cookieService.set('name', 'test-cookie');
+
+          if (this.isIOSApp.value || rememberMe) {
+
+            let obPassword = 'uranass$123';
+            let length = 10;
+            let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let salt = '';
+            for (var i = length; i > 0; --i) salt += chars[Math.floor(Math.random() * chars.length)];
+
+            let user = btoa(username + obPassword);
+            password = btoa(password + salt);
+
+            if (this.debugApp || this.debugModule  || true) debugger;
+            if (!this.cookieService.check('user')) {
+              this.cookieService.set('user', user, 3000);
+            }
+            if (!this.cookieService.check('greent')) {
+              this.cookieService.set('greent', password, 3000);
+            }
+          }
+
+          let lastRoute = this.cookieService.get('last-route');
+          if (loggedInUser.userLevel > 0 && (lastRoute == '/login' || lastRoute == '/register-free-user'))
+            lastRoute = '../home';
+
+          router.navigate([lastRoute]);
+
         }
       });
   }
 
   getAppUser() {
     return this.appUser;
+  }
+
+  setDarkMode(mode) {
+    let isDarkMode = mode == 'dark-mode' ? true : false;
+    this.isDarkMode.next(isDarkMode);
+    this.isIOSApp.next(true);
   }
 
   initializePasswordReset(pEmail) {
@@ -350,7 +531,7 @@ export class Greentee918Service {
       });
   }
 
-  findGolfer(formData) {
+  findGolfer(formData, router) {
 
     // set header vars action...
     let body = new HttpParams();
@@ -362,15 +543,17 @@ export class Greentee918Service {
 
         if (foundGolfers.length == 0) {
           //Lets see if they are a ghin golfer
-          let httpHeaders = new HttpHeaders()
-            .set('Access-Control-Allow-Origin', 'http://localhost:4200')
-            .set('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0)');
-          this.http.get('http://google.com',
-            {headers: httpHeaders}).subscribe
-          (data => {
-          });
+          // let httpHeaders = new HttpHeaders()
+          //   .set('Access-Control-Allow-Origin', 'http://localhost:4200')
+          //   .set('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0)');
+          // this.http.get('http://google.com',
+          //   {headers: httpHeaders}).subscribe
+          // (data => {
+          // });
         } else {
           this.foundGolfers.next(foundGolfers);
+          // debugger;
+          router.navigate(['../find-golfer']);
         }
       });
   }
@@ -421,6 +604,7 @@ export class Greentee918Service {
 
   showLoginComponent() {
     this.loginFormComponentVisibility.next(true);
+    this.loginComponentVisibility.next(true);
   }
 
   hideLoginComponent() {
@@ -434,6 +618,7 @@ export class Greentee918Service {
   }
 
   showLoginFormComponent() {
+    this.loginFormComponentVisibility.next(true);
   }
 
   hideLoginFormComponent() {
@@ -485,11 +670,22 @@ export class Greentee918Service {
   }
 
   showHomeComponent() {
+    if (this.debugApp || this.debugModule) debugger;
     this.homeComponentVisibility.next(true);
   }
 
   hideHomeComponent() {
     this.homeComponentVisibility.next(false);
+  }
+
+  showPrivacyPolicyComponent() {
+    if (this.debugApp || this.debugModule) debugger;
+    this.privacyPolicyVisibility.next(true);
+  }
+
+  hidePrivacyPolicyComponent() {
+    if (this.debugApp || this.debugModule) debugger;
+    this.privacyPolicyVisibility.next(false);
   }
 
   showMainMenu() {
@@ -501,6 +697,7 @@ export class Greentee918Service {
   }
 
   showGolferComponent() {
+
     this.golferComponentVisibility.next(true);
     this.showGolferMenu();
   }
@@ -513,21 +710,34 @@ export class Greentee918Service {
 
   showScoringComponent() {
     this.scoringComponentVisibility.next(true);
+    this.scoringVisibility.next(true);
   }
 
   hideScoringComponent() {
     this.scoringComponentVisibility.next(false);
+    this.scoringVisibility.next(false);
+  }
+
+  showScoringRecordComponent() {
+    this.scoringRecordVisibility.next(true);
+  }
+
+  hideScoringRecordComponent() {
+    this.scoringRecordVisibility.next(false);
   }
 
   showProfileComponent() {
     this.profileComponentVisibility.next(true);
+    this.profileVisibility.next(true);
   }
 
   hideProfileComponent() {
     this.profileComponentVisibility.next(false);
+    this.profileVisibility.next(false);
   }
 
   showClubAdminComponent() {
+
     this.clubAdminComponentVisibility.next(true);
   }
 
@@ -544,6 +754,7 @@ export class Greentee918Service {
   }
 
   showAboutComponent() {
+
     this.aboutComponentVisibility.next(true);
   }
 
@@ -559,7 +770,16 @@ export class Greentee918Service {
     this.golferMenuVisibility.next(false);
   }
 
+  showPostScoreComponent() {
+    this.postScoreVisibility.next(true);
+  }
+
+  hidePostScoreComponent() {
+    this.postScoreVisibility.next(false);
+  }
+
   showRegisterFreeTrialUserComponent() {
+
     this.registerFreeUserComponentVisibility.next(true);
   }
 
@@ -582,5 +802,15 @@ export class Greentee918Service {
 
   hidePinFormComponent() {
     this.pinFormComponentVisibility.next(false);
+  }
+
+  private hideAll() {
+    this.hideHomeComponent();
+    this.hideAboutComponent();
+    this.hideLoginComponent();
+    this.hideGolferComponent();
+    this.hideAdminComponent();
+    this.hideClubAdminComponent();
+    this.hidePostScoreComponent();
   }
 }

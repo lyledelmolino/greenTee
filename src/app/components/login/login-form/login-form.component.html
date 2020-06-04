@@ -5,12 +5,16 @@
             <img src="img_avatar2.png" alt="Avatar" class="avatar">
         </div>
     -->
-    <p>Sign In</p>
+    <p id="sign-in-p">Sign In</p>
     <div style="margin: auto; width: 60%">
-      <input class="form-largest" type="text" placeholder="Username" autocapitalize="none" name="username"
+      <input [ngClass]="setTextInputClasses()" type="text" placeholder="Username" autocapitalize="none" name="username"
              [(ngModel)]="username" autocomplete="on">
-      <input class="form-largest" type="password" placeholder="Password" autocapitalize="none" name="password"
+      <input [ngClass]="setTextInputClasses()" type="password" placeholder="Password" autocapitalize="none" name="password"
              [(ngModel)]="password" autocomplete="off">
+    </div>
+    <div id="remember-me">
+      <input type="checkbox" name="rememberMe" [(ngModel)]="rememberMe">
+      <label>Remember me</label>
     </div>
     <div class="profile-form-div">
       <button [ngClass]="setSignInButtonClasses()" type="button" (click)="loginUser()">Sign In</button>
@@ -22,10 +26,6 @@
       </button>
     </div>
     <!--      todo: implement this post deploy-->
-    <!--      <div id="remember-me" style="width: 40%; margin: auto;">-->
-    <!--        <input type="checkbox">-->
-    <!--        <label>Remember me</label>-->
-    <!--      </div>-->
     <div class="profile-form-div">
       <!--      <button type="button" (click)="showForgotPasswordComponent()">Forgot Password</button>-->
       <!--      <button type="button" (click)="showPasswordResetEmailComponent()">Forgot Password</button>-->

@@ -1,7 +1,22 @@
 <!--<div *ngIf="homeComponentVisible">-->
+<div class="responsive-logo">
+  <span id="logo">
+    <span class="span1-logo">Green</span>
+    <span class="span2-logo">Tee</span>
+    <span class="span3-logo dot-info-text">.info</span>
+  </span>
+</div>
 <div [ngClass]="setHomeSectionClasses()">
+<!--  <div class="responsive-logo">-->
+<!--  <span id="logo">-->
+<!--    <span class="span1-logo">Green</span>-->
+<!--    <span class="span2-logo">Tee</span>-->
+<!--    <span class="span3-logo dot-info-text">.info</span>-->
+<!--  </span>-->
+<!--  </div>-->
   <p class="emphasis">
-    Welcome to GreenTee<span class="dot-info-text">.info</span>! <br>The free handicap calculation service available to all golfers, clubs and
+    Welcome to GreenTee<span class="dot-info-text">.info</span>! <br>The free handicap calculation service available to
+    all golfers, clubs and
     organizations.
   </p>
   <p class="home">
@@ -15,6 +30,10 @@
             routerLink="../register-free-user" (click)="showRegisterFreeUserComponent()" value="Subscribe Free Now!">
       Subscribe Free Now!
     </button>
+<!--    <textarea id="debug-text-area" rows="4" cols="50" name="testing" [(ngModel)]="testing">-->
+<!--    </textarea>-->
+<!--    <input *ngIf="modeIsVisible" class="form-largest" type="text" name="testing" [(ngModel)]="testing"-->
+<!--           title="Read only data." readonly="readonly" style="color: black;">-->
   </form>
   <app-find-golfer [ngClass]="setFindGolferClasses()"></app-find-golfer>
 </div>

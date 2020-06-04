@@ -1,31 +1,31 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 import {Greentee918Service} from '../../../services/greentee918.service';
-import {DebugService} from "../../../services/debug.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['../../../app.component.css', './login-form.component.css']
+  styleUrls: ['../../../app.component.css', '../login.component.css', './login-form.component.css']
 })
+
 export class LoginFormComponent implements OnInit {
 
-  debugApp;
-  debugComponent;
   username: string;
   password: string;
+  rememberMe: boolean = false;
 
-  constructor(private greenTee918Service: Greentee918Service, private router: Router, private debugService: DebugService) {
+  constructor(private greenTee918Service: Greentee918Service,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.debugService.castDebugApp.subscribe(debugApp => this.debugApp = debugApp);
-    this.debugService.castDebugLoginComponent.subscribe(debugComponent => this.debugComponent = debugComponent);
   }
 
   setLoginFormClasses() {
+
     // tslint:disable-next-line:prefer-const
     let classes = {
+      'login-form': true,
       'profile-form': true
     };
 
@@ -33,30 +33,25 @@ export class LoginFormComponent implements OnInit {
   }
 
   loginUser() {
-    // todo: does this component need the user? thinking no
-    if (this.debugApp || this.debugComponent) debugger;
-    this.greenTee918Service.loginUser(this.username, this.password, this.router);
+//        console.log(this.username);
+//        console.log(this.password);
+
+    // todo: does this composnt need the user? thinking no
+//        this.greenTee918Service.loginUser('golfer1', 'password');
+    this.greenTee918Service.loginUser(this.username, this.password, this.rememberMe, this.router);
   }
 
   cancel() {
+//        console.log('In login.component.ts - cancel()!!');
     this.greenTee918Service.hideLoginComponent();
     this.greenTee918Service.showHomeComponent();
   }
 
   showForgotPasswordComponent() {
+//        console.log('In login.component.ts - showForgotPasswordComponent()!!');
+//        this.forgotPasswordComponentVisible = true;
     this.greenTee918Service.showForgotPasswordComponent();
     this.greenTee918Service.hideLoginFormComponent();
-  }
-
-  // todo: this is for v 2019.1 to be updated to include use of phone...
-  showPasswordResetEmailComponent() {
-    this.greenTee918Service.showPasswordResetEmailComponent();
-    this.greenTee918Service.hideLoginFormComponent();
-  }
-
-  showRegisterFreeUserComponent() {
-    this.greenTee918Service.hideLoginComponent();
-    this.greenTee918Service.showRegisterFreeTrialUserComponent();
   }
 
   setLoginContainerClasses() {
@@ -68,8 +63,16 @@ export class LoginFormComponent implements OnInit {
     return classes;
   }
 
-  setSignInButtonClasses() {
+  setTextInputClasses() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'form-largest': true
+    };
 
+    return classes;
+  }
+
+  setSignInButtonClasses() {
     let classes = {
       'common-button': true
     };

@@ -50,6 +50,10 @@ import {TransferHttpCacheModule} from '@nguniversal/common';
 import {NgtUniversalModule} from '@ng-toolkit/universal';
 import {BlankComponent} from './components/blank/blank.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { ResponsiveToolbarComponent } from './components/responsive-toolbar/responsive-toolbar.component';
+import { ScoringRecordComponent } from './components/golfer-section/scoring/scoring-record/scoring-record.component';
+import { DarkModeComponent } from './components/dark-mode/dark-mode.component';
+import { LightModeComponent } from './components/light-mode/light-mode.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +94,10 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
     PasswordResetComponent,
     BlankComponent,
     PrivacyPolicyComponent,
+    ResponsiveToolbarComponent,
+    ScoringRecordComponent,
+    DarkModeComponent,
+    LightModeComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
@@ -97,6 +105,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+
     CommonModule,
     TransferHttpCacheModule,
     NgtUniversalModule,

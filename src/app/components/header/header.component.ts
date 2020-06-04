@@ -11,8 +11,8 @@ import {HttpClient} from "@angular/common/http";
 export class HeaderComponent implements OnInit {
 
   appUser;
-  mainMenuVisible = true;
-  homeComponentVisible = true;
+  mainMenuVisible = false;
+  homeComponentVisible = false;
   loginComponentVisible = false;
   forgotPasswordComponentVisible = false;
   golferComponentVisible = false;
@@ -56,6 +56,7 @@ export class HeaderComponent implements OnInit {
     let classes = {
       'app-header': !(this.loginComponentVisible || this.forgotPasswordComponentVisible),
       'login-header': this.loginComponentVisible || this.forgotPasswordComponentVisible,
+      'hide-header': !this.homeComponentVisible
     };
 
     return classes;

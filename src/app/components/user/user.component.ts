@@ -11,7 +11,9 @@ import {Greentee918Service} from '../../services/greentee918.service';
 
 export class UserComponent implements OnInit {
 
-  appUser;
+  appUser = {
+    userLevel: 0
+  };
 
   constructor(private greenTee918Service: Greentee918Service, private router: Router) {
   }

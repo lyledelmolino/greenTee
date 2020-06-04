@@ -6,10 +6,26 @@
   margin-left: 3px;
 }
 
+.show-scoring-record button {
+  color: black;
+}
+
+.show-scoring-record.dark-mode button {
+  color: white;
+}
+
+.triangle-down {
+  border-top-color: white;
+}
+
+.triangle-up {
+  border-bottom-color: white;
+}
+
 .show-scoring-record {
   width: 125px;
   float: right;
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
 }
 
 .detail-actuator-button {
@@ -30,8 +46,7 @@
 }
 
 .list-container {
-  background-color: white;
-  padding: 8px;
+  /*background-color: white;*/
   display: block;
 }
 
@@ -62,10 +77,18 @@
 
 p.club-name {
   margin: 0px;
+  font-size: 8pt;
+}
+
+div.dark-mode {
+  background-color: darkolivegreen;
+  border: none;
 }
 
 .odd, .even {
-  padding: 7px;
+  padding: 1px 7px;
+  /*border: 1px solid lightgray;*/
+  background-color: lightyellow;
   border: 1px solid lightgray;
   margin: 2px 0px;
 }
@@ -105,7 +128,7 @@ p.club-name {
   border: 1px solid rgba(127, 166, 130, 1);
 }
 
-select{
+select {
   margin-top: 10px;
 }
 
@@ -113,11 +136,13 @@ select{
 
   .container-container {
     margin-top: 10px;
+    margin-bottom: 70px;
+    background-color: transparent;
   }
 
   .profile-form-div {
     font-size: 12px;
-    margin-bottom: 0px;
+    margin-bottom: 12px;
   }
 
   .list-container button:not(.detail-actuator) {

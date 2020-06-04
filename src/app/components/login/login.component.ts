@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {Greentee918Service} from '../../services/greentee918.service';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   passwordResetComponentVisible = false;
   pinFormComponentVisible = false;
 
-  constructor(private greenTee918Service: Greentee918Service) {
+  constructor(private greenTee918Service: Greentee918Service,
+              private cookieService: CookieService) {
   }
 
   ngOnInit() {
@@ -27,6 +29,8 @@ export class LoginComponent implements OnInit {
       .subscribe(visibility => {
         this.loginFormComponentVisible = visibility;
       });
+
+    this.cookieService.set('last-route', '/home', 3000);
   }
 
   setTopLevelContainerClasses() {

@@ -3,8 +3,8 @@
 }
 
 .odd_row {
-  background-color:  var(--common-inactive-bg-color);;
-  color: var(--common-inactive-color);;
+  background-color: var(--common-inactive-bg-color);;
+  color: var(--common-inactive-color);
 }
 
 .detail-container-container {
@@ -44,10 +44,36 @@
 
 .scoring-record {
   border: 1px solid var(--common-border-color);
-  margin: 3px 0;
+  margin: 20px 0 5px;
   width: 100%;
+  background-color: transparent;
   /*margin: 3px 0;*/
   /*padding: 1px 3px;*/
+}
+
+.scoring-record.dark-mode  table {
+  border-color: white;
+}
+
+.scoring-record.dark-mode {
+  background-color: transparent;
+  border: 1px solid white;
+}
+
+.triangle.up.dark-mode {
+  border-bottom-color: white;
+}
+
+.triangle.down.dark-mode {
+  border-top-color: white;
+}
+
+.detail-actuator.dark-mode {
+  color: white;
+}
+
+#responsive-user-info {
+  display: none;
 }
 
 /*.triangle-down {*/
@@ -65,5 +91,17 @@
     float: none;
     background-color: #e0ebe1;
     border: 1px solid #e0ebe1;
+  }
+
+  #responsive-user-info {
+    display: inline-block;
+    padding: 15px;
+    background-color: transparent;
+    /*margin: 40px 5px 0 25px;*/
+    float: right;
+  }
+
+  div.active {
+    /*background-color: #e0e0e0;*/
   }
 }

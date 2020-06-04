@@ -4,28 +4,12 @@ import {Score} from '../../../../models/Score';
 import {DebugService} from "../../../../services/debug.service";
 import {formatDate} from "@angular/common";
 
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-  // ...
-} from '@angular/animations';
-import {Router} from "@angular/router";
-
 @Component({
   selector: 'app-post-score',
   templateUrl: './post-score.component.html',
-  styleUrls: ['../../../../app.component.css', '../scoring.component.css', './post-score.component.css'],
-  animations: [
-    trigger('toggle', [
-      state('open', style({height: '320px'})),
-      state('closed', style({height: '*'})),
-      transition('open <=> closed', animate('200ms ease-in-out'))
-    ])
-  ]
-})
+  // styleUrls: ['../../../../app.component.css', '../../golfer-section.component.css', '../scoring.component.css', './post-score.component.css'],
+  styleUrls: ['../../../../app.component.css', '../../golfer-section.component.css', '../scoring.component.css', './post-score.component.css'],
+ })
 
 export class PostScoreComponent implements OnInit {
 
@@ -44,6 +28,7 @@ export class PostScoreComponent implements OnInit {
   private slopeNumberOnly: string = "";
   private slopeValid = false;
   input_value: any;
+  isDarkMode = false;
 
   constructor(private greenTee918Service: Greentee918Service, private debugService: DebugService) {
 
@@ -65,6 +50,8 @@ export class PostScoreComponent implements OnInit {
   ngOnInit() {
     this.debugService.castDebugApp.subscribe(debugApp => this.debugApp = debugApp);
     this.debugService.castDebugPostScoreComponent.subscribe(debugComponent => this.debugComponent = debugComponent);
+    this.greenTee918Service.showPostScoreComponent();
+    this.greenTee918Service.castIsDarkMode.subscribe(isDarkMode => this.isDarkMode = isDarkMode);
   }
 
   postScore() {
@@ -183,13 +170,22 @@ export class PostScoreComponent implements OnInit {
     this.postScoreDetailVisible = !this.postScoreDetailVisible;
   }
 
+  setDivClass() {
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      // active: this.postScoreDetailVisible
+    }
+  }
+
   setDetailActuatorClass() {
 
     // tslint:disable-next-line:prefer-const
     let classes = {
       'detail-actuator': true,
       'post-score': true,
-      active: this.postScoreDetailVisible
+      'dark-mode': this.isDarkMode
+
+      // active: this.postScoreDetailVisible
     };
 
     return classes;
@@ -251,6 +247,30 @@ export class PostScoreComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'common-button': true
+    };
+
+    return classes;
+  }
+
+  setTriangleDownClass() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'triangle': true,
+      'down': true,
+      'dark-mode': this.isDarkMode
+    };
+
+    return classes;
+  }
+
+  setTriangleUpClass() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'triangle': true,
+      'up': true,
+      'dark-mode': this.isDarkMode
     };
 
     return classes;

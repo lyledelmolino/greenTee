@@ -4,15 +4,17 @@ import {Greentee918Service} from '../../../../services/greentee918.service';
 @Component({
   selector: 'app-latest-rev-scoring-record',
   templateUrl: './latest-rev-scoring-record.component.html',
-  styleUrls: ['../../../../app.component.css', '../scoring.component.css', './latest-rev-scoring-record.component.css']
+  styleUrls: ['../../../../app.component.css', '../../golfer-section.component.css', '../scoring.component.css', './latest-rev-scoring-record.component.css']
 })
 export class LatestRevScoringRecordComponent implements OnInit {
 
   @Input() aFreeUser;
   @Input() aGolfer;
   latestRevScoringRecordDetailVisible = false;
+  isDarkMode = false;
 
   constructor(private greenTee918Service: Greentee918Service) {
+    this.greenTee918Service.castIsDarkMode.subscribe(isDarkMode => this.isDarkMode = isDarkMode);
   }
 
   ngOnInit() {
@@ -56,7 +58,8 @@ export class LatestRevScoringRecordComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       'detail-actuator': true,
-      active: this.latestRevScoringRecordDetailVisible
+      active: this.latestRevScoringRecordDetailVisible,
+      'dark-mode': this.isDarkMode
     };
 
     return classes;
@@ -97,6 +100,30 @@ export class LatestRevScoringRecordComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     let classes = {
       active: this.latestRevScoringRecordDetailVisible
+    };
+
+    return classes;
+  }
+
+  setTriangleDownClass() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'triangle': true,
+      'down': true,
+      'dark-mode': this.isDarkMode
+    };
+
+    return classes;
+  }
+
+  setTriangleUpClass() {
+
+    // tslint:disable-next-line:prefer-const
+    let classes = {
+      'triangle': true,
+      'up': true,
+      'dark-mode': this.isDarkMode
     };
 
     return classes;

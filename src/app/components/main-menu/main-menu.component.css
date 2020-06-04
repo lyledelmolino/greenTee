@@ -14,6 +14,10 @@
   margin: auto;
 }
 
+div.topnav > div.active {
+  display: inline-block;
+}
+
 .golfer-menu button {
   margin-top: 2px;
   width: 226px;
@@ -30,8 +34,66 @@
   display: none;
 }
 
+#privacy-policy-main-menu-button {
+  display: none;
+}
+
+#login-main-menu-button {
+  display: none;
+}
+
+#privacy-policy-parent, #login-parent {
+  display: none;
+}
+
+.topnav > div {
+  display: inline-block;
+}
+
 @media screen and (max-width: 757px) {
 
+  div.dark-mode, div.dark-mode > div, div.dark-mode > button {
+    background-color: black;
+    color: white;
+  }
+
+  #privacy-policy-main-menu-button.active {
+    display: inline-block;
+    width: 65%;
+    border: none;
+    font-weight: 500;
+    font-size: 1.5em;
+    margin-left: 10px;
+  }
+
+  .topnav > div {
+    display: none;
+  }
+
+  .topnav > div.active {
+    display: block;
+  }
+
+  #myTopnav {
+    display: none;
+  }
+
+  #privacy-policy-parent.active, #login-parent.active {
+    display: block;
+  }
+
+  #privacy-policy-parent {
+    top: 0;
+    position: fixed;
+    opacity: 1;
+  }
+
+  /*#privacy-policy-parent, #login-parent {*/
+  /*  display: inline-block;*/
+  /*}*/
+  /*#login-main-menu-button.active {*/
+  /*  display: block;*/
+  /*}*/
   div.responsive-menu {
     display: inline-block;
     margin: 2px;
@@ -93,7 +155,25 @@
     display: block;
     text-align: left;
     padding: 0 0 0 20px;
-    height: 25px;
+    height: 35px;
+    font-size: 18pt;
+    font-weight: 500;
+    top: 0;
+    position: fixed;
+  }
+
+  div > div {
+    display: none;
+  }
+
+  div.active > div {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 18pt;
+    border: none;
+    /*color: black;*/
+    background: transparent;
+    margin: 2px 15px;
   }
 
   .topnav button:not(.active) {
@@ -106,6 +186,16 @@
     border: none;
   }
 
+  .topnav > div {
+    /*display: block;*/
+    width: 100%;
+    /*height: 40px;*/
+  }
+
+  .topnav > div:not(.active) {
+    display: none;
+  }
+
   .golfer-menu button {
     width: calc(50% - 2px);
   }
@@ -113,6 +203,20 @@
   .golfer-menu {
     width: 100%;
   }
+
+  img {
+    height: 25px;
+    margin: 5px 10px;
+  }
+
+  #home-main-menu-button {
+    display: none;
+  }
+
+}
+
+div.active {
+  padding: 0;
 }
 
 div.responsive-menu button {

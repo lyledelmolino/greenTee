@@ -5,10 +5,12 @@
   /*--common-inactive-bg-color: white;*/
   /*--common-inactive-color: black;*/
   /*--common-inactive-border-color: --common-inactive-bg-color;*/
-  --common-inactive-bg-color: #ccc;
+  /*--common-inactive-bg-color: #ccc;*/
+  --common-inactive-bg-color: ivory;
   --common-inactive-color: maroon;
   --common-inactive-border-color: khaki;
-  --common-active-bg-color: white;
+  /*--common-active-bg-color: white;*/
+  --common-active-bg-color: #ccc;
   --common-active-color: black;
   --common-active-border-color: --common-inactive-bg-color;
   --common-border-size: 5px;
@@ -18,9 +20,9 @@
   --common-button-border: 1px solid #ccc;
   --common-div-border: none;
   --common-border-radius: 0px;
-  --common-opacity: .8;
-  --common-button-opacity: .8;
-  --common-div-opacity: .8;
+  --common-opacity: 1;
+  --common-button-opacity: 1;
+  --common-div-opacity: 1;
   --button-hover-border: --common-border-size solid --common-active-bg-color;
   /*--menu-button-radius: 8px 8px 0 0;*/
   --menu-button-radius: 0;
@@ -41,19 +43,58 @@ button:focus {
   height: 100%;
 }
 
+div.dark-mode {
+  background-color: black;
+}
+
+input.dark-mode {
+  background-color: darkgreen;
+}
+
+div.light-mode {
+  background-color: white;
+}
+
+input.light-mode {
+  background-color: white;
+}
+
 div.active {
+  display: inline-block;
   margin: 0;
-  padding: 5px;
-  background-color: var(--common-active-bg-color);
-  color: var(--common-active-color);
+  padding: 7px;
+  /*background-color: var(--common-active-bg-color);*/
+  /*color: var(--common-active-color);*/
   border: var(--common-div-border);
   border-radius: var(--common-border-radius);
   opacity: var(--common-div-opacity);
 }
 
 .common-button {
+  background-color: transparent;
+  /*color: var(--common-inactive-color);*/
+  border: var(--common-button-border);
+  border-radius: var(--common-border-radius);
+  margin: 0 2px;
+  opacity: var(--common-button-opacity);
+  outline: none;
+}
+
+.common-button.light-mode {
   background-color: var(--common-inactive-bg-color);
   color: var(--common-inactive-color);
+  border: var(--common-button-border);
+  border-radius: var(--common-border-radius);
+  margin: 0 2px;
+  opacity: var(--common-button-opacity);
+  outline: none;
+}
+
+.dark-mode.common-button {
+  background-color: var(--common-inactive-bg-color);
+  background-color: var(--common-inactive-color);
+  color: var(--common-inactive-color);
+  color: var(--common-inactive-bg-color);
   border: var(--common-button-border);
   border-radius: var(--common-border-radius);
   margin: 0 2px;
@@ -90,13 +131,15 @@ form .common-button:hover {
 .detail-actuator {
   width: 100%;
   border: none;
-  background-color: var(--common-inactive-bg-color);
+  /*background-color: var(--common-inactive-bg-color);*/
+  background-color: transparent;
   color: var(--common-inactive-color);
   outline: none;
+  height: 35px;
 }
 
 .detail-actuator.active {
-  background-color: var(--common-active-bg-color);
+  /*background-color: var(--common-active-bg-color);*/
 }
 
 label {
@@ -146,7 +189,7 @@ label {
 
 .container-container fieldset {
   border: none;
-  background-color: var(--common-inactive-bg-color);
+  /*background-color: var(--common-inactive-bg-color);*/
 }
 
 .post-score .container-container {
@@ -167,7 +210,7 @@ fieldset.profile-detail {
 }
 
 .profile-affiliations-detail div {
-  background-color: white;
+  /*background-color: white;*/
   padding: 3px;
 }
 
@@ -178,7 +221,9 @@ fieldset.profile-detail {
 
 .profile-affiliations-detail p {
   padding: 3px 7px;
-  background-color: #e0e0e0;
+  /*background-color: #e0e0e0;*/
+  border: 1px solid lightgray;
+  margin: 3px;
 }
 
 .first-name {
@@ -198,11 +243,19 @@ fieldset.profile-detail {
   border-color: #a94442;
 }
 
+.profile-form.dark-mode button:not(.detail-actuator) {
+  color: white;
+  border: 1px solid white;
+}
+
 .profile-form button:not(.detail-actuator) {
   margin: auto;
   width: 40%;
   height: 2.5em;
   display: block;
+  color: black;
+  background-color: transparent;
+  border: 1px solid black;
 }
 
 .profile-form-div {
@@ -225,6 +278,9 @@ form ::placeholder {
   color: #888;
 }
 
+.responsive-title {
+  display: none;
+}
 
 /*@media screen and (max-width: 600px) {*/
 @media screen and (max-width: 757px) {
@@ -242,17 +298,27 @@ form ::placeholder {
 
   .app-header {
     margin: 5px 0px 5px 0px;
+    top: 0;
+    position: fixed;
   }
 
   .gt-main-content-container {
     width: 100%;
+    /*margin-top: 60px;*/
     /*min-width: 364px;*/
     /*position: absolute;*/
+  }
+
+  .responsive-title {
+    display: block;
+    font-size: 19pt;
+    padding: 5px 0 0 15px;
   }
 
   .form-largest {
     font-size: 11pt;
     padding-left: 3px;
+    background-color: transparent;
   }
 
   .dot-info-text {

@@ -1,7 +1,8 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
 import {Greentee918Service} from '../../services/greentee918.service';
 import {User} from '../../models/User';
-import {PhoneNumber} from '../../models/PhoneNumer';
+import {PhoneNumber} from '../../models/PhoneNumber';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-register-free-user',
@@ -21,12 +22,26 @@ export class RegisterFreeUserComponent implements OnInit {
   zipCodeNumberOnly = "";
   zipCodePlus4NumberOnly = ""
 
-  constructor(private greenTee918Service: Greentee918Service) {
+  constructor(private greenTee918Service: Greentee918Service,
+              private cookieService: CookieService) {
     this.componentForm = new User();
   }
 
   ngOnInit() {
     this.greenTee918Service.castRegisterFreeUserComponentVisibility.subscribe(visibility => this.componentVisible = visibility);
+
+    this.greenTee918Service.hideLoginComponent();
+    this.greenTee918Service.hideMainMenu();
+    this.greenTee918Service.hideHomeComponent();
+    this.greenTee918Service.showRegisterFreeTrialUserComponent();
+    this.greenTee918Service.hideAboutComponent();
+    this.greenTee918Service.hideGolferComponent();
+    this.greenTee918Service.hideScoringComponent();
+    this.greenTee918Service.hidePostScoreComponent();
+    this.greenTee918Service.hideScoringRecordComponent();
+    this.greenTee918Service.hidePrivacyPolicyComponent();
+
+    this.cookieService.set('last-route', '/register-free-user', 3000);
   }
 
   initializeRegisterFreeUser() {

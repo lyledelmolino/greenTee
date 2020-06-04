@@ -1,0 +1,77 @@
+<div [ngClass]="setResponsiveToolbarClasses()">
+  <div routerLink="home" routerLinkActive="active">
+    <img *ngIf="homeComponentVisible"
+         src="https://greentee.info/img/home-lightgreen-60x60-active-full.png"
+         alt="Home">
+    <img *ngIf="!homeComponentVisible"
+         src="https://greentee.info/img/home-grey-60x60.png"
+         alt="Home">
+  </div>
+  <div *ngIf="appUser.userLevel<1" routerLink="register-free-user" routerLinkActive="active">
+    <img *ngIf="registerFreeUserComponentVisible"
+         src="https://greentee.info/img/register-lightgreen-60x60-active-full.png"
+         alt="Register Free User">
+    <img *ngIf=!registerFreeUserComponentVisible
+         src="https://greentee.info/img/register-grey-60x60.png"
+         alt="Register Free User">
+  </div>
+  <div routerLink="about" routerLinkActive="active">
+    <img *ngIf="aboutComponentVisible || privacyPolicyVisibility"
+         src="https://greentee.info/img/about-lightgreen-60x60-active.png"
+         alt="About">
+    <img *ngIf="!aboutComponentVisible && !privacyPolicyVisibility"
+         src="https://greentee.info/img/about-grey-60x60.png"
+         alt="About">
+  </div>
+  <!--  <div *ngIf="appUser.userLevel>599" routerLink="post-score" routerLinkActive="active">-->
+  <!--    <img *ngIf=postScoreComponentVisible src="https://greentee.info/img/post-score-transparent-60x60-white-bg.png"-->
+  <!--         alt="Post Score">-->
+  <!--    <img *ngIf=!postScoreComponentVisible src="https://greentee.info/img/post-score-grey-60x60.png"-->
+  <!--         alt="Post Score">-->
+  <!--  </div>-->
+  <div *ngIf="appUser.userLevel>599" routerLink="profile" routerLinkActive="active">
+    <!--    <img *ngIf="profileComponentVisible && !isDarkMode"-->
+    <!--         src="https://greentee.info/img/profile-lightgreen-60x60-active.png"-->
+    <!--         alt="View Scoring Section">-->
+    <img *ngIf="profileComponentVisible"
+         src="https://greentee.info/img/profile-lightgreen-60x60-active.png"
+         alt="View Scoring Section">
+    <img *ngIf="!profileComponentVisible"
+         src="https://greentee.info/img/profile-grey-60x60-thick.png"
+         alt="View Scoring Section">
+  </div>
+  <div *ngIf="appUser.userLevel>599" routerLink="scoring" routerLinkActive="active">
+    <img *ngIf="scoringComponentVisible"
+         src="https://greentee.info/img/post-score-lightgreen-60x60-active-full.png"
+         alt="Post Score">
+    <img *ngIf="!scoringComponentVisible"
+         src="https://greentee.info/img/post-score-grey-60x60.png"
+         alt="Post Score">
+  </div>
+  <!--  <div *ngIf="appUser.userLevel>599" routerLink="scoring-record" routerLinkActive="active">-->
+  <!--    <img *ngIf="scoringRecordComponentVisible && !isDarkMode"-->
+  <!--         src="https://greentee.info/img/view-scoring-record-transparent-60x60-white-bg.png"-->
+  <!--         alt="View Scoring Record">-->
+  <!--    <img *ngIf="scoringRecordComponentVisible"-->
+  <!--         src="https://greentee.info/img/view-scoring-record-transparent-60x60-white-bg.png"-->
+  <!--         alt="View Scoring Record">-->
+  <!--    <img *ngIf="!scoringRecordComponentVisible" src="https://greentee.info/img/view-scoring-record-grey-60x60.png"-->
+  <!--         alt="View Scoring Record">-->
+  <!--  </div>-->
+  <div *ngIf="appUser.userLevel==0" routerLink="login" routerLinkActive="active">
+    <img *ngIf="loginComponentVisible"
+         src="https://greentee.info/img/sign-in-lightgreen-60x60-active-full.png"
+         alt="Sign In">
+    <img *ngIf="!loginComponentVisible"
+         src="https://greentee.info/img/sign-in-grey-60x60-thick.png"
+         alt="Sign In">
+  </div>
+  <div *ngIf="appUser.userLevel>0" (click)="logoutUser()" routerLink="logout" routerLinkActive="active">
+    <img *ngIf="loginComponentVisible"
+         src="https://greentee.info/img/sign-out-transparent-60x60-white-bg.png"
+         alt="Sign Out">
+    <img *ngIf="!loginComponentVisible"
+         src="https://greentee.info/img/sign-out-grey-60x60.png"
+         alt="Sign Out">
+  </div>
+</div>

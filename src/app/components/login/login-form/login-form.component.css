@@ -6,13 +6,13 @@ p {
   color: #dddddd;
 }
 
-input[name=username]{
+input[name=username] {
   margin-bottom: 10px;
 }
 
-#remember-me {
-  margin: 15px;
-}
+/*#remember-me {*/
+/*  margin: 15px;*/
+/*}*/
 
 @media screen and (max-width: 757px) {
 
@@ -20,4 +20,22 @@ input[name=username]{
     width: 75%;
   }
 
+  #sign-in-p {
+    display: none;
+  }
+
+  section {
+    padding-top: 85px;
+  }
+
+  #remember-me {
+    width: 40%;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  #remember-me > label {
+    font-size: 12pt;
+    margin-left: 5px;
+  }
 }

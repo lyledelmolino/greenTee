@@ -7,19 +7,13 @@
   border-top: 1px solid gray;
 }
 
-@media screen and (max-width: 757px) {
-  #user-info {
-    margin-top: 18px;
-    padding: 5px;
-    display: block;
-    background-color: white;
-    border-bottom: none;
-    border-top: none;
-  }
+#main-route-outlet {
+  position: relative;
 }
 
 .social-media {
   height: 28px;
+  display: inline-block;
   /*position: relative;*/
   /*position: absolute;*/
   margin: 30px 5px;
@@ -46,4 +40,35 @@
 
 #privacy-policy-div > button:hover {
   border: 1px solid var(--common-active-color);
+}
+
+@media screen and (max-width: 757px) {
+  #user-info {
+    padding: 15px;
+    /*display: block;*/
+    background-color: transparent;
+    /*border-bottom: none;*/
+    /*border-top: none;*/
+    margin: 40px 5px 0 25px;
+    float: right;
+    display: none;
+  }
+
+  .hide-header{
+    margin-top: 0px;
+  }
+
+  .social-media {
+    display: none;
+  }
+
+  div.dark-mode {
+    color: white;
+    background-color: black;
+  }
+
+  div.dark-mode > div.active {
+    color: white;
+    background-color: black;
+  }
 }

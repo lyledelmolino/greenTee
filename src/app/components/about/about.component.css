@@ -7,6 +7,34 @@
 
   #about {
     padding-top: 0;
+    margin-bottom: 75px;
   }
 
+  #privacy-policy-div {
+    float: right;
+    height: 40px;
+    margin-right: 20px;
+  }
+
+  #privacy-policy-div > button {
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: #333;
+    font-weight: 600;
+  }
+}
+
+#privacy-policy-div > button {
+  /*border-radius: 10px;*/
+  border: 2px solid lightgray;
+  background: transparent;
+  padding: 5px 10px;
+  color: #888;
+  font-weight: 400;
+  /*margin-top: 20px;*/
+  float: right;
+}
+
+#about {
+  padding: 20px;
 }

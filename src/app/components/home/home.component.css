@@ -25,6 +25,10 @@ form button:not(.detail-actuator):hover {
 
 }
 
+.responsive-logo {
+  display: none;
+}
+
 @media screen and (max-width: 757px) {
   p.emphasis {
     font-size: 15pt;
@@ -39,4 +43,42 @@ form button:not(.detail-actuator):hover {
   form button {
     margin: 15px auto 10px;
   }
+
+  div.active {
+    /*padding-top: 85px;*/
+  }
+
+  .responsive-logo {
+    display: inline-block;
+    width: 100%;
+    background-color: forestgreen;
+    padding: 3px 0 3px 10px;
+    margin-bottom: 20px;
+  }
+
+  #logo {
+    display: inline-block;
+    margin-left: 5px;
+    background-color: transparent;
+    font-size: 18pt;
+  }
+
+  .span1-logo {
+    color: white;
+  }
+
+  .span2-logo {
+    color: green;
+    border-radius: 20px 0px;
+    padding: 4px;
+    height: 35px;
+    background-color: rgba(187, 255, 190, 1);
+    margin-left: 2px;
+  }
+
+  .span3-logo {
+    font-size: 15px;
+    color: white;
+  }
 }
+

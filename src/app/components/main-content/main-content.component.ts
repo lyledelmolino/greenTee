@@ -1,14 +1,28 @@
 import {Component, OnInit} from '@angular/core';
 import {Greentee918Service} from '../../services/greentee918.service';
+import {AppComponent} from "../../app.component";
+import {RouterOutlet} from "@angular/router";
+import {DebugService} from "../../services/debug.service";
+import {slideInAnimation, slider} from "../../animations";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {trigger, animate, transition, style, state, group, query} from '@angular/animations';
 
 @Component({
   selector: 'app-main-content',
   templateUrl: './main-content.component.html',
-  styleUrls: ['../../app.component.css', './main-content.component.css']
+  styleUrls: ['../../app.component.css', './main-content.component.css'],
+  animations: [
+    slideInAnimation,
+    slider
+    // animation triggers go here
+  ]
 })
+
 export class MainContentComponent implements OnInit {
 
   appUser;
+  debugApp;
+  debugComponent;
   loginComponentVisible = false;
   homeComponentVisible = true;
   golferComponentVisible = false;
@@ -18,12 +32,16 @@ export class MainContentComponent implements OnInit {
   freeTrialComponentVisible = false;
   freeUserPinFormComponentVisible = false;
   registerFreeUserComponentVisible = false;
+  responsiveMenuVisible = false;
+  isDarkMode = false;
 
-  constructor(private greenTee918Service: Greentee918Service) {
+  constructor(private greenTee918Service: Greentee918Service, private appComponent: AppComponent, private debugService: DebugService) {
   }
 
   ngOnInit() {
     this.greenTee918Service.castUser.subscribe(user => this.appUser = user);
+    this.debugService.castDebugMainContentComponent.subscribe(debugComponent => this.debugComponent = debugComponent);
+    this.debugService.castDebugApp.subscribe(debugApp => this.debugApp = debugApp);
     this.greenTee918Service.castHomeComponentVisibility.subscribe(visibility => this.homeComponentVisible = visibility);
     this.greenTee918Service.castGolferComponentVisibility.subscribe(visibility => this.golferComponentVisible = visibility);
     this.greenTee918Service.castClubAdminComponentVisibility.subscribe(visibility => this.clubAdminComponentVisible = visibility);
@@ -34,6 +52,8 @@ export class MainContentComponent implements OnInit {
     this.greenTee918Service.castPinFormComponentVisibility.subscribe(visibility =>
       this.freeUserPinFormComponentVisible = visibility);
     this.greenTee918Service.castLoginVisibility.subscribe(visibility => this.loginComponentVisible = visibility);
+    this.greenTee918Service.castMainMenuVisibility.subscribe(visibility => this.responsiveMenuVisible = visibility);
+    this.greenTee918Service.castIsDarkMode.subscribe(isDarkMode => this.isDarkMode = isDarkMode);
   }
 
   setMainMenuClasses() {
@@ -50,7 +70,10 @@ export class MainContentComponent implements OnInit {
 
     // tslint:disable-next-line:prefer-const
     let classes = {
-      'gt-main-content-container': true
+      'gt-main-content-container': true,
+      'hide-header': !this.homeComponentVisible,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode
     };
 
     return classes;
@@ -127,5 +150,36 @@ export class MainContentComponent implements OnInit {
     this.greenTee918Service.hidePinFormComponent();
     this.greenTee918Service.hideRegisterFreeTrialUserComponent();
     this.greenTee918Service.hideAboutComponent();
+  }
+
+  showHomeComponent() {
+    if (this.debugApp || this.debugComponent) debugger;
+    this.responsiveMenuVisible = false;
+    this.greenTee918Service.showHomeComponent();
+    this.greenTee918Service.hideGolferComponent();
+    this.greenTee918Service.hideClubAdminComponent();
+    this.greenTee918Service.hideAdminComponent();
+    this.greenTee918Service.hideFreeTrialComponent();
+    this.greenTee918Service.hidePinFormComponent();
+    this.greenTee918Service.hideRegisterFreeTrialUserComponent();
+    this.greenTee918Service.hideAboutComponent();
+  }
+
+  showRegisterFreeUserComponent() {
+    if (this.debugApp || this.debugComponent) debugger;
+    this.responsiveMenuVisible = false;
+    this.greenTee918Service.hideHomeComponent();
+    this.greenTee918Service.hideGolferComponent();
+    this.greenTee918Service.hideClubAdminComponent();
+    this.greenTee918Service.hideAdminComponent();
+    this.greenTee918Service.hideAboutComponent();
+    this.greenTee918Service.showRegisterFreeTrialUserComponent();
+    this.greenTee918Service.hidePinFormComponent();
+  }
+
+  prepareRouteTransition(outlet: RouterOutlet) {
+    // const animation = outlet.activatedRouteData['animation'] || {};
+    // return animation['value'] || null;
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

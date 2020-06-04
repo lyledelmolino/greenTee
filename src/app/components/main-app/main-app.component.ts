@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { Greentee918Service } from '../../services/greentee918.service';
+import {CookieService} from 'ngx-cookie-service';
+import {DebugService} from "../../services/debug.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-main-app',
@@ -9,10 +12,16 @@ import { Greentee918Service } from '../../services/greentee918.service';
 })
 export class MainAppComponent implements OnInit {
 
+  private debugApp;
+  private debugModule;
+
   appUser: any;
   loginComponentVisible = false;
 
-  constructor( private greenTee918Service: Greentee918Service, private router: Router ) {}
+  constructor( private greenTee918Service: Greentee918Service, private router: Router, private cookieService: CookieService, private debugService: DebugService ) {
+    this.debugService.castDebugApp.subscribe(debugApp => this.debugApp = debugApp);
+    this.debugService.castDebugGreenTee918Service.subscribe(debugModule => this.debugModule = debugModule);
+  }
 
   ngOnInit() {
 

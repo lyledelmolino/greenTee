@@ -1,12 +1,14 @@
 <div [ngClass]="setMainContentClasses()">
+<!--  <div *ngIf="appUser.userLevel>0 && golferComponentVisible"-->
   <div *ngIf="appUser.userLevel>0"
        id="user-info">{{ appUser.firstName }} {{ appUser.middleInitial }} {{ appUser.lastName }} |
     H.I. {{ appUser.handicapIndex }}</div>
   <!--  <div *ngIf="appUser.userLevel>0" id="user-info">Test User | H.I. 14.2</div>-->
-<!--  <app-user *ngIf="!loginComponentVisible"></app-user>-->
+  <!--  <app-user *ngIf="!loginComponentVisible"></app-user>-->
   <app-main-menu [ngClass]="setMainMenuClasses()"></app-main-menu>
-  <router-outlet></router-outlet>
-<!--  <router-outlet name="main-content"></router-outlet>-->
+  <main id="main-route-outlet" [@routeAnimations]="prepareRouteTransition(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </main>  <!--  <router-outlet name="main-content"></router-outlet>-->
   <!--  <app-home *ngIf="homeComponentVisible" [ngClass]="setHomeClasses()"></app-home>-->
   <!--  <app-golfer-section *ngIf="golferComponentVisible" [ngClass]="setGolferClasses()"></app-golfer-section>-->
   <!--  <app-club-admin *ngIf="clubAdminComponentVisible" [ngClass]="setClubAdminClasses()"></app-club-admin>-->
@@ -35,10 +37,11 @@
         <img alt="fb" src="https://greentee.info/img/linkedin_in.png" type="social" style="height: 100%">
       </a>
     </div>
-    <div id="privacy-policy-div">
-<!--    <a href="https://greentee.info/privacy-policy">Privacy Policy</a>-->
-      <button class="common-button" routerLink="privacy-policy" routerLinkActive="active" (click)="showPrivacyPolicyComponent()">Privacy Policy
-      </button>
-    </div>
+    <!--    <div id="privacy-policy-div">-->
+    <!--      &lt;!&ndash;    <a href="https://greentee.info/privacy-policy">Privacy Policy</a>&ndash;&gt;-->
+    <!--      <button class="common-button" routerLink="privacy-policy" routerLinkActive="active"-->
+    <!--              (click)="showPrivacyPolicyComponent()">Privacy Policy-->
+    <!--      </button>-->
+    <!--    </div>-->
   </div>
 </div>

@@ -1,18 +1,40 @@
 <div class="topnav" id="myTopnav">
-  <button [ngClass]="setHomeButtonClasses()" routerLink="home" routerLinkActive="active" (click)="showHomeComponent()">
+  <button id="home-main-menu-button" [ngClass]="setHomeButtonClasses()" routerLink="home" routerLinkActive="active"
+          (click)="showHomeComponent()">
     Home
   </button>
-  <button *ngIf="appUser.userLevel>599" [ngClass]="setGolferButtonClasses()" routerLink="golfer"
-          routerLinkActive="active" (click)="showGolferComponent()">Golfer
-  </button>
+  <div [ngClass]="setGolferDivClasses()">
+    <button *ngIf="appUser.userLevel>599" [ngClass]="setGolferButtonClasses()" routerLink="golfer"
+            routerLinkActive="active" (click)="showGolferComponent()">Golfer
+    </button>
+  </div>
   <!--  <button *ngIf="appUser.userLevel>699" [ngClass]="setClubAdminButtonClasses()">Club Admin</button>-->
   <!--  <button *ngIf="appUser.userLevel>899" [ngClass]="setAdminButtonClasses()">Admin</button>-->
-  <button *ngIf="appUser.userLevel<1" [ngClass]="setRegisterFreeUserButtonClasses()"
-          routerLink="register-free-user" routerLinkActive="active" (click)="showRegisterFreeUserComponent()">Subscribe
-    (Its free!)
-  </button>
-  <!--  <button [ngClass]="setMenuButtonClasses()" (click)="showAboutComponent()">About</button>-->
-  <button [ngClass]="setMenuButtonClasses()" routerLink="about" routerLinkActive="active"
-          (click)="showAboutComponent()">About
-  </button>
+  <div [ngClass]="setRegisterFreeUserDivClasses()">
+    <button *ngIf="appUser.userLevel<1" [ngClass]="setRegisterFreeUserButtonClasses()"
+            routerLink="register-free-user" routerLinkActive="active" (click)="showRegisterFreeUserComponent()">
+      Subscribe (Its free!)
+    </button>
+  </div>  <!--  <button [ngClass]="setMenuButtonClasses()" (click)="showAboutComponent()">About</button>-->
+  <div [ngClass]="setAboutDivClasses()">
+    <button [ngClass]="setMenuButtonClasses()" routerLink="about" routerLinkActive="active"
+            (click)="showAboutComponent()">About GreenTee
+    </button>
+  </div>
+  <div id="privacy-policy-parent" *ngIf="privacyPolicyComponentVisible" [ngClass]="setPrivacyPolicyDivClasses()">
+    <img *ngIf="!isDarkMode" routerLink="about" src="https://greentee.info/img/back-arrow-square-black-w-white-bg.png">
+    <img *ngIf="isDarkMode" routerLink="about" src="https://greentee.info/img/back-arrow-square-white-w-black-bg.png">
+    <div [ngClass]="setPrivacyPolicyButtonClasses()">
+      Privacy Policy
+    </div>
+  </div>
+  <div id="login-parent" [ngClass]="setSignInDivClasses()">
+    <button [ngClass]="setSignInButtonClasses()" routerLink="login" routerLinkActive="active">
+      Sign In
+    </button>
+  </div>
+  <!--  <button id="login-main-menu-button" [ngClass]="setLoginButtonClasses()"-->
+  <!--          routerLink="login" routerLinkActive="active"-->
+  <!--          (click)="showLoginComponent()">Sign In-->
+  <!--  </button>-->
 </div>

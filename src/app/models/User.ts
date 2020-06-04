@@ -1,4 +1,5 @@
 import {Location} from "./Location";
+import {PhoneNumber} from "./PhoneNumber";
 
 export class User {
   id: number;
@@ -11,7 +12,7 @@ export class User {
   roleId: number;
   emails?: string[] = [];
   websites?: string[];
-  phoneNumbers?: object[];
+  phoneNumbers:PhoneNumber[] = [new PhoneNumber()];
   clubRoles: object[];
   revisionScoringRecord: object[];
   currentScoringRecord: object[];
@@ -22,5 +23,6 @@ export class User {
   userLevel: number = 0;
 
   constructor(userLevel?: number) {
+    this.emails[0] = "";
   }
 }

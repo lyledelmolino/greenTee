@@ -1,4 +1,9 @@
-<div [ngClass]="setScoringComponentClasses()" style="padding-bottom: 0px;">
+<div [ngClass]="setScoringComponentClasses()" style="padding-bottom: 90px;">
+  <div class="responsive-title">Scoring</div>
+  <div *ngIf="appUser.userLevel>0"
+       id="responsive-user-info">{{ appUser.firstName }} {{ appUser.middleInitial }} {{ appUser.lastName }} |
+    H.I. {{ appUser.handicapIndex }}
+  </div>
   <div [ngClass]="setDetailContainerClasses()">
     <div [ngClass]="setDetailActuateClasses()">
       <app-post-score [ngClass]="setPostScoreClasses()"></app-post-score>

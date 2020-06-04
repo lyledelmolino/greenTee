@@ -11,6 +11,7 @@ export class DebugService {
   castDebugLoginComponent = new BehaviorSubject<boolean>(false && isDevMode()).asObservable();
   castDebugGreenTee918Service = new BehaviorSubject<boolean>(false && isDevMode()).asObservable();
   castDebugMainMenuComponent = new BehaviorSubject<boolean>(false && isDevMode()).asObservable();
+  castDebugMainContentComponent = new BehaviorSubject<boolean>(false && isDevMode()).asObservable();
   castDebugPostScoreComponent = new BehaviorSubject<boolean>(false && isDevMode()).asObservable();
 
   constructor() { }

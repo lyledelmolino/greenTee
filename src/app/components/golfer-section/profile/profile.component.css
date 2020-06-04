@@ -1,5 +1,5 @@
 #golfer-profile-name-label {
-    min-height: 60px;
+  min-height: 60px;
 }
 
 .profile-form input, select {
@@ -7,7 +7,7 @@
 }
 
 .detail-actuator {
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 
 .profile-form {
@@ -33,7 +33,44 @@
   padding-left: 2px;
 }
 
+.profile-affiliations-detail {
+  /*background-color: beige;*/
+}
 
+.detail-actuator {
+  background-color: transparent;
+}
+
+.profile-section {
+  background-color: transparent;
+  border: 1px solid maroon;
+  margin-bottom: 14px;
+}
+
+select.dark-mode > option {
+  background-color: black;
+}
+
+select {
+  background-color: transparent;
+}
+
+input {
+  background-color: transparent;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid white;
+}
+
+.profile-section.dark-mode > button {
+  color: white;
+}
+
+.profile-section.dark-mode {
+  border-color: white;
+}
 
 @media screen and (max-width: 757px) {
 
@@ -42,7 +79,10 @@
   }
 
   #golfer-profile-name-label {
-        min-height: 0px;
-    }
+    min-height: 0px;
+  }
 
+  #main-profile-container {
+    margin-bottom: 100px;
+  }
 }

@@ -1,7 +1,7 @@
 <button (click)="toggleCurrentScoringRecordDetailVisible()" [ngClass]="setDetailActuatorClass()">
   Current Scoring Record
-  <div *ngIf="!currentScoringRecordDetailVisible" class="triangle down"></div>
-  <div *ngIf="currentScoringRecordDetailVisible" class="triangle up"></div>
+  <div *ngIf="!currentScoringRecordDetailVisible" [ngClass]="setTriangleDownClass()"></div>
+  <div *ngIf="currentScoringRecordDetailVisible" [ngClass]="setTriangleDownClass()"></div>
 </button>
 <div *ngIf="currentScoringRecordDetailVisible" [ngClass]="setContainerContainerClass()">
   <div [ngClass]="setScoreTableContainerClass()">

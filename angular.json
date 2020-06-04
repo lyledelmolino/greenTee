@@ -105,7 +105,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/server",
-            "main": "src/main.server.ts",
+            "main": "server.ts",
             "tsConfig": "src/tsconfig.server.json"
           },
           "configurations": {
@@ -125,6 +125,32 @@
                 }
               ]
             }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "greentee918:build",
+            "serverTarget": "greentee918:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "greentee918:build:production",
+              "serverTarget": "greentee918:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "greentee918:build:production",
+            "serverTarget": "greentee918:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }

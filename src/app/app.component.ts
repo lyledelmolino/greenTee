@@ -4,6 +4,12 @@ import {environment} from '../environments/environment';
 import {filter} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {Event as NavigationEvent, NavigationStart} from "@angular/router";
+import {Greentee918Service} from "./services/greentee918.service";
+import {CookieService} from 'ngx-cookie-service';
+import {DebugService} from "./services/debug.service";
+import {BehaviorSubject} from "rxjs";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {trigger, animate, transition, style} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -13,65 +19,47 @@ import {Event as NavigationEvent, NavigationStart} from "@angular/router";
 
 export class AppComponent implements OnInit {
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any, @Inject(DOCUMENT) private document: any, router: Router ) {
+  private debugApp;
+  private debugModule;
 
-    //console.log("In --- app.component ---> constructor()!!");
+  private isDarkMode;
 
-    // router.events
-    //   .pipe(
-    //     // The "events" stream contains all the navigation events. For this demo,
-    //     // though, we only care about the NavigationStart event as it contains
-    //     // information about what initiated the navigation sequence.
-    //     filter(
-    //       (event: NavigationEvent) => {
-    //
-    //         return (event instanceof NavigationStart);
-    //
-    //       }
-    //     )
-    //   )
-    //   .subscribe(
-    //     (event: NavigationStart) => {
-    //
-    //       console.group("NavigationStart Event");
-    //       // Every navigation sequence is given a unique ID. Even "popstate"
-    //       // navigations are really just "roll forward" navigations that get
-    //       // a new, unique ID.
-    //       console.log("navigation id:", event.id);
-    //       console.log("route:", event.url);
-    //       // The "navigationTrigger" will be one of:
-    //       // --
-    //       // - imperative (ie, user clicked a link).
-    //       // - popstate (ie, browser controlled change such as Back button).
-    //       // - hashchange
-    //       // --
-    //       // NOTE: I am not sure what triggers the "hashchange" type.
-    //       console.log("trigger:", event.navigationTrigger);
-    //
-    //       // This "restoredState" property is defined when the navigation
-    //       // event is triggered by a "popstate" event (ex, back / forward
-    //       // buttons). It will contain the ID of the earlier navigation event
-    //       // to which the browser is returning.
-    //       // --
-    //       // CAUTION: This ID may not be part of the current page rendering.
-    //       // This value is pulled out of the browser; and, may exist across
-    //       // page refreshes.
-    //       if (event.restoredState) {
-    //
-    //         console.warn(
-    //           "restoring navigation id:",
-    //           event.restoredState.navigationId
-    //         );
-    //
-    //       }
-    //
-    //       console.groupEnd();
-    //
-    //     }
-    //   );
+  // castIsDarkMode = this.isDarkMode.asObservable();
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
+              @Inject(DOCUMENT) private document: any,
+              private cookieService: CookieService,
+              private debugService: DebugService,
+              private greentee918Service: Greentee918Service,
+              private router: Router) {
+
+    this.greentee918Service.castIsDarkMode.subscribe(isDarkMode => this.isDarkMode = isDarkMode);
+
   }
 
   ngOnInit() {
+
+    this.greentee918Service.hideHomeComponent();
+    this.greentee918Service.hideMainMenu();
+
+    if (this.cookieService.check('mode')) {
+      this.greentee918Service.setDarkMode(this.cookieService.get('mode'));
+    }
+
+    if (this.cookieService.check('user') && this.cookieService.check('greent')) {
+      let user = this.cookieService.get('user');
+      let greent = this.cookieService.get('greent');
+
+      let username = atob(user.substring(0, user.length - (btoa('uranass$123').length + 1)));
+      let password = atob(greent).substring(0, atob(greent).length - 10);
+
+      this.greentee918Service.loginUser(username, password, true, this.router);
+
+    } else {
+      // this.router.navigate(['../home']);
+    }
+
+    if (this.debugApp || this.debugModule || false) debugger;
 
     if (!isPlatformBrowser(this.platformId)) {
       const bases = this.document.getElementsByTagName('base');
@@ -96,9 +84,32 @@ export class AppComponent implements OnInit {
 
     // tslint:disable-next-line:prefer-const
     let classes = {
-      appContainer: true
+      appContainer: true,
+      'dark-mode': this.isDarkMode,
+      'light-mode': !this.isDarkMode,
     };
 
     return classes;
+  }
+
+  loginIOSUser(url) {
+
+
+    let startRouteSlashIndex = this.document.URL.indexOf('/', 7);
+    let endRouteSlashIndex = this.document.URL.indexOf('/', this.document.URL.indexOf('/', 7) + 1);
+    let route = this.document.URL.substring(startRouteSlashIndex, endRouteSlashIndex);
+
+
+    let usernameStartIndex = this.document.URL.indexOf("=", endRouteSlashIndex) + 1;
+    let usernameEndIndex = this.document.URL.indexOf("&", endRouteSlashIndex);
+    let username = this.document.URL.substring(usernameStartIndex, usernameEndIndex);
+    let passwordStartIndex = this.document.URL.indexOf("=", usernameEndIndex) + 1;
+    let passwordEndIndex = this.document.URL.length;
+    let password = this.document.URL.substring(passwordStartIndex, passwordEndIndex);
+
+    if (this.debugApp || this.debugModule || true) debugger;
+
+    this.greentee918Service.loginUser(username, password, true, this.router)
+
   }
 }

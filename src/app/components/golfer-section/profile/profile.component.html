@@ -1,5 +1,6 @@
 <div [ngClass]="setContainerContainerClass()">
-  <div [ngClass]="setDetailContainerClasses()">
+  <div class="responsive-title">Profile</div>
+  <div id="main-profile-container" [ngClass]="setDetailContainerClasses()">
     <form [ngClass]="setProfileClasses()" (ngSubmit)="updateUserProfile()">
       <div style="display: block">
         <div style="display: inline">
@@ -26,125 +27,132 @@
                  placeholder="Last Name">
         </div>
       </div>
-      <button type="button" (click)="toggleAffiliationsDetailVisible()" [ngClass]="setDetailActuatorClass()">
-        Affiliations
-        <div *ngIf="!affiliationsDetailVisible" class="triangle down"></div>
-        <div *ngIf="affiliationsDetailVisible" class="triangle up"></div>
-      </button>
-      <div *ngIf="affiliationsDetailVisible" [ngClass]="setContainerContainerClass()">
-        <fieldset [ngClass]="setProfileAffiliationsDetailContainerClasses()">
-          <div *ngFor="let clubRole of componentUser.clubRoles;let i = index" [ngClass]="{'even': i % 2 == 1}">
-            <p *ngIf="clubRole.club.name != 'Free User'" title="Read only data.">{{clubRole.club.name}}
-              <br>{{clubRole.club.location.aAddress.city + ', ' + clubRole.club.location.aAddress.state }}</p>
-            <p *ngIf="clubRole.club.name == 'Free User'" title="Read only data.">{{clubRole.club.name}}</p>
-          </div>
-        </fieldset>
+      <div [ngClass]="setProfileSectionClasses()">
+        <button type="button" (click)="toggleAffiliationsDetailVisible()" [ngClass]="setDetailActuatorClass()">
+          Affiliations
+          <div *ngIf="!affiliationsDetailVisible" [ngClass]="setTriangleDownClass()"></div>
+          <div *ngIf="affiliationsDetailVisible" [ngClass]="setTriangleUpClass()"></div>
+        </button>
+        <div *ngIf="affiliationsDetailVisible" [ngClass]="setContainerContainerClass()">
+          <fieldset [ngClass]="setProfileAffiliationsDetailContainerClasses()">
+            <div *ngFor="let clubRole of componentUser.clubRoles;let i = index" [ngClass]="{'even': i % 2 == 1}">
+              <p *ngIf="clubRole.club.name != 'Free User'" title="Read only data.">{{clubRole.club.name}}
+                <br>{{clubRole.club.location.aAddress.city + ', ' + clubRole.club.location.aAddress.state }}</p>
+              <p *ngIf="clubRole.club.name == 'Free User'" title="Read only data.">{{clubRole.club.name}}</p>
+            </div>
+          </fieldset>
+        </div>
       </div>
-      <button type="button" (click)="toggleAddressDetailVisible()" [ngClass]="setDetailActuatorClass()">
-        Address
-        <div *ngIf="!addressDetailVisible" class="triangle down"></div>
-        <div *ngIf="addressDetailVisible" class="triangle up"></div>
-      </button>
-      <div *ngIf="addressDetailVisible" [ngClass]="setContainerContainerClass()">
-        <fieldset [ngClass]="setProfileDetailContainerClasses()">
-          <div>
-            <input class="form-largest" type="text" maxlength="100"
-                   [(ngModel)]="componentUser.locations[0].aAddress.streetName" name="streetName"
-                   placeholder="Street Name">
-          </div>
-          <div>
-            <input class="form-largest" [(ngModel)]="componentUser.locations[0].aAddress.city" name="city" type="text"
-                   maxlength="100" placeholder="City">
-          </div>
-          <select class="form-largest" [(ngModel)]="componentUser.locations[0].aAddress.state" name="state"
-                  onchange="toggleReset(event)">
-            <option value="">State</option>
-            <option value="AK">AK - Alaska</option>
-            <option value="AL">AL - Alabama</option>
-            <option value="AR">AR - Arkansas</option>
-            <option value="AZ">AZ - Arizona</option>
-            <option value="CA">CA - California</option>
-            <option value="CO">CO - Colorado</option>
-            <option value="CT">CT - Connecticut</option>
-            <option value="DC">DC - District of Columbia</option>
-            <option value="DE">DE - Delaware</option>
-            <option value="FL">FL - Florida</option>
-            <option value="GA">GA - Georgia</option>
-            <option value="HI">HI - Hawaii</option>
-            <option value="IA">IA - Iowa</option>
-            <option value="ID">ID - Idaho</option>
-            <option value="IL">IL - Illinois</option>
-            <option value="IN">IN - Indiana</option>
-            <option value="KS">KS - Kansas</option>
-            <option value="KY">KY - Kentucky</option>
-            <option value="LA">LA - Louisiana</option>
-            <option value="MA">MA - Massachusetts</option>
-            <option value="MD">MD - Maryland</option>
-            <option value="ME">ME - Maine</option>
-            <option value="MI">MI - Michigan</option>
-            <option value="MN">MN - Minnesota</option>
-            <option value="MO">MO - Missouri</option>
-            <option value="MS">MS - Mississippi</option>
-            <option value="MT">MT - Montana</option>
-            <option value="NC">NC - North Carolina</option>
-            <option value="ND">ND - North Dakota</option>
-            <option value="NE">NE - Nebraska</option>
-            <option value="NH">NH - New Hampshire</option>
-            <option value="NJ">NJ - New Jersey</option>
-            <option value="NM">NM - New Mexico</option>
-            <option value="NV">NV - Nevada</option>
-            <option value="NY">NY - New York</option>
-            <option value="OH">OH - Ohio</option>
-            <option value="OK">OK - Oklahoma</option>
-            <option value="OR">OR - Oregon</option>
-            <option value="PA">PA - Pennsylvania</option>
-            <option value="PR">PR - Puerto Rico</option>
-            <option value="RI">RI - Rhode Island</option>
-            <option value="SC">SC - South Carolina</option>
-            <option value="SD">SD - South Dakota</option>
-            <option value="TN">TN - Tennessee</option>
-            <option value="TX">TX - Texas</option>
-            <option value="UT">UT - Utah</option>
-            <option value="VA">VA - Virginia</option>
-            <option value="VI">VI - U.S. Virgin Islands</option>
-            <option value="VT">VT - Vermont</option>
-            <option value="WA">WA - Washington</option>
-            <option value="WI">WI - Wisconsin</option>
-            <option value="WV">WV - West Virginia</option>
-            <option value="WY">WY - Wyoming</option>
-          </select>
-          <div>
-            <input class="form-largest" [(ngModel)]="componentUser.locations[0].aAddress.zipCode" name="zipCode"
-                   type="text" maxlength="5" pattern="(^\d{5})" onkeydown="inputOnlyInteger(event)" placeholder="Zip">
-          </div>
-          <div>
-            <input class="form-largest" [(ngModel)]="componentUser.locations[0].aAddress.zipPlus4" name="zipPlus4"
-                   type="text" maxlength="4" pattern="(^\d{4})" onkeydown="inputOnlyInteger(event)" placeholder="Zip+4">
-          </div>
-        </fieldset>
+      <div [ngClass]="setProfileSectionClasses()">
+        <button type="button" (click)="toggleAddressDetailVisible()" [ngClass]="setDetailActuatorClass()">
+          Address
+          <div *ngIf="!addressDetailVisible" [ngClass]="setTriangleDownClass()"></div>
+          <div *ngIf="addressDetailVisible" [ngClass]="setTriangleUpClass()"></div>
+        </button>
+        <div *ngIf="addressDetailVisible" [ngClass]="setContainerContainerClass()">
+          <fieldset [ngClass]="setProfileDetailContainerClasses()">
+            <div>
+              <input class="form-largest" type="text" maxlength="100"
+                     [(ngModel)]="componentUser.locations[0].aAddress.streetName" name="streetName"
+                     placeholder="Street Name">
+            </div>
+            <div>
+              <input class="form-largest" [(ngModel)]="componentUser.locations[0].aAddress.city" name="city" type="text"
+                     maxlength="100" placeholder="City">
+            </div>
+            <select [ngClass]="setSelectClass()" name="state">
+              <option value="">State</option>
+              <option value="AK">AK - Alaska</option>
+              <option value="AL">AL - Alabama</option>
+              <option value="AR">AR - Arkansas</option>
+              <option value="AZ">AZ - Arizona</option>
+              <option value="CA">CA - California</option>
+              <option value="CO">CO - Colorado</option>
+              <option value="CT">CT - Connecticut</option>
+              <option value="DC">DC - District of Columbia</option>
+              <option value="DE">DE - Delaware</option>
+              <option value="FL">FL - Florida</option>
+              <option value="GA">GA - Georgia</option>
+              <option value="HI">HI - Hawaii</option>
+              <option value="IA">IA - Iowa</option>
+              <option value="ID">ID - Idaho</option>
+              <option value="IL">IL - Illinois</option>
+              <option value="IN">IN - Indiana</option>
+              <option value="KS">KS - Kansas</option>
+              <option value="KY">KY - Kentucky</option>
+              <option value="LA">LA - Louisiana</option>
+              <option value="MA">MA - Massachusetts</option>
+              <option value="MD">MD - Maryland</option>
+              <option value="ME">ME - Maine</option>
+              <option value="MI">MI - Michigan</option>
+              <option value="MN">MN - Minnesota</option>
+              <option value="MO">MO - Missouri</option>
+              <option value="MS">MS - Mississippi</option>
+              <option value="MT">MT - Montana</option>
+              <option value="NC">NC - North Carolina</option>
+              <option value="ND">ND - North Dakota</option>
+              <option value="NE">NE - Nebraska</option>
+              <option value="NH">NH - New Hampshire</option>
+              <option value="NJ">NJ - New Jersey</option>
+              <option value="NM">NM - New Mexico</option>
+              <option value="NV">NV - Nevada</option>
+              <option value="NY">NY - New York</option>
+              <option value="OH">OH - Ohio</option>
+              <option value="OK">OK - Oklahoma</option>
+              <option value="OR">OR - Oregon</option>
+              <option value="PA">PA - Pennsylvania</option>
+              <option value="PR">PR - Puerto Rico</option>
+              <option value="RI">RI - Rhode Island</option>
+              <option value="SC">SC - South Carolina</option>
+              <option value="SD">SD - South Dakota</option>
+              <option value="TN">TN - Tennessee</option>
+              <option value="TX">TX - Texas</option>
+              <option value="UT">UT - Utah</option>
+              <option value="VA">VA - Virginia</option>
+              <option value="VI">VI - U.S. Virgin Islands</option>
+              <option value="VT">VT - Vermont</option>
+              <option value="WA">WA - Washington</option>
+              <option value="WI">WI - Wisconsin</option>
+              <option value="WV">WV - West Virginia</option>
+              <option value="WY">WY - Wyoming</option>
+            </select>
+            <div>
+              <input class="form-largest" [(ngModel)]="componentUser.locations[0].aAddress.zipCode" name="zipCode"
+                     type="text" maxlength="5" pattern="(^\d{5})" onkeydown="inputOnlyInteger(event)" placeholder="Zip">
+            </div>
+            <div>
+              <input class="form-largest" [(ngModel)]="componentUser.locations[0].aAddress.zipPlus4" name="zipPlus4"
+                     type="text" maxlength="4" pattern="(^\d{4})" onkeydown="inputOnlyInteger(event)"
+                     placeholder="Zip+4">
+            </div>
+          </fieldset>
+        </div>
       </div>
-      <button type="button" (click)="toggleEmailDetailVisible()" [ngClass]="setDetailActuatorClass()">
-        Email
-        <div *ngIf="!emailDetailVisible" class="triangle down"></div>
-        <div *ngIf="emailDetailVisible" class="triangle up"></div>
-      </button>
-      <div *ngIf="emailDetailVisible" [ngClass]="setContainerContainerClass()">
-        <fieldset class="profile-detail">
-          <div>
-            <input class="form-largest" type="email" maxlength="100" title="There must be an @ character." name="emails"
-                   [(ngModel)]="componentUser.emails[0]" placeholder="Email Address"
-                   onkeyup="checkFormValidityForSubmit(event)">
-            <button class="reset_edit" type="button" style="display: none;">Reset</button>
-            <a *ngIf="false" class="profile_add" onclick="removeItemContainer(event)" title="Remove affiliation.">
-              <div class="minus_item">-</div>
+      <div [ngClass]="setProfileSectionClasses()">
+        <button type="button" (click)="toggleEmailDetailVisible()" [ngClass]="setDetailActuatorClass()">
+          Email
+          <div *ngIf="!emailDetailVisible" [ngClass]="setTriangleDownClass()"></div>
+          <div *ngIf="emailDetailVisible" [ngClass]="setTriangleUpClass()"></div>
+        </button>
+        <div *ngIf="emailDetailVisible" [ngClass]="setContainerContainerClass()">
+          <fieldset class="profile-detail">
+            <div>
+              <input class="form-largest" type="email" maxlength="100" title="There must be an @ character."
+                     name="emails"
+                     [(ngModel)]="componentUser.emails[0]" placeholder="Email Address"
+                     onkeyup="checkFormValidityForSubmit(event)">
+              <button class="reset_edit" type="button" style="display: none;">Reset</button>
+              <a *ngIf="false" class="profile_add" onclick="removeItemContainer(event)" title="Remove affiliation.">
+                <div class="minus_item">-</div>
+              </a>
+            </div>
+          </fieldset>
+          <fieldset *ngIf="false">
+            <a class="profile_update" onclick="addItemContainerEvent(event)" title="Add item.">
+              <div class="add_item">+</div>
             </a>
-          </div>
-        </fieldset>
-        <fieldset *ngIf="false">
-          <a class="profile_update" onclick="addItemContainerEvent(event)" title="Add item.">
-            <div class="add_item">+</div>
-          </a>
-        </fieldset>
+          </fieldset>
+        </div>
       </div>
       <button *ngIf="false" type="button" (click)="togglePhoneDetailVisible()" [ngClass]="setDetailActuatorClass()">
         Phone
