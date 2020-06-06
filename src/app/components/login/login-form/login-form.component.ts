@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Greentee918Service} from '../../../services/greentee918.service';
 import {Router} from "@angular/router";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-login-form',
@@ -13,12 +14,16 @@ export class LoginFormComponent implements OnInit {
   username: string;
   password: string;
   rememberMe: boolean = false;
+  isDarkMode: boolean = false;
 
   constructor(private greenTee918Service: Greentee918Service,
-              private router: Router) {
+              private router: Router,
+              private cookieService: CookieService) {
   }
 
   ngOnInit() {
+    this.greenTee918Service.castIsDarkMode.subscribe(isDarkMode => this.isDarkMode = isDarkMode);
+    this.cookieService.set('last-route', '/privacy-policy', 3000);
   }
 
   setLoginFormClasses() {

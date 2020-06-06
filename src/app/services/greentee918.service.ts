@@ -360,6 +360,8 @@ export class Greentee918Service {
           // console.log("In loginUser - loggedInUser.userLevel: " + loggedInUser.userLevel);
         }
 
+        debugger;
+
         // if (loggedInUser.userLevel != null && loggedInUser.userLevel > 0) {
         if (loggedInUser != null && loggedInUser.userLevel > 0) {
           this.loginComponentVisibility.next(false);

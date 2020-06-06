@@ -1,14 +1,13 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
-import {Observable} from 'rxjs';
-
-import {Greentee918Service} from './services/greentee918.service';
+import { Observable } from 'rxjs';
+import {Greentee918Service} from "./services/greentee918.service";
 import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class LastrouteGuard implements CanActivate {
 
   appUser;
 
@@ -21,17 +20,11 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    // this.greenTee918Service.hideHomeComponent();
-    // if (this.cookieService.check('last-route')) {
-    //   this.router.navigate([this.cookieService.get('last-route')]);
-    //   return false;
-    // } else {
-    //   this.router.navigate(['/home']);
-    // }
-
-    if (this.appUser.userLevel > 599) {
-      return true;
+    this.greenTee918Service.hideHomeComponent();
+    debugger;
+    if (this.cookieService.check('last-route')) {
+      this.router.navigate([this.cookieService.get('last-route')]);
+      return false;
     } else {
       this.router.navigate(['/home']);
     }

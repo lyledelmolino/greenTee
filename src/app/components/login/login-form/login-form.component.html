@@ -1,3 +1,12 @@
+<div class="responsive-only">
+  <img class="back-arrow" *ngIf="!isDarkMode"
+       routerLink="/home" routerLinkActive="active"
+       src="https://greentee.info/img/back-arrow-square-black-w-white-bg.png">
+  <img class="back-arrow" *ngIf="isDarkMode"
+       routerLink="/home" routerLinkActive="active"
+       src="https://greentee.info/img/back-arrow-square-white-w-black-bg.png">
+  <div class="responsive-title">Sign In</div>
+</div>
 <section [ngClass]="setLoginContainerClasses()">
   <form autocomplete="off" [ngClass]="setLoginFormClasses()">
     <!--

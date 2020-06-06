@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule, Router} from '@angular/router';
 import {AuthGuard} from './auth.guard';
+import {LastrouteGuard} from './lastroute.guard';
 import {GolferSectionComponent} from "./components/golfer-section/golfer-section.component";
 import {HomeComponent} from "./components/home/home.component";
 import {DarkModeComponent} from "./components/dark-mode/dark-mode.component";
@@ -32,7 +33,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent, data: {animation: 'home'}},
   {path: 'dark-mode', component: DarkModeComponent},
   {path: 'light-mode', component: LightModeComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, data: {animation: 'login'}},
   {path: 'golfer', component: GolferSectionComponent, canActivate: [AuthGuard]},
   {path: 'register-free-user', component: RegisterFreeUserComponent, data: {animation: 'register-free-user'}},
   {path: 'about', component: AboutComponent, data: {animation: 'about'}},
@@ -48,12 +49,13 @@ const routes: Routes = [
   {path: 'about/privacy-policy', component: PrivacyPolicyComponent, data: {animation: 'privacy-policy'}},
   {path: '%5Cabout%5Cprivacy-policy', component: PrivacyPolicyComponent},
   {path: 'golfer-menu', component: GolferMenuComponent},
-  {path: 'post-score', component: PostScoreComponent, data: {animation: 'post-score'}},
+  {path: 'post-score', component: PostScoreComponent, canActivate: [AuthGuard], data: {animation: 'post-score'}},
   {path: 'scoring-record', component: ScoringRecordComponent},
-  {path: 'scoring', component: ScoringComponent, data: {animation: 'scoring'}},
+  {path: 'scoring', component: ScoringComponent, canActivate: [AuthGuard], data: {animation: 'scoring'}},
   {path: 'profile', component: ProfileComponent, data: {animation: 'profile'}},
   {path: 'blank', component: BlankComponent},
-  {path: '', redirectTo: '', pathMatch: 'full', canActivate: [AuthGuard]},
+  // {path: '', redirectTo: '', pathMatch: 'full', canActivate: [AuthGuard]},
+  {path: '', redirectTo: '', pathMatch: 'full', canActivate: [LastrouteGuard]},
   {path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 

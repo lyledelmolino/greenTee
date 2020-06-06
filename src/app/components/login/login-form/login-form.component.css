@@ -14,6 +14,17 @@ input[name=username] {
 /*  margin: 15px;*/
 /*}*/
 
+#remember-me {
+  width: 22%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+#remember-me > label {
+  font-size: 12pt;
+  margin-left: 5px;
+}
+
 @media screen and (max-width: 757px) {
 
   .profile-form button:not(.detail-actuator) {

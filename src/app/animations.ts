@@ -44,6 +44,7 @@ export const slider =
     transition(('* => profile'), slide('left')),
     transition(('privacy-policy => *'), slide('right')),
     transition(('find-golfer => *'), slide('right')),
+    transition(('login => *'), slide('right')),
   ]);
 
 function slide(direction) {
