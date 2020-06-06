@@ -22,14 +22,6 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    // this.greenTee918Service.hideHomeComponent();
-    // if (this.cookieService.check('last-route')) {
-    //   this.router.navigate([this.cookieService.get('last-route')]);
-    //   return false;
-    // } else {
-    //   this.router.navigate(['/home']);
-    // }
-
     if (this.appUser.userLevel > 599) {
       return true;
     } else {

@@ -21,7 +21,7 @@ export class LastrouteGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.greenTee918Service.hideHomeComponent();
-    debugger;
+
     if (this.cookieService.check('last-route')) {
       this.router.navigate([this.cookieService.get('last-route')]);
       return false;
